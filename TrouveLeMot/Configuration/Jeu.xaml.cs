@@ -204,10 +204,27 @@ namespace Configuration
             char[] tabMotCach = txtBmotCach.Text.ToCharArray();
             char[] tabMotJoueur = txtBjoueur.Text.ToCharArray();
             char[] tabMotPendu = txtBlettres.Text.ToCharArray();
+            string motCach = atrouver.MotCach;
+            char lettreJoueur = txtBjoueur.Text[0];
             //char[] caractMotCach = tabMotJoueur;
             //char[] caractMotPendu = tabMotPendu;
 
             int penalty = int.Parse(txtBessai.Text);
+
+            for (int i = 1; i <= txtBmotCach.Text.Length; i++)
+            {
+                string temp = txtBlettres.Text;
+                txtBlettres.Text = temp + "?";
+                if (motCach.Contains(lettreJoueur))
+                {
+                    int position = motCach.IndexOf(lettreJoueur);
+                    StringBuilder str = new StringBuilder(temp);
+                    str[position] = lettreJoueur;
+                    temp = str.ToString();
+                    txtBlettres.Text = temp;
+                }
+            }
+
             foreach (char caractMotCach in tabMotJoueur)
             {
                 if (tabMotCach.Contains(caractMotCach) & !txtBlettres.Text.Contains(caractMotCach.ToString()))
