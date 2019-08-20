@@ -75,7 +75,7 @@ namespace Configuration
         }
         private void TxtBmotCach_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+
             ChargeMots();
             txtBmotCach.Text = atrouver.MotCach;
             atrouver.Remove(txtBmotCach.Text);
@@ -171,13 +171,21 @@ namespace Configuration
             char[] tabMotJoueur = txtBjoueur.Text.ToCharArray();
             
             txtBpenalty.Text = (int.Parse(txtBessai.Text) * options.NbPoinPerdus).ToString();
-            foreach (char item in tabMotJoueur)
+
+            for (int i = 0; i < tabMotCach.Length-1; i++)
             {
-                if (tabMotCach.Contains(item) & !txtBlettres.Text.Contains(item.ToString()))
+                if (txtBjoueur.Text[i] == txtBmotCach.Text[i])
                 {
-                    txtBlettres.Text += item.ToString();
+                    txtBlettres.Text[i] = txtBmotCach.Text[i];
                 }
             }
+            //foreach (char item in tabMotJoueur)
+            //{
+            //    if (tabMotCach.Contains(item) & !txtBlettres.Text.Contains(item.ToString()))
+            //    {
+            //        txtBlettres.Text += item.ToString();
+            //    }
+            //}
             if (txtBjoueur.Text == txtBmotCach.Text)
             {
                 lblWinOrLose.Content = "Bravo ! Vous avez trouvé le mot caché";
