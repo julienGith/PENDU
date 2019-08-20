@@ -15,7 +15,13 @@ namespace Configuration
     public partial class Jeu : Window
     {
         Mots atrouver = new Mots();
+<<<<<<< HEAD
+        Options options = new Options();
+        Joueur joueur = new Joueur();
+        ListJoueurs joueurs = new ListJoueurs();
+=======
         Options Score = new Options();
+>>>>>>> 28914be1e25f665ce13bf3f24e01800edbc1871c
         DispatcherTimer chrono = new DispatcherTimer();
         int i = 1;
         int j = 0;
@@ -194,9 +200,6 @@ namespace Configuration
 
 
 
-
-
-
         private void BtnTry_Click(object sender, RoutedEventArgs e)
         {
             char[] tabMotCach = txtBmotCach.Text.ToCharArray();
@@ -253,8 +256,18 @@ namespace Configuration
             {
                 lblWinOrLose.Content = "Bravo ! Vous avez trouvé le mot caché";
                 chrono.Stop();
+<<<<<<< HEAD
+                int score = options.Temps - int.Parse(txtBcompteur.Text) - int.Parse(txtBpenalty.Text);
+=======
                 int score = Score.Temps - int.Parse(txtBcompteur.Text) - penalty;
+>>>>>>> 28914be1e25f665ce13bf3f24e01800edbc1871c
                 lblScore.Content = score.ToString();
+                joueur.Score += score;
+                lblScorePartie.Content = joueur.Score;
+                joueur.SaveXML(@"Joueur.xml");
+                joueurs.Add(joueur);
+                joueurs.SaveXML(@"ListeJoueurs.xml");
+                btnTry.IsEnabled = false;
             }
             if (txtBessai.Text == txtBnbEssais.Text)
             {
