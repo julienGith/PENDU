@@ -415,5 +415,14 @@ namespace Configuration
             }
         }
 
+        private void GroupBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void TxtBoxMot_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            txtBoxMot.Text = "";
+        }
     }
 }
