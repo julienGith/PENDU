@@ -28,7 +28,7 @@
         <TextBox x:Name="txtBcompteur" HorizontalAlignment="Left" Height="23" Margin="639,198,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="29" TextChanged="TxtBcompteur_TextChanged"/>
         <TextBox x:Name="txtBtemps" HorizontalAlignment="Left" Height="23" Margin="696,198,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="29" TextChanged="TxtBtemps_TextChanged"/>
 
-        <Label x:Name="lblnbLettres" Content="" HorizontalAlignment="Left" Height="33" Margin="31,198,0,0" VerticalAlignment="Top" Width="274"/>
+        <TextBlock x:Name="tBlettres" Text="" HorizontalAlignment="Left" Height="33" Margin="31,198,0,0" VerticalAlignment="Top" Width="274"/>
         <Label x:Name="lblTrouveLettres" Content="Lettres trouvées : " HorizontalAlignment="Left" Height="264" Margin="341,84,0,0" VerticalAlignment="Top" Width="274"/>
 
         <Label x:Name="lblScore" Content="" HorizontalAlignment="Left" Margin="696,292,0,0" VerticalAlignment="Top"/>

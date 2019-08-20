@@ -27,6 +27,8 @@ namespace Configuration
         Mots atrouver = new Mots();
         Options options = new Options();
         DispatcherTimer chrono = new DispatcherTimer();
+        Joueur joueur = new Joueur();
+        ListJoueurs joueurs = new ListJoueurs();
         int i = 1;
         int j = 0;
 
@@ -79,7 +81,7 @@ namespace Configuration
             txtBmotCach.Text = atrouver.MotCach;
             atrouver.Remove(txtBmotCach.Text);
             atrouver.SaveXML(@"mots_choisis.xml");
-            lblnbLettres.Content = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
+            tBlettres.Text = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
             for (int i = 1; i <= txtBmotCach.Text.Length; i++)
             {
                 string temp = txtBlettres.Text;
@@ -186,7 +188,7 @@ namespace Configuration
             txtBlettres.Text = "-";
 
             txtBnote.Text = "Aidez-vous en formant des mots avec les lettres trouvées. Les lettres trouvées peuvent être présentes plusieurs fois dans le mot caché.";
-            lblnbLettres.Content = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
+            tBlettres.Text = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
             /*( "Le mot fait : {0}  lettres.", txtBmotCach.Text.Length) ;*/
 
             for (int i = 0; i <= txtBmotCach.Text.Length+1; i++)
@@ -284,8 +286,14 @@ namespace Configuration
             {
                 lblWinOrLose.Content = "Bravo ! Vous avez trouvé le mot caché";
                 chrono.Stop();
-                int score = options.Temps - int.Parse(txtBcompteur.Text) - penalty;
+                int score = options.Temps - int.Parse(txtBcompteur.Text) - int.Parse(txtBpenalty.Text);
                 lblScore.Content = score.ToString();
+                joueur.Score += score;
+                lblScorePartie.Content = joueur.Score;
+                joueur.SaveXML(@"Joueur.xml");
+                joueurs.Add(joueur);
+                joueurs.SaveXML(@"ListeJoueurs.xml");
+                btnTry.IsEnabled = false;
             }
             if (txtBessai.Text == txtBnbEssais.Text)
             {
