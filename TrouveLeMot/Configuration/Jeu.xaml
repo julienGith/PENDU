@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Configuration"
         mc:Ignorable="d"
-        Title="Jeu" Height="450" Width="800" ResizeMode="NoResize">
+        Title="Jeu" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="txtBmotCach" HorizontalAlignment="Left" Height="29" Margin="145,37,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="274" TextChanged="TxtBmotCach_TextChanged"/>
-        <TextBox x:Name="txtBjoueur" HorizontalAlignment="Left" Height="23" Margin="145,245,0,0" TextWrapping="Wrap" Text="Entrez un mot ou des lettres et tentez" VerticalAlignment="Top" Width="274" SpellCheck.IsEnabled="True"/>
-        <Button x:Name="btnTry" Content="Tenter" HorizontalAlignment="Left" Margin="344,288,0,0" VerticalAlignment="Top" Width="75" Click="BtnTry_Click"/>
+        <TextBox x:Name="txtBmotCach" HorizontalAlignment="Left" Height="29" Margin="145,37,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="274" TextChanged="TxtBmotCach_TextChanged" Visibility="Hidden" IsReadOnly="False" />
+        <TextBox x:Name="txtBjoueur" HorizontalAlignment="Left" Height="23" Margin="31,245,0,0" TextWrapping="Wrap" Text="Entrez un mot ou des lettres et tentez" VerticalAlignment="Top" Width="274" SpellCheck.IsEnabled="True" TextChanged="TxtBjoueur_TextChanged" MouseDoubleClick="TxtBjoueur_MouseDoubleClick" IsReadOnly="False"/>
+        <Button x:Name="btnTry" Content="Tenter" HorizontalAlignment="Left" Margin="230,288,0,0" VerticalAlignment="Top" Width="75" Click="BtnTry_Click"/>
         <Button x:Name="btnNext" Content="Mot/manche suivante" HorizontalAlignment="Left" Margin="620,367,0,0" VerticalAlignment="Top" Width="131" Click="BtnNext_Click"/>
         <GroupBox Header="MANCHE" HorizontalAlignment="Left" Height="59" Margin="646,23,0,0" VerticalAlignment="Top" Width="77"/>
         <Label Content="/" HorizontalAlignment="Left" Margin="676,48,0,0" VerticalAlignment="Top" Width="15"/>
@@ -17,16 +17,20 @@
         <Label Content="/" HorizontalAlignment="Left" Margin="676,115,0,0" VerticalAlignment="Top" Width="15"/>
         <GroupBox Header="CHRONO" HorizontalAlignment="Left" Height="81" Margin="630,164,0,0" VerticalAlignment="Top" Width="103"/>
         <Label Content="/" HorizontalAlignment="Left" Margin="673,198,0,0" VerticalAlignment="Top" Width="15" Height="23"/>
-        <TextBox x:Name="txtBmanche" HorizontalAlignment="Left" Height="23" Margin="657,51,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="19" TextChanged="TxtBmanche_TextChanged" IsReadOnly="True"/>
-        <TextBox x:Name="txtBnbManches" HorizontalAlignment="Left" Height="23" Margin="691,51,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="19" TextChanged="TxtBnbManches_TextChanged" IsReadOnly="True"/>
+        <TextBox x:Name="txtBmanche" HorizontalAlignment="Left" Height="23" Margin="657,51,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="19" TextChanged="TxtBmanche_TextChanged"/>
+        <TextBox x:Name="txtBnbManches" HorizontalAlignment="Left" Height="23" Margin="691,51,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="19" TextChanged="TxtBnbManches_TextChanged"/>
         <TextBox x:Name="txtBnbEssais" HorizontalAlignment="Left" Height="23" Margin="691,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="25" TextChanged="TxtBnbEssais_TextChanged"/>
-        <TextBox x:Name="txtBessai" HorizontalAlignment="Left" Height="23" Margin="657,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="24" TextChanged="TxtBessai_TextChanged" IsReadOnly="True"/>
-        <TextBox x:Name="txtBlettres" HorizontalAlignment="Left" Height="23" Margin="145,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274"/>
-        <TextBox x:Name="txtBnote" HorizontalAlignment="Left" Height="76" Margin="145,148,0,0" TextWrapping="Wrap" Text="Aidez-vous en formant des mots avec les lettres trouvées. Les lettres trouvées peuvent être présentes plusieurs fois dans le mot caché. " VerticalAlignment="Top" Width="274"/>
-        <Label x:Name="lblWinOrLose" Content="" HorizontalAlignment="Left" Margin="145,84,0,0" VerticalAlignment="Top" Width="274"/>
-        <Button Content="Vérifier l'orthographe" HorizontalAlignment="Left" Margin="145,288,0,0" VerticalAlignment="Top" Width="151"/>
-        <TextBox x:Name="txtBcompteur" HorizontalAlignment="Left" Height="23" Margin="639,198,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="29" TextChanged="TxtBcompteur_TextChanged" IsReadOnly="True" Initialized="TxtBcompteur_Initialized"/>
-        <TextBox x:Name="txtBtemps" HorizontalAlignment="Left" Height="23" Margin="696,198,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="29" TextChanged="TxtBtemps_TextChanged" IsReadOnly="True"/>
+        <TextBox x:Name="txtBessai" HorizontalAlignment="Left" Height="23" Margin="657,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="24" TextChanged="TxtBessai_TextChanged"/>
+        <TextBox x:Name="txtBlettres" HorizontalAlignment="Left" Height="23" Margin="31,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" TextChanged="TxtBlettres_TextChanged" />
+        <TextBox x:Name="txtBnote" HorizontalAlignment="Left" Height="76" Margin="31,117,0,0" TextWrapping="Wrap" Text="Aidez-vous en formant des mots avec les lettres trouvées. Les lettres trouvées peuvent être présentes plusieurs fois dans le mot caché. " VerticalAlignment="Top" Width="274" TextChanged="TxtBnote_TextChanged"/>
+        <Label x:Name="lblWinOrLose" Content="" HorizontalAlignment="Left" Margin="145,40,0,0" VerticalAlignment="Top" Width="274"/>
+        <Button Content="Vérifier l'orthographe" HorizontalAlignment="Left" Margin="31,288,0,0" VerticalAlignment="Top" Width="151"/>
+        <TextBox x:Name="txtBcompteur" HorizontalAlignment="Left" Height="23" Margin="639,198,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="29" TextChanged="TxtBcompteur_TextChanged"/>
+        <TextBox x:Name="txtBtemps" HorizontalAlignment="Left" Height="23" Margin="696,198,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="29" TextChanged="TxtBtemps_TextChanged"/>
+
+        <Label x:Name="lblnbLettres" Content="" HorizontalAlignment="Left" Height="33" Margin="31,198,0,0" VerticalAlignment="Top" Width="274"/>
+        <Label x:Name="lblTrouveLettres" Content="Lettres trouvées : " HorizontalAlignment="Left" Height="264" Margin="341,84,0,0" VerticalAlignment="Top" Width="274"/>
+
         <Label x:Name="lblScore" Content="" HorizontalAlignment="Left" Margin="696,292,0,0" VerticalAlignment="Top"/>
         <GroupBox Header="SCORE" HorizontalAlignment="Left" Height="116" Margin="526,240,0,0" VerticalAlignment="Top" Width="235"/>
         <Label x:Name="lblScorePartie" Content="" HorizontalAlignment="Left" Margin="696,323,0,0" VerticalAlignment="Top"/>
@@ -35,5 +39,6 @@
         <Label Content="Points perdus par essai" HorizontalAlignment="Left" Margin="542,264,0,0" VerticalAlignment="Top"/>
         <Label Content="Score de manche" HorizontalAlignment="Left" Margin="542,292,0,0" VerticalAlignment="Top"/>
         <Label Content="Score Total" HorizontalAlignment="Left" Margin="542,323,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>

@@ -6,46 +6,51 @@
         xmlns:local="clr-namespace:Configuration"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:TrouveLeMot="clr-namespace:TrouveLeMot" x:Class="Configuration.MainWindow"
         mc:Ignorable="d"
-        Title="CONFIGURATION" Height="611.798" Width="993.031" ResizeMode="NoResize">
+        Title="CONFIGURATION" Height="611.798" Width="993.031">
     <Grid Margin="0,0,2,-20">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="51*"/>
-            <ColumnDefinition Width="22*"/>
-            <ColumnDefinition Width="211*"/>
-            <ColumnDefinition Width="301*"/>
-            <ColumnDefinition Width="424*"/>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="43*"/>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="206*"/>
+            <ColumnDefinition Width="293*"/>
+            <ColumnDefinition Width="413*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="btnAdd" Content="Ajouter au lexique" HorizontalAlignment="Left" Margin="7,174,0,0" VerticalAlignment="Top" Width="145" Click="BtnAdd_Click" Grid.Column="2" Height="22"/>
-        <ListBox x:Name="listBoxLex" HorizontalAlignment="Left" Height="420" Margin="5,92,0,0" VerticalAlignment="Top" Width="268" Grid.Column="3"/>
-        <TextBox x:Name="txtBoxMot" HorizontalAlignment="Left" Height="23" Margin="7,105,0,0" TextWrapping="Wrap" Text="Tapez un mot" VerticalAlignment="Top" Width="145" SpellCheck.IsEnabled="True" Grid.Column="2"/>
+        <Button x:Name="btnAdd" Content="Ajouter au lexique" HorizontalAlignment="Left" Margin="7,174,0,0" VerticalAlignment="Top" Width="145" Click="BtnAdd_Click" Grid.Column="3" Height="22"/>
+        <ListBox x:Name="listBoxLex" HorizontalAlignment="Left" Height="420" Margin="5,92,0,0" VerticalAlignment="Top" Width="268" Grid.Column="4"/>
+        <TextBox x:Name="txtBoxMot" HorizontalAlignment="Left" Height="23" Margin="7,105,0,0" TextWrapping="Wrap" Text="Tapez un mot" VerticalAlignment="Top" Width="145" SpellCheck.IsEnabled="True" Grid.Column="3" MouseDoubleClick="TxtBoxMot_MouseDoubleClick"/>
 
-        <Button Content="Vérifiez l'orthographe" HorizontalAlignment="Left" Margin="7,147,0,0" VerticalAlignment="Top" Width="145" Grid.Column="2" Height="22"/>
-        <ListBox x:Name="listBoxCible" HorizontalAlignment="Left" Height="420" Margin="112,92,0,0" VerticalAlignment="Top" Width="268" Grid.Column="4" SelectionChanged="ListBoxCible_SelectionChanged"/>
-        <Button x:Name="btnTransfert" Content="&gt;" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Width="75" Click="BtnTransfert_Click" Grid.Column="4" Height="22"/>
-        <Button x:Name="btnSupr" Content="&lt;" HorizontalAlignment="Left" Margin="10,184,0,0" VerticalAlignment="Top" Width="75" Click="BtnSupr_Click" Grid.Column="4" Height="22"/>
-        <Button x:Name="btnRemove" Content="Retirer du lexique" HorizontalAlignment="Left" Margin="7,201,0,0" VerticalAlignment="Top" Width="145" RenderTransformOrigin="0.829,0.474" Click="BtnRemove_Click" Grid.Column="2" Height="22"/>
-        <Label Content="LEXIQUE" HorizontalAlignment="Left" Margin="112,61,0,0" VerticalAlignment="Top" Width="56" RenderTransformOrigin="1.25,0.457" Grid.Column="3" Height="26"/>
-        <Label Content="MOTS A TROUVER" HorizontalAlignment="Left" Margin="182,61,0,0" VerticalAlignment="Top" Grid.Column="4" Height="26" Width="108"/>
-        <GroupBox Header="Difficulté du lexique" HorizontalAlignment="Left" Height="126" Margin="7,273,0,0" VerticalAlignment="Top" Width="184" Grid.Column="1" Grid.ColumnSpan="2">
+        <Button x:Name="btnOrthographe" Content="Vérifiez l'orthographe" HorizontalAlignment="Left" Margin="7,147,0,0" VerticalAlignment="Top" Width="145" Grid.Column="3" Height="22"/>
+        <ListBox x:Name="listBoxCible" HorizontalAlignment="Left" Height="420" Margin="112,92,0,0" VerticalAlignment="Top" Width="268" Grid.Column="5" SelectionChanged="ListBoxCible_SelectionChanged"/>
+        <Button x:Name="btnTransfert" Content="&gt;" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Width="75" Click="BtnTransfert_Click" Grid.Column="5" Height="22"/>
+        <Button x:Name="btnAddTout" Content="&gt;&gt;" Grid.Column="5" HorizontalAlignment="Left" Height="22" Margin="10,131,0,0" VerticalAlignment="Top" Width="75" Click="BtnAddTout_Click"/>
+        <Button x:Name="btnSupprTout" Content="&lt;&lt;" Grid.Column="5" HorizontalAlignment="Left" Height="22" Margin="10,455,0,0" VerticalAlignment="Top" Width="75" Click="BtnSupprTout_Click"/>
+        <Button x:Name="btnSupr" Content="&lt;" HorizontalAlignment="Left" Margin="10,490,0,0" VerticalAlignment="Top" Width="75" Click="BtnSupr_Click" Grid.Column="5" Height="22"/>
+        <Button x:Name="btnRemove" Content="Retirer du lexique" HorizontalAlignment="Left" Margin="7,201,0,0" VerticalAlignment="Top" Width="145" RenderTransformOrigin="0.829,0.474" Click="BtnRemove_Click" Grid.Column="3" Height="22"/>
+        <Label Content="LEXIQUE" HorizontalAlignment="Left" Margin="112,61,0,0" VerticalAlignment="Top" Width="56" RenderTransformOrigin="1.25,0.457" Grid.Column="4" Height="26"/>
+        <Label Content="MOTS A TROUVER" HorizontalAlignment="Left" Margin="182,61,0,0" VerticalAlignment="Top" Grid.Column="5" Height="26" Width="108"/>
+        <GroupBox Header="" HorizontalAlignment="Left" Height="103" Margin="7,266,0,0" VerticalAlignment="Top" Width="184" Grid.Column="2" Grid.ColumnSpan="2">
             <StackPanel Margin="0,10,0,19">
-                <RadioButton x:Name="rBtnPerso" Content="Pesonnalisé " IsChecked="True" Checked="RBtnPerso_Checked" />
-                <RadioButton x:Name="rBtnFacile" Content="Facile : 5 à 8 caractères" IsChecked="False" HorizontalAlignment="Right" Width="172" Checked="RBtnFacile_Checked" />
+                <RadioButton x:Name="rBtnFacile" Content="Facile : 5 à 8 caractères" IsChecked="False" Checked="RBtnFacile_Checked" />
                 <RadioButton x:Name="rBtnDifficile" Content="Difficile : 8 à 10 caractères" Checked="RBtnDifficile_Checked"/>
                 <RadioButton x:Name="rBtnExpert" Content="Expert : plus de 10 caractères" HorizontalAlignment="Right" Width="172" Checked="RBtnExpert_Checked"/>
             </StackPanel>
         </GroupBox>
-        <xctk:IntegerUpDown x:Name="nupDurée" HorizontalAlignment="Left" Margin="127,477,0,0" VerticalAlignment="Top" Maximum="600" Minimum="60" Increment="10" Grid.Column="2" Height="20" Width="41" Value="60" ValueChanged="NupDurée_ValueChanged"/>
-        <Label Content="Points perdu par lettre incorrecte" HorizontalAlignment="Left" Margin="15,523,0,0" VerticalAlignment="Top" Width="185" Grid.ColumnSpan="3" Height="26"/>
-        <Label Content="Durée d'une manche" HorizontalAlignment="Left" Margin="15,471,0,0" VerticalAlignment="Top" Width="152" Grid.ColumnSpan="3" Height="26"/>
-        <xctk:IntegerUpDown x:Name="nupPtPerdu" HorizontalAlignment="Left" Margin="127,527,0,0" VerticalAlignment="Top" Grid.Column="2" Height="20" Width="41" Maximum="3" Minimum="0" Value="0" ValueChanged="NupPtPerdu_ValueChanged"/>
-        <Button x:Name="btnClose" Content="Fermer" Grid.Column="4" HorizontalAlignment="Left" Margin="305,537,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="BtnClose_Click"/>
-        <Label Content="Nombre de manches" HorizontalAlignment="Left" Margin="15,445,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Height="26" Width="121"/>
-        <xctk:IntegerUpDown x:Name="nupManches" FormatString="N0" Grid.Column="2" HorizontalAlignment="Left" Margin="127,448,0,0" VerticalAlignment="Top" Height="20" Width="41" Maximum="5" Minimum="1" Value="1" ValueChanged="NupManches_ValueChanged"/>
-        <Label Content="Nombre d'essai" HorizontalAlignment="Left" Margin="15,497,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.737,-0.154" Grid.ColumnSpan="3" Width="119"/>
-        <xctk:IntegerUpDown x:Name="nupEssais" Grid.Column="2" HorizontalAlignment="Left" Margin="127,502,0,0" VerticalAlignment="Top" Minimum="7" Value="7" ValueChanged="NupEssais_ValueChanged"/>
-        <Button x:Name="btnTri" Content="Ordre alaphabétique" Grid.Column="3" HorizontalAlignment="Left" Margin="153,537,0,0" VerticalAlignment="Top" Width="120" Click="BtnTri_Click"/>
-        <GroupBox x:Name="gpBoptions" Header="Options" HorizontalAlignment="Left" Height="141" Margin="15,418,0,0" VerticalAlignment="Top" Width="237" Grid.ColumnSpan="3"/>
-        <GroupBox Grid.Column="1" Header="Alimenter le lexique" HorizontalAlignment="Left" Height="170" Margin="7,78,0,0" VerticalAlignment="Top" Width="184" Grid.ColumnSpan="2"/>
-
+        <xctk:IntegerUpDown x:Name="nupDurée" HorizontalAlignment="Left" Margin="127,477,0,0" VerticalAlignment="Top" Maximum="600" Minimum="60" Increment="10" Grid.Column="3" Height="20" Width="41" Value="60" ValueChanged="NupDurée_ValueChanged"/>
+        <Label Content="Points perdu par lettre incorrecte" HorizontalAlignment="Left" Margin="8,523,0,0" VerticalAlignment="Top" Width="185" Grid.ColumnSpan="3" Height="26" Grid.Column="1"/>
+        <Label Content="Durée d'une manche" HorizontalAlignment="Left" Margin="8,471,0,0" VerticalAlignment="Top" Width="152" Grid.ColumnSpan="3" Height="26" Grid.Column="1"/>
+        <xctk:IntegerUpDown x:Name="nupPtPerdu" HorizontalAlignment="Left" Margin="127,527,0,0" VerticalAlignment="Top" Grid.Column="3" Height="20" Width="41" Maximum="3" Minimum="0" Value="0" ValueChanged="NupPtPerdu_ValueChanged"/>
+        <Button x:Name="btnClose" Content="Fermer" Grid.Column="5" HorizontalAlignment="Left" Margin="305,537,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="BtnClose_Click"/>
+        <Label Content="Nombre de manches" HorizontalAlignment="Left" Margin="8,445,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Height="26" Width="121" Grid.Column="1"/>
+        <xctk:IntegerUpDown x:Name="nupManches" FormatString="N0" Grid.Column="3" HorizontalAlignment="Left" Margin="127,448,0,0" VerticalAlignment="Top" Height="20" Width="41" Maximum="5" Minimum="1" Value="1" ValueChanged="NupManches_ValueChanged"/>
+        <Label Content="Nombre d'essai" HorizontalAlignment="Left" Margin="8,497,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.737,-0.154" Grid.ColumnSpan="3" Width="119" Grid.Column="1"/>
+        <xctk:IntegerUpDown x:Name="nupEssais" Grid.Column="3" HorizontalAlignment="Left" Margin="127,502,0,0" VerticalAlignment="Top" Minimum="7" Value="7" ValueChanged="NupEssais_ValueChanged"/>
+        <Button x:Name="btnTri" Content="Ordre alaphabétique" Grid.Column="4" HorizontalAlignment="Left" Margin="153,531,0,0" VerticalAlignment="Top" Width="120" Click="BtnTri_Click"/>
+        <GroupBox x:Name="gpBoptions" Header="Options" HorizontalAlignment="Left" Height="135" Margin="8,418,0,0" VerticalAlignment="Top" Width="226" Grid.ColumnSpan="3" Grid.Column="1"/>
+        <GroupBox Grid.Column="2" Header="" HorizontalAlignment="Left" Height="140" Margin="7,92,0,0" VerticalAlignment="Top" Width="184" Grid.ColumnSpan="2"/>
+        <RadioButton x:Name="rBtnLexic" Content="Gestion du lexique" Margin="0,79,91,0" VerticalAlignment="Top" Grid.Column="3" Checked="RBtnLexic_Checked" IsChecked="True"/>
+        <RadioButton x:Name="rBtnDifficult" Content="Niveau de difficulté" HorizontalAlignment="Left" Margin="0,253,0,0" VerticalAlignment="Top" Grid.Column="3" Checked="RBtnDifficult_Checked"/>
+        
+        
     </Grid>
 </Window>

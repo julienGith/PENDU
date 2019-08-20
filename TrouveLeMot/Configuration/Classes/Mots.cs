@@ -51,6 +51,12 @@ namespace Configuration
             }
             
         }
+
+        public new void Remove2(string mot)
+        {
+             base.Remove(mot); 
+        }
+
         //public void Pioche()
         //{
         //    Random rand = new Random();
