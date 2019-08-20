@@ -31,6 +31,11 @@ namespace Configuration
         int j = 0;
 
 
+        public String mot { get; set; }
+        public String motMystere { get; set; }
+        public String lettresCherches { get; set; }
+        public int coupsRestants { get; set; }
+
         public Jeu()
         {
             InitializeComponent();
@@ -44,6 +49,12 @@ namespace Configuration
         /// Methodes
         /// </summary>
         #region
+
+
+       
+
+
+
         private void Chrono()
         {
             chrono.Start();
@@ -214,42 +225,49 @@ namespace Configuration
             for (int i = 1; i <= txtBmotCach.Text.Length; i++)
             {
                 string temp = txtBlettres.Text;
-                txtBlettres.Text = temp + "?";
+                txtBlettres.Text = temp + "-";
                 if (motCach.Contains(lettreJoueur))
                 {
+                    
+
+
                     int position = motCach.IndexOf(lettreJoueur);
                     StringBuilder str = new StringBuilder(temp);
                     str[position] = lettreJoueur;
                     temp = str.ToString();
                     txtBlettres.Text = temp;
-                }
-            }
-
-            foreach (char caractMotCach in tabMotJoueur)
-            {
-                if (tabMotCach.Contains(caractMotCach) & !txtBlettres.Text.Contains(caractMotCach.ToString()))
-                {
-                    string motCach = txtBmotCach.Text;
-                    string remplace= txtBlettres.Text;
-                    string motPendu = txtBlettres.Text;
-                    int indexCach = motCach.IndexOf(caractMotCach.ToString());
-                    int indexPendu = indexCach;
-
-                    lblTrouveLettres.Content += caractMotCach.ToString() + " pos : " + (indexCach + 1) + " - ";
-                    //txtBlettres.Text += indexPendu.ToString() + caractMotCach.ToString();
-
-                    remplace  += motPendu[indexCach].ToString().Replace("-", caractMotCach.ToString()) + motPendu[indexCach] + indexPendu+ indexCach;/*+ indexPendu.ToString()+item.ToString();*/  /*indexPendu[indexPendu.Tostring().Replace('-', caractMotCach)] +/* (indexCach + 1) + indexPendu;*/
-                    //string modif = motPendu[indexCach.ToString()];
-                    txtBlettres.Text = "";
-                    txtBlettres.Text = remplace;
-                    //for (int i = 0; i < indexCach; i++)
-                    //{
-                    //    txtBlettres.Text = motPendu.ToString().Replace('-', item);
-
-
 
                 }
             }
+
+
+        
+
+            //foreach (char caractMotCach in tabMotJoueur)
+            //{
+            //    if (tabMotCach.Contains(caractMotCach) & !txtBlettres.Text.Contains(caractMotCach.ToString()))
+            //    {
+            //        //string motCach = txtBmotCach.Text;
+            //        string remplace= txtBlettres.Text;
+            //        string motPendu = txtBlettres.Text;
+            //        int indexCach = motCach.IndexOf(caractMotCach.ToString());
+            //        int indexPendu = indexCach;
+
+            //        lblTrouveLettres.Content += caractMotCach.ToString() + " pos : " + (indexCach + 1) + " - ";
+            //        //txtBlettres.Text += indexPendu.ToString() + caractMotCach.ToString();
+
+            //        remplace  += motPendu[indexCach].ToString().Replace("-", caractMotCach.ToString()) + motPendu[indexCach] + indexPendu+ indexCach;/*+ indexPendu.ToString()+item.ToString();*/  /*indexPendu[indexPendu.Tostring().Replace('-', caractMotCach)] +/* (indexCach + 1) + indexPendu;*/
+            //        //string modif = motPendu[indexCach.ToString()];
+            //        txtBlettres.Text = "";
+            //        txtBlettres.Text = remplace;
+            //        //for (int i = 0; i < indexCach; i++)
+            //        //{
+            //        //    txtBlettres.Text = motPendu.ToString().Replace('-', item);
+
+
+
+            //    }
+            //}
 
 
             //foreach (char caractMotPendu in tabMotPendu)
