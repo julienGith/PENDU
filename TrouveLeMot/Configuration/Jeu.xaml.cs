@@ -58,7 +58,7 @@ namespace Configuration
             txtBmotCach.Text = atrouver.MotCach;
             atrouver.Remove(txtBmotCach.Text);
             atrouver.SaveXML(@"mots_choisis.xml");
-            lblnbLettres.Content = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
+            lblnbLettres.Content = "Le mot fait :{0} lettres.", txtBmotCach.Text.Length;
             for (int i = 1; i <= txtBmotCach.Text.Length; i++)
             {
                 string temp = txtBlettres.Text;
