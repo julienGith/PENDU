@@ -22,7 +22,7 @@ namespace TrouveLeMot
         public int NbEssais { get; set; }
 
         public Options() { }
-        public Options(int NombreManches= 1, int Temps= 60, int NbPoinPerdus= 0, int NbEssais=7)
+        public Options(int NombreManches= 3, int Temps= 80, int NbPoinPerdus= 1, int NbEssais=7)
         {
             this.NombreManches = NombreManches;
             this.Temps = Temps;
