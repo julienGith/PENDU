@@ -69,7 +69,7 @@ namespace Configuration
             atrouver.Remove(txtBmotCach.Text);
             atrouver.SaveXML(@"mots_choisis.xml");
             lblnbLettres.Content = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
-            for (int i = 1; i < txtBmotCach.Text.Length; i++)
+            for (int i = 1; i <= txtBmotCach.Text.Length; i++)
             {
                 string temp = txtBlettres.Text;
                 txtBlettres.Text = temp + "-";
@@ -162,7 +162,6 @@ namespace Configuration
         private void BtnNext_Click(object sender, RoutedEventArgs e)
         {
 
-
             atrouver.SaveXML(@"mots_choisis.xml");
             //InitializeComponent();
             options.LoadXML(@"Options.xml");
@@ -172,21 +171,18 @@ namespace Configuration
             //chrono.Stop();
             //chrono.Start();
 
-
-
-
             lblWinOrLose.Content = "";
             txtBlettres.Text = "-";
 
             txtBnote.Text = "Aidez-vous en formant des mots avec les lettres trouvées. Les lettres trouvées peuvent être présentes plusieurs fois dans le mot caché.";
-            lblnbLettres.Content =( "Le mot fait : {0}  lettres.", txtBmotCach.Text.Length) ;
+            lblnbLettres.Content = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
+            /*( "Le mot fait : {0}  lettres.", txtBmotCach.Text.Length) ;*/
 
-            for (int i = 1; i < txtBmotCach.Text.Length; i++)
+            for (int i = 0; i <= txtBmotCach.Text.Length+1; i++)
             {
                 string temp = txtBlettres.Text;
                 txtBlettres.Text = temp + "-";
             }
-
 
             txtBjoueur.Text = "Entrez un mot ou des lettres et tentez";
 
@@ -198,13 +194,8 @@ namespace Configuration
                 }
                 txtBmotCach.Text = atrouver.MotCach;
                 txtBmanche.Text = (++i).ToString();
-
+                }
             }
-
-        }
-
-
-
 
 
 
@@ -239,13 +230,6 @@ namespace Configuration
             }
 
 
-
-
-
-
-
-
-
             //foreach (char caractMotPendu in tabMotPendu)
             //{
             //    if (tabMotCach.Contains(caractMotCach) & !txtBlettres.Text.Contains(caractMotCach.ToString()))
@@ -253,11 +237,6 @@ namespace Configuration
             //        txtBlettres.Text += char[indexPendu.ToString()];/*motPendu.Replace(caractMotPendu, caractMotCach);  */
             //    }
             //}
-
-
-
-
-
 
 
 
