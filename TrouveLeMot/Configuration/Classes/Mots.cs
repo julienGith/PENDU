@@ -16,16 +16,19 @@ namespace Configuration
         public int NombreMots
         { get; set; }
         public string MotCach
-        { get {
+        {
+            get
+            {
                 Random rand = new Random();
                 int aléatoire = 0;
                 aléatoire = rand.Next(0, this.Count);
-                if (this.Count<1)
+                if (this.Count < 1)
                 {
 
                 }
                 return this[aléatoire];
-            } }
+            }
+        }
         public Mots() { }
         public void Ajouter(string mot)
         {
@@ -45,12 +48,18 @@ namespace Configuration
         }
         public new void Remove(string mot)
         {
-            if (this.Count>1)
+            if (this.Count > 1)
             {
                 base.Remove(mot);
             }
-            
+
         }
+
+        public new void Remove2(string mot)
+        {
+            base.Remove(mot);
+        }
+
         //public void Pioche()
         //{
         //    Random rand = new Random();
