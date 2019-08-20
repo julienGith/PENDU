@@ -26,6 +26,8 @@ namespace Configuration
     {
         Mots atrouver = new Mots();
         Options options = new Options();
+        Joueur joueur = new Joueur();
+        ListJoueurs joueurs = new ListJoueurs();
         DispatcherTimer chrono = new DispatcherTimer();
         int i = 1;
         int j = 0;
@@ -203,9 +205,6 @@ namespace Configuration
 
 
 
-
-
-
         private void BtnTry_Click(object sender, RoutedEventArgs e)
         {
             char[] tabMotCach = txtBmotCach.Text.ToCharArray();
@@ -262,8 +261,14 @@ namespace Configuration
             {
                 lblWinOrLose.Content = "Bravo ! Vous avez trouvé le mot caché";
                 chrono.Stop();
-                int score = options.Temps - int.Parse(txtBcompteur.Text) - penalty;
+                int score = options.Temps - int.Parse(txtBcompteur.Text) - int.Parse(txtBpenalty.Text);
                 lblScore.Content = score.ToString();
+                joueur.Score += score;
+                lblScorePartie.Content = joueur.Score;
+                joueur.SaveXML(@"Joueur.xml");
+                joueurs.Add(joueur);
+                joueurs.SaveXML(@"ListeJoueurs.xml");
+                btnTry.IsEnabled = false;
             }
             if (txtBessai.Text == txtBnbEssais.Text)
             {
