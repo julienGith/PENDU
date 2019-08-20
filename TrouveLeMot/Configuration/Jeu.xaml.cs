@@ -176,7 +176,7 @@ namespace Configuration
             //txtBlettres.Text = "a";
 
             txtBnote.Text = "Aidez-vous en formant des mots avec les lettres trouvées. Les lettres trouvées peuvent être présentes plusieurs fois dans le mot caché.";
-            lblnbLettres.Content = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
+            lblnbLettres.Content = ("Le mot fait :{0} lettres.", txtBmotCach.Text.Length);
 
             //for (int i = 0; i <= txtBmotCach.Text.Length+1; i++)
             //{
