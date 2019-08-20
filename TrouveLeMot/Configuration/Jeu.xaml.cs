@@ -213,16 +213,21 @@ namespace Configuration
                 if (tabMotCach.Contains(caractMotCach) & !txtBlettres.Text.Contains(caractMotCach.ToString()))
                 {
                     string motCach = txtBmotCach.Text;
+                    string remplace= txtBlettres.Text;
                     string motPendu = txtBlettres.Text;
                     int indexCach = motCach.IndexOf(caractMotCach.ToString());
                     int indexPendu = indexCach;
+
                     lblTrouveLettres.Content += caractMotCach.ToString() + " pos : " + (indexCach + 1) + " - ";
-                    txtBlettres.Text += indexPendu.ToString() + caractMotCach.ToString();
-                    /*txtBlettres.Text +=  indexPendu{1} + indexPendu.ToString()+item.ToString();*//*indexPendu.ToString().Replace('-', item) + (indexCach + 1) + " - ";*/
-                                                                                                   //string modif = motPendu[indexCach.ToString()];
-                                                                                                   //for (int i = 0; i < indexCach; i++)
-                                                                                                   //{
-                                                                                                   //    txtBlettres.Text = motPendu.ToString().Replace('-', item);
+                    //txtBlettres.Text += indexPendu.ToString() + caractMotCach.ToString();
+
+                    remplace  += motPendu[indexCach].ToString().Replace("-", caractMotCach.ToString()) + motPendu[indexCach] + indexPendu+ indexCach;/*+ indexPendu.ToString()+item.ToString();*/  /*indexPendu[indexPendu.Tostring().Replace('-', caractMotCach)] +/* (indexCach + 1) + indexPendu;*/
+                    //string modif = motPendu[indexCach.ToString()];
+                    txtBlettres.Text = "";
+                    txtBlettres.Text = remplace;
+                    //for (int i = 0; i < indexCach; i++)
+                    //{
+                    //    txtBlettres.Text = motPendu.ToString().Replace('-', item);
 
 
 
