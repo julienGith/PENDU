@@ -156,7 +156,7 @@ namespace Configuration
 ;
             atrouver.SaveXML(@"mots_choisis.xml");
             InitializeComponent();
-            options.LoadXML(@"Options.xml");
+            
             txtBmotCach.Text = atrouver.MotCach;
             atrouver.Remove(txtBmotCach.Text);
             //Chrono();
