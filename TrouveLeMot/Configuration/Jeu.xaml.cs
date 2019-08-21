@@ -1,21 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Xml;
 using TrouveLeMot;
 using System.Windows.Threading;
-
 
 namespace Configuration
 {
@@ -26,22 +16,17 @@ namespace Configuration
     {
         Mots atrouver = new Mots();
         Options options = new Options();
-        DispatcherTimer chrono = new DispatcherTimer();
         Joueur joueur = new Joueur();
         ListJoueurs joueurs = new ListJoueurs();
+        DispatcherTimer chrono = new DispatcherTimer();
         int i = 1;
         int j = 0;
 
 
-        public String mot { get; set; }
-        public String motMystere { get; set; }
-        public String lettresCherches { get; set; }
-        public int coupsRestants { get; set; }
-
         public Jeu()
         {
             InitializeComponent();
-            options.LoadXML(@"Options.xml");
+            Score.LoadXML(@"Options.xml");
             Chrono();
             nbLettres();
             TxtBjoueur_TextChange();
@@ -51,12 +36,6 @@ namespace Configuration
         /// Methodes
         /// </summary>
         #region
-
-
-       
-
-
-
         private void Chrono()
         {
             chrono.Start();
@@ -81,7 +60,7 @@ namespace Configuration
             txtBmotCach.Text = atrouver.MotCach;
             atrouver.Remove(txtBmotCach.Text);
             atrouver.SaveXML(@"mots_choisis.xml");
-            txtBlettres.Text = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
+            lblnbLettres.Content = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
             for (int i = 1; i <= txtBmotCach.Text.Length; i++)
             {
                 string temp = txtBlettres.Text;
@@ -120,10 +99,10 @@ namespace Configuration
             XmlNodeList Xn = doc.SelectNodes("//NombreManches");
             foreach (XmlNode xNode in Xn)
             {
-                options.NombreManches = int.Parse(xNode.InnerText);
+                Score.NombreManches = int.Parse(xNode.InnerText);
 
             }
-            txtBnbManches.Text = options.NombreManches.ToString();
+            txtBnbManches.Text = Score.NombreManches.ToString();
 
         }
         private void TxtBmanche_TextChanged(object sender, TextChangedEventArgs e)
@@ -137,10 +116,10 @@ namespace Configuration
             XmlNodeList Xn = doc.SelectNodes("//NbEssais");
             foreach (XmlNode xNode in Xn)
             {
-                options.NbEssais = int.Parse(xNode.InnerText);
+                Score.NbEssais = int.Parse(xNode.InnerText);
 
             }
-            txtBnbEssais.Text = options.NbEssais.ToString();
+            txtBnbEssais.Text = Score.NbEssais.ToString();
 
         }
         private void TxtBessai_TextChanged(object sender, TextChangedEventArgs e)
@@ -154,17 +133,19 @@ namespace Configuration
             XmlNodeList Xn = doc.SelectNodes("//Temps");
             foreach (XmlNode xNode in Xn)
             {
-                options.Temps = int.Parse(xNode.InnerText);
+                Score.Temps = int.Parse(xNode.InnerText);
 
             }
-            txtBtemps.Text = options.Temps.ToString();
+            txtBtemps.Text = Score.Temps.ToString();
         }
         private void TxtBcompteur_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtBcompteur.Text == options.Temps.ToString())
+            if (txtBcompteur.Text == Score.Temps.ToString())
             {
                 chrono.Stop();
-                lblWinOrLose.Content = "Perdu ! temps écoulé. Il fallait trouver : " + txtBmotCach.Text; ;
+                lblWinOrLose.Content = "Perdu ! temps écoulé. Il fallait trouver : " + txtBmotCach.Text;
+               
+                
             }
         }
         #endregion
@@ -174,10 +155,10 @@ namespace Configuration
         #region
         private void BtnNext_Click(object sender, RoutedEventArgs e)
         {
-
+;
             atrouver.SaveXML(@"mots_choisis.xml");
-            //InitializeComponent();
-            options.LoadXML(@"Options.xml");
+            InitializeComponent();
+            
             txtBmotCach.Text = atrouver.MotCach;
             atrouver.Remove(txtBmotCach.Text);
             //Chrono();
@@ -185,17 +166,18 @@ namespace Configuration
             //chrono.Start();
 
             lblWinOrLose.Content = "";
-            txtBlettres.Text = "-";
+            //txtBlettres.Text = "a";
 
             txtBnote.Text = "Aidez-vous en formant des mots avec les lettres trouvées. Les lettres trouvées peuvent être présentes plusieurs fois dans le mot caché.";
-            tBlettres.Text = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
-            /*( "Le mot fait : {0}  lettres.", txtBmotCach.Text.Length) ;*/
+            lblnbLettres.Content = ("Le mot fait :{0} lettres.", txtBmotCach.Text.Length);
 
-            for (int i = 0; i <= txtBmotCach.Text.Length+1; i++)
-            {
-                string temp = txtBlettres.Text;
-                txtBlettres.Text = temp + "-";
-            }
+            //for (int i = 0; i <= txtBmotCach.Text.Length+1; i++)
+            //{
+            //    txtBlettres.Text = "-";
+            //    string temp = txtBlettres.Text;
+            //    txtBlettres.Text = temp + "-";
+            //}
+
 
             txtBjoueur.Text = "Entrez un mot ou des lettres et tentez";
 
@@ -207,8 +189,10 @@ namespace Configuration
                 }
                 txtBmotCach.Text = atrouver.MotCach;
                 txtBmanche.Text = (++i).ToString();
-                }
+
             }
+
+        }
 
 
 
@@ -217,90 +201,52 @@ namespace Configuration
             char[] tabMotCach = txtBmotCach.Text.ToCharArray();
             char[] tabMotJoueur = txtBjoueur.Text.ToCharArray();
             char[] tabMotPendu = txtBlettres.Text.ToCharArray();
-            string motCach = atrouver.MotCach;
-            char lettreJoueur = txtBjoueur.Text[0];
+            string motJoueur = txtBjoueur.Text;
+            string motCach = txtBmotCach.Text;
+            string motPendu = txtBlettres.Text;
+            int indexJoueur = motJoueur.IndexOf(txtBjoueur.Text);
+
             //char[] caractMotCach = tabMotJoueur;
             //char[] caractMotPendu = tabMotPendu;
-            List<int> stockPos = new List<int>();
-            string temp = txtBlettres.Text;
-            int penalty = int.Parse(txtBessai.Text);
 
 
-            for (int i = 0; i < tabMotCach.Length - 1; i++)
+            foreach (char caractMotCach in tabMotJoueur)
             {
-                if (lettreJoueur == tabMotCach[i])
+                if (tabMotCach.Contains(caractMotCach) & !txtBlettres.Text.Contains(caractMotCach.ToString()))
                 {
-                    stockPos.Add(i);
+
+                    //string motJoueur = txtBjoueur.Text;
+                    int indexCach = motCach.IndexOf(caractMotCach.ToString());
+                    int indexPendu = indexCach;
+                    //
+                    lblTrouveLettres.Content += /*indexJoueur+*/ caractMotCach.ToString() + (indexCach + 1) + "," + indexPendu;
+                    //if (MotJoueur.equals(MotCach))      
+
+
+
+                    //foreach (char caractMotJoueur in tabMotJoueur)
+                    //{
+
+                    //    if (motJoueur[indexJoueur].Equals(motCach[indexCach]))
+                    //    {
+
+                            txtBlettres.Text = txtBmotCach.Text + "tamere" + (indexCach) + indexJoueur + indexPendu;
+                    //    }
+                    //    //int indexCach = motCach.IndexOf(tabMotCach.ToString());
+
+                    //    //if (indexCach!=0)/*motJoueur[indexJoueur] == motCach[indexCach]*/
+                    //    //{
+                    //    //    txtBlettres.Text = txtBmotCach.Text + "tamere"+indexCach;
+                    //    //}
+                    //}
 
                 }
             }
 
-            int positions = stockPos.Count;
-            foreach (int item in stockPos)
-            {
-                StringBuilder str = new StringBuilder(temp);
-                str[item] = lettreJoueur;
-                temp = str.ToString();
-                txtBlettres.Text = temp;
-            }
-
-            //for (int i = 1; i <= txtBmotCach.Text.Length; i++)
-            //{
-            //    string temp = txtBlettres.Text;
-            //    txtBlettres.Text = temp + "-";
-            //    if (motCach.Contains(lettreJoueur))
-            //    {
 
 
 
-            //        int position = motCach.IndexOf(lettreJoueur);
-            //        StringBuilder str = new StringBuilder(temp);
-            //        str[position] = lettreJoueur;
-            //        temp = str.ToString();
-            //        txtBlettres.Text = temp;
-
-            //    }
-            //}
-
-
-
-
-            //foreach (char caractMotCach in tabMotJoueur)
-            //{
-            //    if (tabMotCach.Contains(caractMotCach) & !txtBlettres.Text.Contains(caractMotCach.ToString()))
-            //    {
-            //        //string motCach = txtBmotCach.Text;
-            //        string remplace= txtBlettres.Text;
-            //        string motPendu = txtBlettres.Text;
-            //        int indexCach = motCach.IndexOf(caractMotCach.ToString());
-            //        int indexPendu = indexCach;
-
-            //        lblTrouveLettres.Content += caractMotCach.ToString() + " pos : " + (indexCach + 1) + " - ";
-            //        //txtBlettres.Text += indexPendu.ToString() + caractMotCach.ToString();
-
-            //        remplace  += motPendu[indexCach].ToString().Replace("-", caractMotCach.ToString()) + motPendu[indexCach] + indexPendu+ indexCach;/*+ indexPendu.ToString()+item.ToString();*/  /*indexPendu[indexPendu.Tostring().Replace('-', caractMotCach)] +/* (indexCach + 1) + indexPendu;*/
-            //        //string modif = motPendu[indexCach.ToString()];
-            //        txtBlettres.Text = "";
-            //        txtBlettres.Text = remplace;
-            //        //for (int i = 0; i < indexCach; i++)
-            //        //{
-            //        //    txtBlettres.Text = motPendu.ToString().Replace('-', item);
-
-
-
-            //    }
-            //}
-
-
-            //foreach (char caractMotPendu in tabMotPendu)
-            //{
-            //    if (tabMotCach.Contains(caractMotCach) & !txtBlettres.Text.Contains(caractMotCach.ToString()))
-            //    {
-            //        txtBlettres.Text += char[indexPendu.ToString()];/*motPendu.Replace(caractMotPendu, caractMotCach);  */
-            //    }
-            //}
-
-
+            int penalty = int.Parse(txtBessai.Text);
 
             if (txtBjoueur.Text == txtBmotCach.Text)
             {
@@ -366,12 +312,13 @@ namespace Configuration
             XmlNodeList Xn = doc.SelectNodes("//NbPoinPerdus");
             foreach (XmlNode xNode in Xn)
             {
-                options.NbPoinPerdus = int.Parse(xNode.InnerText);
+                Score.NbPoinPerdus = int.Parse(xNode.InnerText);
 
             }
-            txtBpenalty.Text = (int.Parse(txtBessai.Text) * options.NbPoinPerdus).ToString();
+            txtBpenalty.Text = (int.Parse(txtBessai.Text) * Score.NbPoinPerdus).ToString();
         }
     }
 
 
 }
+
