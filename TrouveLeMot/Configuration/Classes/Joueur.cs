@@ -16,7 +16,6 @@ namespace Configuration
 
         public string Pseudo { get; set; }
         public int Score { get ; set; }
-
         public Joueur() { }
         public Joueur(string pseudo, int score) { }
 
