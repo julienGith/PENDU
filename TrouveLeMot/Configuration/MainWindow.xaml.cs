@@ -30,6 +30,7 @@ namespace Configuration
         Lexique lexique = new Lexique();
         Mots atrouver = new Mots();
         Niveau niveau = new Niveau();
+        Manche manche = new Manche();
         Options options = new Options();
         /// <summary>
         /// Méthodes
@@ -39,12 +40,56 @@ namespace Configuration
         {
             btnAdd.IsEnabled = true;
             btnRemove.IsEnabled = true;
+            btnOrthographe.IsEnabled = true;
         }
         private void DisableBtn()
         {
             btnAdd.IsEnabled = false;
             btnRemove.IsEnabled = false;
+            btnOrthographe.IsEnabled = false;
         }
+
+        private void EnableRadioNiveau()
+        {
+            rBtnFacile.IsEnabled = true;
+            rBtnDifficile.IsEnabled = true;
+            rBtnExpert.IsEnabled = true;
+        }
+
+        private void DisableRadioNiveau()
+        {
+            rBtnFacile.IsEnabled = false;
+            rBtnDifficile.IsEnabled = false;
+            rBtnExpert.IsEnabled = false;
+        }
+
+
+
+
+        private void EnableTransfert()
+        {
+            btnTransfert.IsEnabled = true;
+            btnAddTout.IsEnabled = true;
+            btnSupprTout.IsEnabled = true;
+            btnSupr.IsEnabled = true;
+        }
+
+        private void DisableTransfert()
+        {
+            btnTransfert.IsEnabled = false;
+            btnAddTout.IsEnabled = false;
+            btnSupprTout.IsEnabled = false;
+            btnSupr.IsEnabled = false;
+        }
+
+
+
+
+
+
+
+
+
         private void ChargeLexique()
         {
             XmlDocument doc = new XmlDocument();
@@ -59,7 +104,7 @@ namespace Configuration
         private void ChargeMots()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(@"mots choisis.xml");
+            doc.Load(@"mots_choisis.xml");
             XmlNodeList Xn = doc.SelectNodes("//string");
             foreach (XmlNode xNode in Xn)
             {
@@ -76,7 +121,7 @@ namespace Configuration
                     return false;
                 }
             }
-            if (listBoxLex.Items.Contains(mot)) 
+            if (listBoxLex.Items.Contains(mot))
             {
                 return false;
             }
@@ -88,7 +133,7 @@ namespace Configuration
             {
                 return false;
             }
-            if (mot.Length<5)
+            if (mot.Length < 5)
             {
                 return false;
             }
@@ -110,15 +155,18 @@ namespace Configuration
         }
         private void RetireMot()
         {
-            object selected = listBoxLex.SelectedItem.ToString();
-            lexique.Remove(selected.ToString());
-            lexique.SaveXML(@"test.xml");
-            listBoxLex.Items.Remove(listBoxLex.SelectedItem);
+            if (listBoxLex.SelectedItem != null)
+            {
+                object selected = listBoxLex.SelectedItem.ToString();
+                lexique.Remove(selected.ToString());
+                lexique.SaveXML(@"test.xml");
+                listBoxLex.Items.Remove(listBoxLex.SelectedItem);
+            }
         }
         private void NiveauDifficile()
         {
-            niveau.Difficile = true;         
-            DisableBtn();
+            niveau.Difficile = true;
+            //DisableBtn();
             listBoxLex.Items.Clear();
             XmlDocument doc = new XmlDocument();
             doc.Load(@"test.xml");
@@ -128,13 +176,14 @@ namespace Configuration
                 if (xNode.InnerText.Length > 7 & xNode.InnerText.Length < 11 & !listBoxLex.Items.Contains(xNode.InnerText))
                 {
                     listBoxLex.Items.Add(xNode.InnerText);
+                    //lexique.SaveXML(@"selection_niveau.xml");
                 }
             }
         }
         private void NiveauExpert()
         {
             niveau.Expert = true;
-            DisableBtn();
+            //DisableBtn();
             listBoxLex.Items.Clear();
             XmlDocument doc = new XmlDocument();
             doc.Load(@"test.xml");
@@ -144,6 +193,7 @@ namespace Configuration
                 if (xNode.InnerText.Length > 11 & !listBoxLex.Items.Contains(xNode.InnerText))
                 {
                     listBoxLex.Items.Add(xNode.InnerText);
+                    //lexique.SaveXML(@"selection_niveau.xml");
                 }
             }
         }
@@ -156,7 +206,7 @@ namespace Configuration
         private void NiveauFacile()
         {
             niveau.Facile = true;
-            DisableBtn();
+            //DisableBtn();
             listBoxLex.Items.Clear();
             XmlDocument doc = new XmlDocument();
             doc.Load(@"test.xml");
@@ -166,26 +216,31 @@ namespace Configuration
                 if (xNode.InnerText.Length > 4 & xNode.InnerText.Length < 9 & !listBoxLex.Items.Contains(xNode.InnerText))
                 {
                     listBoxLex.Items.Add(xNode.InnerText);
+                    //lexique.SaveXML(@"selection_niveau.xml");
                 }
             }
         }
         private void Transfert()
         {
-            if (!listBoxCible.Items.Contains(listBoxLex.SelectedItem))
+
+            if (!listBoxCible.Items.Contains(listBoxLex.SelectedItem) && listBoxLex.SelectedItem != null)
             {
                 listBoxCible.Items.Add(listBoxLex.SelectedItem);
                 atrouver.Ajouter(listBoxLex.SelectedItem.ToString());
-                atrouver.SaveXML(@"mots choisis.xml");
+                atrouver.SaveXML(@"mots_choisis.xml");
                 listBoxLex.Items.Remove(listBoxLex.SelectedItem);
             }
 
         }
         private void Suppr()
         {
-            listBoxLex.Items.Add(listBoxCible.SelectedItem);
-            atrouver.Remove(listBoxCible.SelectedItem.ToString());
-            atrouver.SaveXML(@"mots choisis.xml");
-            listBoxCible.Items.Remove(listBoxCible.SelectedItem);
+            if (listBoxCible.SelectedItem != null)
+            {
+                listBoxLex.Items.Add(listBoxCible.SelectedItem);
+                atrouver.Remove(listBoxCible.SelectedItem.ToString());
+                atrouver.SaveXML(@"mots_choisis.xml");
+                listBoxCible.Items.Remove(listBoxCible.SelectedItem);
+            }
         }
         private void SupprDisable()
         {
@@ -210,6 +265,8 @@ namespace Configuration
         }
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
+            //XmlDocument doc = new XmlDocument();
+            //doc.Save(@"mots_choisis.xml");
             this.Close();
         }
         private void BtnTransfert_Click(object sender, RoutedEventArgs e)
@@ -224,30 +281,27 @@ namespace Configuration
         {
             RetireMot();
         }
-        private void BtnTri_Click(object sender, RoutedEventArgs e)
-        {
-            listBoxLex.Items.SortDescriptions.Add(
-            new System.ComponentModel.SortDescription("",
-            System.ComponentModel.ListSortDirection.Ascending));
-        }
 
         private void RBtnDifficile_Checked(object sender, RoutedEventArgs e)
         {
             NiveauDifficile();
         }
+
         private void RBtnExpert_Checked(object sender, RoutedEventArgs e)
         {
             NiveauExpert();
         }
+
         private void RBtnPerso_Checked(object sender, RoutedEventArgs e)
         {
             NiveauPerso();
         }
+
         private void RBtnFacile_Checked(object sender, RoutedEventArgs e)
         {
             NiveauFacile();
         }
-       // A implémenter afin de simplifier le code
+        // A implémenter afin de simplifier le code
         //private void RbNiveau()
         //{
         //    RadioButton radioBtn = new RadioButton();
@@ -274,8 +328,8 @@ namespace Configuration
 
         private void NupManches_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
-            int manches = nupManches.Value.Value;
-            options.NombreManches = manches;
+            //int manches = nupManches.Value.Value;
+            options.NombreManches = nupManches.Value.Value;
             options.SaveXML(@"Options.xml");
         }
         private void NupEssais_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -286,16 +340,88 @@ namespace Configuration
         private void ListBoxCible_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SupprDisable();
+            //options.LoadXML(@"mots_choisis.xml");
         }
         private void NupDurée_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             options.Temps = nupDurée.Value.Value;
             options.SaveXML(@"Options.xml");
         }
+
+        private void BtnTri_Click(object sender, RoutedEventArgs e)
+        {
+            listBoxLex.Items.SortDescriptions.Add(
+            new System.ComponentModel.SortDescription("",
+            System.ComponentModel.ListSortDirection.Ascending));
+        }
+
         private void NupPtPerdu_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             options.NbPoinPerdus = nupPtPerdu.Value.Value;
             options.SaveXML(@"Options.xml");
+        }
+
+        private void RBtnLexic_Checked(object sender, RoutedEventArgs e)
+        {
+            EnableBtn();
+            DisableTransfert();
+            DisableRadioNiveau();
+            listBoxLex.Items.Clear();
+            ChargeLexique();
+        }
+
+        private void RBtnDifficult_Checked(object sender, RoutedEventArgs e)
+        {
+            EnableRadioNiveau();
+            EnableTransfert();
+            rBtnFacile.IsChecked = true;
+            DisableBtn();
+            NiveauFacile();
+        }
+
+        private void BtnSupprTout_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var itemListSuppr in listBoxCible.Items)
+            {
+                if (itemListSuppr != null && !listBoxLex.Items.Contains(itemListSuppr))
+                {
+                    listBoxLex.Items.Add(itemListSuppr);
+                    atrouver.Remove(itemListSuppr.ToString());
+                    atrouver.SaveXML(@"mots_choisis.xml");
+                }
+            }
+            foreach (var itemListSuppr2 in listBoxLex.Items)
+            {
+                listBoxCible.Items.Remove(itemListSuppr2);
+            }
+
+        }
+
+        private void BtnAddTout_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var itemList in listBoxLex.Items)
+            {
+                if (itemList != null && !listBoxCible.Items.Contains(itemList))
+                {
+                    listBoxCible.Items.Add(itemList);
+                    atrouver.Ajouter(itemList.ToString());
+                    atrouver.SaveXML(@"mots_choisis.xml");
+                }
+            }
+            foreach (var itemList2 in listBoxCible.Items)
+            {
+                listBoxLex.Items.Remove(itemList2);
+            }
+        }
+
+        private void GroupBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void TxtBoxMot_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            txtBoxMot.Text = "";
         }
     }
 }
