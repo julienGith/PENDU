@@ -217,25 +217,32 @@ namespace Configuration
             char[] tabMotPendu = txtBlettres.Text.ToCharArray();
             string motCach = atrouver.MotCach;
             string btnContent = btnD.Content.ToString();
-            char lettreJoueur = txtBjoueur.Text[0];
+            char [] lettreJoueur = txtBjoueur.Text.ToCharArray();
             //char[] caractMotCach = tabMotJoueur;
             //char[] caractMotPendu = tabMotPendu;
-            int position = motCach.IndexOf(lettreJoueur);
+            int position = motCach.IndexOf(lettreJoueur.ToString());
             string temp = txtBlettres.Text;
             StringBuilder str = new StringBuilder(temp);
-
+            char[] motcach = new char[] { '-' };
+            string checkbox_value=lettreJoueur.ToString();
+            string[] lacase = checkbox_value.Split(motcach);
             int penalty = int.Parse(txtBessai.Text);
+            string motpendu = txtBlettres.Text;
 
             for (int i = 0; i <= tabMotPendu.Length; i++)
             {
             txtBlettres.Text = temp + "-";
-
-                if (motCach.Contains(lettreJoueur))
+                
+                if (motCach.Contains(lettreJoueur.ToString()))
                 {
-                    string caract = lettreJoueur.ToString();
-                    str.Replace("-", "motCach.Contains(lettreJoueur)");
-                    txtBlettres.Text = caract;
-                    //txtBlettres.Text = 
+
+                    txtBlettres.Text = motCach[lettreJoueur].ToString();
+                    //string caract = lettreJoueur.ToString();
+                    //str.Replace("-", "motCach.Contains(lettreJoueur)");
+                    //txtBlettres.Text = caract;
+
+
+                    //Response.Write(lacase[position]);
 
 
 
