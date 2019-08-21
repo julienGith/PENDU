@@ -39,7 +39,7 @@
         <Label Content="Points perdus par essai" HorizontalAlignment="Left" Margin="542,264,0,0" VerticalAlignment="Top"/>
         <Label Content="Score de manche" HorizontalAlignment="Left" Margin="542,292,0,0" VerticalAlignment="Top"/>
         <Label Content="Score Total" HorizontalAlignment="Left" Margin="542,323,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnD" Content="D" HorizontalAlignment="Left" Height="21" Margin="151,308,0,0" VerticalAlignment="Top" Width="32" Click="BtnD_Click"/>
+        <Button x:Name="btnD" Content="D" HorizontalAlignment="Left" Height="21" Margin="151,308,0,0" VerticalAlignment="Top" Width="32" />
         <Button x:Name="btnY" Content="Y" HorizontalAlignment="Left" Height="21" Margin="151,384,0,0" VerticalAlignment="Top" Width="32"/>
         <Button x:Name="btnC" Content="C" HorizontalAlignment="Left" Height="21" Margin="114,308,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="1.958,2.54"/>
         <Button x:Name="btnQ" Content="Q" HorizontalAlignment="Left" Height="20" Margin="114,359,0,0" VerticalAlignment="Top" Width="32"/>
@@ -73,9 +73,9 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
-        <Button x:Name="btnA" Content="A" HorizontalAlignment="Left" Height="21" Margin="40,308,0,0" VerticalAlignment="Top" Width="32" Click="BtnA_Click_1"/>
+        <Button x:Name="btnA" Content="A" HorizontalAlignment="Left" Height="21" Margin="40,308,0,0" VerticalAlignment="Top" Width="32" />
         <Button x:Name="btnU" Content="U" HorizontalAlignment="Left" Height="20" Margin="262,359,0,0" VerticalAlignment="Top" Width="32"/>
-        <Button x:Name="btnB" Content="B" HorizontalAlignment="Left" Height="21" Margin="77,308,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="1.958,2.54" Click="BtnB_Click"/>
+        <Button x:Name="btnB" Content="B" HorizontalAlignment="Left" Height="21" Margin="77,308,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="1.958,2.54" />
         <Button x:Name="btnP" Content="P" HorizontalAlignment="Left" Height="20" Margin="77,359,0,0" VerticalAlignment="Top" Width="32" RenderTransformOrigin="-0.01,0.4"/>
         <Button x:Name="btnW" Content="W" HorizontalAlignment="Left" Height="21" Margin="77,384,0,0" VerticalAlignment="Top" Width="32"/>
         <Button x:Name="btnI" Content="I" HorizontalAlignment="Left" Height="20" Margin="77,334,0,0" VerticalAlignment="Top" Width="32"/>
