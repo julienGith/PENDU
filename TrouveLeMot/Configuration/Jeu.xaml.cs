@@ -27,8 +27,6 @@ namespace Configuration
         Mots atrouver = new Mots();
         Options options = new Options();
         DispatcherTimer chrono = new DispatcherTimer();
-        Joueur joueur = new Joueur();
-        ListJoueurs joueurs = new ListJoueurs();
         int i = 1;
         int j = 0;
 
@@ -53,7 +51,7 @@ namespace Configuration
         #region
 
 
-       
+
 
 
 
@@ -81,7 +79,7 @@ namespace Configuration
             txtBmotCach.Text = atrouver.MotCach;
             atrouver.Remove(txtBmotCach.Text);
             atrouver.SaveXML(@"mots_choisis.xml");
-            txtBlettres.Text = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
+            lblnbLettres.Content = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
             for (int i = 1; i <= txtBmotCach.Text.Length; i++)
             {
                 string temp = txtBlettres.Text;
@@ -188,10 +186,10 @@ namespace Configuration
             txtBlettres.Text = "-";
 
             txtBnote.Text = "Aidez-vous en formant des mots avec les lettres trouvées. Les lettres trouvées peuvent être présentes plusieurs fois dans le mot caché.";
-            txtBlettres.Text = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
+            lblnbLettres.Content = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
             /*( "Le mot fait : {0}  lettres.", txtBmotCach.Text.Length) ;*/
 
-            for (int i = 0; i <= txtBmotCach.Text.Length+1; i++)
+            for (int i = 0; i <= txtBmotCach.Text.Length + 1; i++)
             {
                 string temp = txtBlettres.Text;
                 txtBlettres.Text = temp + "-";
@@ -207,8 +205,8 @@ namespace Configuration
                 }
                 txtBmotCach.Text = atrouver.MotCach;
                 txtBmanche.Text = (++i).ToString();
-                }
             }
+        }
 
 
 
@@ -218,32 +216,93 @@ namespace Configuration
             char[] tabMotJoueur = txtBjoueur.Text.ToCharArray();
             char[] tabMotPendu = txtBlettres.Text.ToCharArray();
             string motCach = atrouver.MotCach;
+            string btnContent = btnD.Content.ToString();
             char lettreJoueur = txtBjoueur.Text[0];
             //char[] caractMotCach = tabMotJoueur;
             //char[] caractMotPendu = tabMotPendu;
+            int position = motCach.IndexOf(lettreJoueur);
+            string temp = txtBlettres.Text;
+            StringBuilder str = new StringBuilder(temp);
 
             int penalty = int.Parse(txtBessai.Text);
 
-            for (int i = 1; i <= txtBmotCach.Text.Length; i++)
+            for (int i = 0; i <= tabMotPendu.Length; i++)
             {
-                string temp = txtBlettres.Text;
-                txtBlettres.Text = temp + "-";
+            txtBlettres.Text = temp + "-";
+
                 if (motCach.Contains(lettreJoueur))
                 {
-                    
+                    string caract = lettreJoueur.ToString();
+                    str.Replace("-", "motCach.Contains(lettreJoueur)");
+                    txtBlettres.Text = caract;
+                    txtBlettres.Text = 
 
 
-                    int position = motCach.IndexOf(lettreJoueur);
-                    StringBuilder str = new StringBuilder(temp);
-                    str[position] = lettreJoueur;
-                    temp = str.ToString();
-                    txtBlettres.Text = temp;
+
 
                 }
+
+
+
+                //if (motCach.Contains(lettreJoueur))
+                //{
+                  
+                //    if (position == 0)
+                //    {
+                        
+                //        str.Remove(position , position );
+                //        str.Insert(0, btnContent.ToString());
+                        
+                //        //str[position] = lettreJoueur;
+                //        //temp = str.ToString();
+                //        txtBlettres.Text = temp;
+                //    }
+
+                //    if (position>0 && position< tabMotPendu.Length)
+                //    {
+                      
+                //        //str.Insert(position+1, btnContent.ToString());
+                //        str.Remove(position-1, position-1);
+                //        str.Insert(position-1, btnContent.ToString());
+                //        //str[position] = lettreJoueur;
+                //        //temp = str.ToString();
+                //        txtBlettres.Text = temp + position.ToString() + txtBmotCach.Text.Length.ToString() + tabMotPendu.Length;
+                //    }
+
+                //    if (position == tabMotPendu.Length)
+                //    {
+                        
+                //        //str[position] = lettreJoueur;
+                //        str.Remove(position, position);
+                //        str.Insert(position-1, btnContent.ToString());
+                //        temp = str.ToString();
+                //        txtBlettres.Text = temp;
+                //    }
+
+
+
+                //    //StringBuilder myStringBuilder = new StringBuilder("Hello World!");
+                //    //myStringBuilder.Insert(6, "Beautiful ");
+
+                //}
             }
 
 
-        
+            if (txtBjoueur.Text == txtBmotCach.Text)
+            {
+                lblWinOrLose.Content = "Bravo ! Vous avez trouvé le mot caché";
+                chrono.Stop();
+                int score = options.Temps - int.Parse(txtBcompteur.Text) - penalty;
+                lblScore.Content = score.ToString();
+            }
+            if (txtBessai.Text == txtBnbEssais.Text)
+            {
+                lblWinOrLose.Content = "Perdu ! Il fallait trouver : " + txtBmotCach.Text;
+            }
+            if (i < int.Parse(txtBnbEssais.Text))
+            {
+                txtBessai.Text = (++i).ToString();
+            }
 
             //foreach (char caractMotCach in tabMotJoueur)
             //{
@@ -258,7 +317,7 @@ namespace Configuration
             //        lblTrouveLettres.Content += caractMotCach.ToString() + " pos : " + (indexCach + 1) + " - ";
             //        //txtBlettres.Text += indexPendu.ToString() + caractMotCach.ToString();
 
-            //        remplace  += motPendu[indexCach].ToString().Replace("-", caractMotCach.ToString()) + motPendu[indexCach] + indexPendu+ indexCach;/*+ indexPendu.ToString()+item.ToString();*/  /*indexPendu[indexPendu.Tostring().Replace('-', caractMotCach)] +/* (indexCach + 1) + indexPendu;*/
+            //        remplace  += motPendu[indexCach].ToString().Replace("-", caractMotCach.ToString()) + motPendu[indexCach] + indexPendu+ indexCach;/*+ indexPendu.ToString()+item.ToString();  /*indexPendu[indexPendu.Tostring().Replace('-', caractMotCach)] +/* (indexCach + 1) + indexPendu;*/
             //        //string modif = motPendu[indexCach.ToString()];
             //        txtBlettres.Text = "";
             //        txtBlettres.Text = remplace;
@@ -280,29 +339,6 @@ namespace Configuration
             //    }
             //}
 
-
-
-            if (txtBjoueur.Text == txtBmotCach.Text)
-            {
-                lblWinOrLose.Content = "Bravo ! Vous avez trouvé le mot caché";
-                chrono.Stop();
-                int score = options.Temps - int.Parse(txtBcompteur.Text) - int.Parse(txtBpenalty.Text);
-                lblScore.Content = score.ToString();
-                joueur.Score += score;
-                lblScorePartie.Content = joueur.Score;
-                joueur.SaveXML(@"Joueur.xml");
-                joueurs.Add(joueur);
-                joueurs.SaveXML(@"ListeJoueurs.xml");
-                btnTry.IsEnabled = false;
-            }
-            if (txtBessai.Text == txtBnbEssais.Text)
-            {
-                lblWinOrLose.Content = "Perdu ! Il fallait trouver : " + txtBmotCach.Text;
-            }
-            if (i < int.Parse(txtBnbEssais.Text))
-            {
-                txtBessai.Text = (++i).ToString();
-            }
         }
 
 
@@ -350,6 +386,21 @@ namespace Configuration
 
             }
             txtBpenalty.Text = (int.Parse(txtBessai.Text) * options.NbPoinPerdus).ToString();
+        }
+
+        private void BtnD_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnB_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnA_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 
