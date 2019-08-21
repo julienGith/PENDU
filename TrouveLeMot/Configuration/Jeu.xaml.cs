@@ -235,7 +235,7 @@ namespace Configuration
                     string caract = lettreJoueur.ToString();
                     str.Replace("-", "motCach.Contains(lettreJoueur)");
                     txtBlettres.Text = caract;
-                    txtBlettres.Text = 
+                    //txtBlettres.Text = 
 
 
 
