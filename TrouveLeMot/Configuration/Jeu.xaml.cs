@@ -47,7 +47,7 @@ namespace Configuration
                 btnTry.IsEnabled = true;
             }
         }
-                private void RecupPseudo()
+        private void RecupPseudo()
         {
 
             XmlDocument doc = new XmlDocument();
@@ -58,50 +58,50 @@ namespace Configuration
                 joueur.Pseudo = xnode.InnerText.ToString();
             }
         }
-                private void IsNextEnable()
-                {
-                    if (int.Parse(txtBmanche.Text) == int.Parse(txtBnbManches.Text))
-                    {
-                        btnNext.IsEnabled = false;
-                    }
-                }
-                private void Chrono()
-                {
-                    chrono.Start();
-                    chrono.Tick += chrono_Tick;
-                    chrono.Interval = new TimeSpan(0, 0, 1);
-                }
-                private void ChargeMots()
-                {
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(@"mots_choisis.xml");
-                    XmlNodeList Xn = doc.SelectNodes("//string");
-                    foreach (XmlNode xNode in Xn)
-                    {
-                        atrouver.Ajouter(xNode.InnerText);
-                    }
+        private void IsNextEnable()
+        {
+            if (int.Parse(txtBmanche.Text) == int.Parse(txtBnbManches.Text))
+            {
+                btnNext.IsEnabled = false;
+            }
+        }
+        private void Chrono()
+        {
+            chrono.Start();
+            chrono.Tick += chrono_Tick;
+            chrono.Interval = new TimeSpan(0, 0, 1);
+        }
+        private void ChargeMots()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"mots_choisis.xml");
+            XmlNodeList Xn = doc.SelectNodes("//string");
+            foreach (XmlNode xNode in Xn)
+            {
+                atrouver.Ajouter(xNode.InnerText);
+            }
 
-                }
-                private void nbLettres()
-                {
+        }
+        private void nbLettres()
+        {
 
-                    for (int i = 1; i <= txtBmotCach.Text.Length; i++)
-                    {
-                        string temp = txtBlettres.Text;
-                        txtBlettres.Text = temp + "-";
-                    }
-                }
-                private void TxtBjoueur_TextChange()
-                { txtBjoueur.Text = "Entrez un mot ou des lettres et tentez"; }
-                private void TxtBjoueur_TextChange2()
-                { txtBjoueur.Text = ""; }
+            for (int i = 1; i <= txtBmotCach.Text.Length; i++)
+            {
+                string temp = txtBlettres.Text;
+                txtBlettres.Text = temp + "-";
+            }
+        }
+        private void TxtBjoueur_TextChange()
+        { txtBjoueur.Text = "Entrez un mot ou des lettres et tentez"; }
+        private void TxtBjoueur_TextChange2()
+        { txtBjoueur.Text = ""; }
 
-                #endregion
-                /// <summary>
-                /// Evènements
-                /// </summary>
-                #region
-                private void chrono_Tick(object sender, EventArgs e)
+        #endregion
+        /// <summary>
+        /// Evènements
+        /// </summary>
+        #region
+        private void chrono_Tick(object sender, EventArgs e)
                 {
                     j++;
                     txtBcompteur.Text = j.ToString();
@@ -171,158 +171,158 @@ namespace Configuration
 
                     }
                 }
-                #endregion
-                /// <summary>
-                /// Evènement bouttons
-                /// </summary>
-                #region
-                private void BtnNext_Click(object sender, RoutedEventArgs e)
+        #endregion
+        /// <summary>
+        /// Evènement bouttons
+        /// </summary>
+        #region
+        private void BtnNext_Click(object sender, RoutedEventArgs e)
+        {
+            ;
+            j = 0;
+            chrono.Start();
+            i = 0;
+            txtBessai.Text = i.ToString();
+            btnTry.IsEnabled = true;
+            lblWinOrLose.Content = "";
+            txtBlettres.Text = "";
+            txtBjoueur.Text = "Mot caché trouvé ? tapez le ici et tentez";
+            if (int.Parse(txtBmanche.Text) == int.Parse(txtBnbManches.Text) - 1)
+            {
+                btnNext.IsEnabled = false;
+            }
+
+            //if (i < int.Parse(txtBnbManches.Text))
+            //{
+            if (atrouver.Count > 0)
+            {
+                atrouver.Remove(txtBmotCach.Text);
+                atrouver.SaveXML(@"mots_choisis.xml");
+            }
+            txtBmotCach.Text = atrouver.MotCach;
+            txtBmanche.Text = (++k).ToString();
+            //}
+
+            txtBlettres.Clear();
+            for (int i = 1; i <= txtBmotCach.Text.Length; i++)
+            {
+                string temp = txtBlettres.Text;
+                txtBlettres.Text = temp + "-";
+            }
+
+        }
+
+        private void BtnTry_Click(object sender, RoutedEventArgs e)
+        {
+            char[] tabMotCach = txtBmotCach.Text.ToCharArray();
+            char[] tabMotJoueur = txtBjoueur.Text.ToCharArray();
+            char[] tabMotPendu = txtBlettres.Text.ToCharArray();
+            string motJoueur = txtBjoueur.Text;
+            string motCach = txtBmotCach.Text;
+            string motPendu = txtBlettres.Text;
+            int indexJoueur = motJoueur.IndexOf(txtBjoueur.Text);
+            List<int> stockPos = new List<int>();
+            char lettreJoueur = txtBjoueur.Text[0];
+            string temp = txtBlettres.Text;
+
+
+            for (int i = 0; i < tabMotCach.Length; i++)
+            {
+                if (lettreJoueur == tabMotCach[i])
                 {
-                    ;
-                    j = 0;
-                    chrono.Start();
-                    i = 0;
-                    txtBessai.Text = i.ToString();
-                    btnTry.IsEnabled = true;
-                    lblWinOrLose.Content = "";
-                    txtBlettres.Text = "";
-                    txtBjoueur.Text = "Mot caché trouvé ? tapez le ici et tentez";
-                    if (int.Parse(txtBmanche.Text) == int.Parse(txtBnbManches.Text) - 1)
-                    {
-                        btnNext.IsEnabled = false;
-                    }
-
-                    //if (i < int.Parse(txtBnbManches.Text))
-                    //{
-                    if (atrouver.Count > 0)
-                    {
-                        atrouver.Remove(txtBmotCach.Text);
-                        atrouver.SaveXML(@"mots_choisis.xml");
-                    }
-                    txtBmotCach.Text = atrouver.MotCach;
-                    txtBmanche.Text = (++k).ToString();
-                    //}
-
-                    txtBlettres.Clear();
-                    for (int i = 1; i <= txtBmotCach.Text.Length; i++)
-                    {
-                        string temp = txtBlettres.Text;
-                        txtBlettres.Text = temp + "-";
-                    }
+                    stockPos.Add(i);
 
                 }
+            }
 
-                private void BtnTry_Click(object sender, RoutedEventArgs e)
-                {
-                    char[] tabMotCach = txtBmotCach.Text.ToCharArray();
-                    char[] tabMotJoueur = txtBjoueur.Text.ToCharArray();
-                    char[] tabMotPendu = txtBlettres.Text.ToCharArray();
-                    string motJoueur = txtBjoueur.Text;
-                    string motCach = txtBmotCach.Text;
-                    string motPendu = txtBlettres.Text;
-                    int indexJoueur = motJoueur.IndexOf(txtBjoueur.Text);
-                    List<int> stockPos = new List<int>();
-                    char lettreJoueur = txtBjoueur.Text[0];
-                    string temp = txtBlettres.Text;
+            foreach (int item in stockPos)
+            {
+                StringBuilder str = new StringBuilder(temp);
+                str[item] = lettreJoueur;
+                temp = str.ToString();
+                txtBlettres.Text = temp;
+            }
 
+            int penalty = int.Parse(txtBessai.Text);
 
-                    for (int i = 0; i < tabMotCach.Length; i++)
-                    {
-                        if (lettreJoueur == tabMotCach[i])
-                        {
-                            stockPos.Add(i);
-
-                        }
-                    }
-
-                    foreach (int item in stockPos)
-                    {
-                        StringBuilder str = new StringBuilder(temp);
-                        str[item] = lettreJoueur;
-                        temp = str.ToString();
-                        txtBlettres.Text = temp;
-                    }
-
-                    int penalty = int.Parse(txtBessai.Text);
-
-                    if (txtBjoueur.Text == txtBmotCach.Text)
-                    {
-                        lblWinOrLose.Content = "Bravo ! Vous avez trouvé le mot caché";
-                        chrono.Stop();
-                        int score = options.Temps - int.Parse(txtBcompteur.Text) - int.Parse(txtBpenalty.Text);
-                        lblScore.Content = score.ToString();
-                        joueur.Score += score;
-                        lblScorePartie.Content = joueur.Score;
-                        joueur.SaveXML(@"Joueur.xml");
-                        joueurs.Add(joueur);
-                        joueurs.SaveText("Liste_des_joueurs.txt");
-                        joueurs.SaveXML(@"ListeJoueurs.xml");
-                        btnTry.IsEnabled = false;
-                        txtBlettres.Clear();
-                        txtBlettres.Text = txtBjoueur.Text;
-                    }
-                    if (txtBessai.Text == (options.NbEssais - 1).ToString())
-                    {
-                        lblWinOrLose.Content = "Perdu ! Il fallait trouver : " + txtBmotCach.Text;
-                    }
-                    if (i < int.Parse(txtBnbEssais.Text))
-                    {
-                        txtBessai.Text = (++i).ToString();
-                    }
-                }
+            if (txtBjoueur.Text == txtBmotCach.Text)
+            {
+                lblWinOrLose.Content = "Bravo ! Vous avez trouvé le mot caché";
+                chrono.Stop();
+                int score = options.Temps - int.Parse(txtBcompteur.Text) - int.Parse(txtBpenalty.Text);
+                lblScore.Content = score.ToString();
+                joueur.Score += score;
+                lblScorePartie.Content = joueur.Score;
+                joueur.SaveXML(@"Joueur.xml");
+                joueurs.Add(joueur);
+                joueurs.SaveText("Liste_des_joueurs.txt");
+                joueurs.SaveXML(@"ListeJoueurs.xml");
+                btnTry.IsEnabled = false;
+                txtBlettres.Clear();
+                txtBlettres.Text = txtBjoueur.Text;
+            }
+            if (txtBessai.Text == (options.NbEssais - 1).ToString())
+            {
+                lblWinOrLose.Content = "Perdu ! Il fallait trouver : " + txtBmotCach.Text;
+            }
+            if (i < int.Parse(txtBnbEssais.Text))
+            {
+                txtBessai.Text = (++i).ToString();
+            }
+        }
 
 
-                #endregion
+        #endregion
 
-                private void TxtBlettres_TextChanged(object sender, TextChangedEventArgs e)
-                {
-                    //modifIndex();
-                }
+        private void TxtBlettres_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //modifIndex();
+        }
 
-                private void modifIndex()
-                {
-
-
-                }
+        private void modifIndex()
+        {
 
 
-                private void TxtBjoueur_MouseEnter(object sender, MouseEventArgs e)
-                {
-                    TxtBjoueur_TextChange2();
-                }
+        }
 
-                private void TxtBjoueur_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-                {
-                    TxtBjoueur_TextChange2();
-                }
 
-                private void TxtBpenalty_TextChanged(object sender, TextChangedEventArgs e)
-                {
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(@"Options.xml");
-                    XmlNodeList Xn = doc.SelectNodes("//NbPoinPerdus");
-                    foreach (XmlNode xNode in Xn)
-                    {
-                        options.NbPoinPerdus = int.Parse(xNode.InnerText);
+        private void TxtBjoueur_MouseEnter(object sender, MouseEventArgs e)
+        {
+            TxtBjoueur_TextChange2();
+        }
 
-                    }
-                    txtBpenalty.Text = ((int.Parse(txtBessai.Text) + 1) * options.NbPoinPerdus).ToString();
-                }
+        private void TxtBjoueur_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            TxtBjoueur_TextChange2();
+        }
 
-                private void BtnB_Click(object sender, RoutedEventArgs e)
-                {
+        private void TxtBpenalty_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"Options.xml");
+            XmlNodeList Xn = doc.SelectNodes("//NbPoinPerdus");
+            foreach (XmlNode xNode in Xn)
+            {
+                options.NbPoinPerdus = int.Parse(xNode.InnerText);
 
-                }
+            }
+            txtBpenalty.Text = ((int.Parse(txtBessai.Text) + 1) * options.NbPoinPerdus).ToString();
+        }
 
-                private void TxtBjoueur_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-                {
+        private void BtnB_Click(object sender, RoutedEventArgs e)
+        {
 
-                }
+        }
 
-                private void Button_Click(object sender, RoutedEventArgs e)
-                {
-                    txtBjoueur.Clear();
-                }
+        private void TxtBjoueur_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            txtBjoueur.Clear();
+        }
 
         private void TxtBjoueur_GotFocus(object sender, RoutedEventArgs e)
         {
@@ -337,5 +337,5 @@ namespace Configuration
     }
 
 
-        } 
+}
 
