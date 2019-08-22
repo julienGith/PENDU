@@ -20,6 +20,8 @@ namespace Configuration
         public Joueur() { }
         public Joueur(string pseudo, int score) { }
 
+
+
         public void SaveXML(string path)
         {
             XmlSerializer writer = new XmlSerializer(typeof(Joueur));

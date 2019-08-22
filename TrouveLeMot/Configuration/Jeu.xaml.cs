@@ -40,7 +40,7 @@ namespace Configuration
         /// Methodes
         /// </summary>
         #region
-        private void RecupPseudo()
+                private void RecupPseudo()
         {
 
             XmlDocument doc = new XmlDocument();
@@ -75,8 +75,6 @@ namespace Configuration
                     }
 
                 }
-
-
                 private void nbLettres()
                 {
 
@@ -86,8 +84,6 @@ namespace Configuration
                         txtBlettres.Text = temp + "-";
                     }
                 }
-
-
                 private void TxtBjoueur_TextChange()
                 { txtBjoueur.Text = "Entrez un mot ou des lettres et tentez"; }
                 private void TxtBjoueur_TextChange2()
@@ -209,8 +205,6 @@ namespace Configuration
 
                 }
 
-
-
                 private void BtnTry_Click(object sender, RoutedEventArgs e)
                 {
                     char[] tabMotCach = txtBmotCach.Text.ToCharArray();
@@ -223,9 +217,6 @@ namespace Configuration
                     List<int> stockPos = new List<int>();
                     char lettreJoueur = txtBjoueur.Text[0];
                     string temp = txtBlettres.Text;
-
-                    //char[] caractMotCach = tabMotJoueur;
-                    //char[] caractMotPendu = tabMotPendu;
 
 
                     for (int i = 0; i < tabMotCach.Length - 1; i++)
