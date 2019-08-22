@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace Configuration
 {
@@ -27,6 +28,7 @@ namespace Configuration
             AfficherScore();
             
         }
+        ListJoueurs joueurs = new ListJoueurs();
         Joueur joueur = new Joueur();
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -56,6 +58,11 @@ namespace Configuration
             {
                 ListPoints.Items.Add(xnode);
             }
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
     }
 }

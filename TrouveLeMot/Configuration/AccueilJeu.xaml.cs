@@ -45,5 +45,13 @@ namespace Configuration
             joueur.Pseudo = txtBpseudo.Text;
             joueur.SaveXML(@"Joueur.xml");
         }
+
+        private void BtnScores_Click(object sender, RoutedEventArgs e)
+        {
+            Scores scores = new Scores();
+            scores.ShowDialog();
+        }
+
+
     }
 }
