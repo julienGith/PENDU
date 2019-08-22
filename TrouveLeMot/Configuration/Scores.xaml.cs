@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,9 +25,11 @@ namespace Configuration
         {
             InitializeComponent();
             //joueur.LoadXML(@"joueur.xml");
-            AfficherPseudo();
-            AfficherScore();
-            
+            //AfficherPseudo();
+            //AfficherScore();
+            AfficherSP();
+
+
         }
         ListJoueurs joueurs = new ListJoueurs();
         Joueur joueur = new Joueur();
@@ -34,35 +37,57 @@ namespace Configuration
         {
             Close();
         }
-        private void AfficherPseudo()
+        //private void AfficherPseudo()
+        //{
+        //    ListPseudo.Items.Add(joueur.Pseudo);
+        //    XmlDocument doc = new XmlDocument();
+        //    doc.Load(@"Joueur.xml");
+        //    XmlNodeList xn = doc.SelectNodes("//Pseudo");
+        //    foreach (XmlNode xnode in xn)
+        //    {
+        //       ListPseudo.Items.Add(xnode);
+        //    }
+        //}
+        //private void AfficherScore()
+        //{
+        //    //ListPoints.Items.Add(joueur.Score);
+        //    XmlDocument doc = new XmlDocument();
+        //    doc.Load(@"Joueur.xml");
+        //    XmlNodeList xn = doc.SelectNodes("//Score");
+        //    foreach (XmlNode xnode in xn)
+        //    {
+        //        ListPoints.Items.Add(xnode);
+        //    }
+        //}
+
+        private void AfficherSP()
         {
-            ListPseudo.Items.Add(joueur.Pseudo);
-            XmlDocument doc = new XmlDocument();
-            doc.Load(@"Joueur.xml");
-            XmlNodeList xn = doc.SelectNodes("//Pseudo");
-            foreach (XmlNode xnode in xn)
+            //joueurs.ReadTxt("Liste_des_joueurs.txt");
+            FileStream fsr = new FileStream("Liste_des_joueurs.txt", FileMode.Open, FileAccess.Read, FileShare.Read);
+            StreamReader sr = new StreamReader(fsr);
+            string enr = sr.ReadLine();
+            string[] chaine = enr.Split(';');
+
+            while (enr != null)
             {
-               ListPseudo.Items.Add(xnode);
+                Joueur joueur = new Joueur();
+                joueur.Pseudo = chaine[0];
+                joueur.Score = int.Parse(chaine[1]);
+                enr = sr.ReadLine();
+
+                ListPseudo.Items.Add(joueur.Pseudo.ToString());
+                ListPoints.Items.Add(joueur.Score.ToString());
+
+                if (enr != null)
+                {
+                    chaine = enr.Split(';');
+                }
             }
 
 
-        }
+            fsr.Close();
+            sr.Close();
 
-        private void AfficherScore()
-        {
-            //ListPoints.Items.Add(joueur.Score);
-            XmlDocument doc = new XmlDocument();
-            doc.Load(@"Joueur.xml");
-            XmlNodeList xn = doc.SelectNodes("//Score");
-            foreach (XmlNode xnode in xn)
-            {
-                ListPoints.Items.Add(xnode);
-            }
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
         }
     }
 }

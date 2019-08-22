@@ -11,8 +11,8 @@ namespace Configuration
     [Serializable()]
     public class Joueur
     {
-        private string _pseudo;
-        private int _score;
+        //private string _pseudo;
+        //private int _score;
         public override string ToString()
         {
 

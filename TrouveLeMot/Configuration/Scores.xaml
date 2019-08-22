@@ -30,6 +30,5 @@
         <Label Content="Points" Grid.Column="3" HorizontalAlignment="Left" Margin="461,96,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="25" RenderTransformOrigin="-0.939,0.675"/>
         <ListBox x:Name="ListPseudo" Grid.Column="3" HorizontalAlignment="Left" Height="100" Margin="205,139,0,0" Grid.Row="3" VerticalAlignment="Top" Width="170"/>
         <ListBox x:Name="ListPoints" Grid.Column="3" HorizontalAlignment="Left" Height="100" Margin="461,139,0,0" Grid.Row="3" VerticalAlignment="Top" Width="77"/>
-        <ListBox x:Name="lstBjoueurs" Grid.Column="3" HorizontalAlignment="Left" Height="100" Margin="103,257,0,0" Grid.Row="3" VerticalAlignment="Top" Width="100" SelectionChanged="ListBox_SelectionChanged"/>
     </Grid>
 </Window>
