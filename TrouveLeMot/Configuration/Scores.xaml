@@ -22,11 +22,11 @@
             <RowDefinition Height="*"/>
 
         </Grid.RowDefinitions>
-        <Button Content="Retour Acceuil" Grid.Column="3" HorizontalAlignment="Left" Margin="612,350,0,0" Grid.Row="3" VerticalAlignment="Top" Width="152" Height="41" FontSize="20" Click="Button_Click"/>
+        <Button Content="Retour Acceuil" Grid.Column="3" HorizontalAlignment="Left" Margin="595,335,0,0" Grid.Row="3" VerticalAlignment="Top" Width="152" Height="41" FontSize="20" Click="Button_Click"/>
         <Label Content="Scores" Grid.Column="3" HorizontalAlignment="Left" Margin="338,0,0,0" Grid.Row="3" VerticalAlignment="Top" Width="129" Height="59" FontSize="40" RenderTransformOrigin="0.826,0.538"/>
-        <Label Content="Pseudo" Grid.Column="3" HorizontalAlignment="Left" Margin="244,96,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="25"/>
-        <Label Content="Points" Grid.Column="3" HorizontalAlignment="Left" Margin="461,101,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="25" RenderTransformOrigin="-0.939,0.675"/>
-        <ListBox x:Name="ListPseudo" Grid.Column="3" HorizontalAlignment="Left" Height="100" Margin="244,139,0,0" Grid.Row="3" VerticalAlignment="Top" Width="100"/>
-        <ListBox Grid.Column="3" HorizontalAlignment="Left" Height="100" Margin="461,139,0,0" Grid.Row="3" VerticalAlignment="Top" Width="100" SelectionChanged="ListBox_SelectionChanged"/>
+        <Label Content="Pseudo" Grid.Column="3" HorizontalAlignment="Left" Margin="248,96,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="25"/>
+        <Label Content="Points" Grid.Column="3" HorizontalAlignment="Left" Margin="461,96,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="25" RenderTransformOrigin="-0.939,0.675"/>
+        <ListBox x:Name="ListPseudo" Grid.Column="3" HorizontalAlignment="Left" Height="100" Margin="205,139,0,0" Grid.Row="3" VerticalAlignment="Top" Width="170"/>
+        <ListBox x:Name="ListPoints" Grid.Column="3" HorizontalAlignment="Left" Height="100" Margin="461,139,0,0" Grid.Row="3" VerticalAlignment="Top" Width="77"/>
     </Grid>
 </Window>

@@ -32,12 +32,23 @@ namespace Configuration
             Chrono();
             nbLettres();
             TxtBjoueur_TextChange();
-
+            RecupPseudo();
         }
         /// <summary>
         /// Methodes
         /// </summary>
         #region
+        private void RecupPseudo()
+        {
+            
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"Joueur.xml");
+            XmlNodeList xn = doc.SelectNodes("//Pseudo");
+            foreach (XmlNode xnode in xn)
+            {
+                joueur.Pseudo=xnode.InnerText.ToString();
+            }
+        }
         private void Chrono()
         {
             chrono.Start();
