@@ -219,7 +219,7 @@ namespace Configuration
                     string temp = txtBlettres.Text;
 
 
-                    for (int i = 0; i < tabMotCach.Length - 1; i++)
+                    for (int i = 0; i < tabMotCach.Length; i++)
                     {
                         if (lettreJoueur == tabMotCach[i])
                         {
@@ -321,8 +321,11 @@ namespace Configuration
                     txtBjoueur.Clear();
                 }
 
-
-            }
+        private void TxtBjoueur_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtBjoueur.Clear();
+        }
+    }
 
 
         } 
