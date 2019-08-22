@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:Configuration"
         mc:Ignorable="d"
         Title="Scores" Height="450" Width="800" ResizeMode="NoResize">
-    <Grid RenderTransformOrigin="0.536,0.559">
-
+    <Grid>
+        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
@@ -17,6 +18,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
