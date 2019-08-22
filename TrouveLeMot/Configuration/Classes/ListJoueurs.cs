@@ -10,11 +10,7 @@ namespace Configuration
 {
     public class ListJoueurs : List<Joueur>
     {
-        public override string ToString()
-        {
-            Joueur joueur = new Joueur();
-            return  joueur.Pseudo + ";" + joueur.Score + ";";
-        }
+
         public void SaveText(string path)
         {
             FileStream fs = new FileStream(path, FileMode.Append, FileAccess.Write);
@@ -38,14 +34,11 @@ namespace Configuration
             while (sr.Peek() >= 0)
             {
                 string enr = sr.ReadLine();
-                string[] chaine = enr.Split(new char[] { ';' });
-                if (chaine.Length == 6)
-                {
-                    Joueur joueur = new Joueur();
-                    joueur.Pseudo = chaine[1];
-                    
-                }
+                string[] chaine = enr.Split(';');
 
+                    Joueur joueur = new Joueur();
+                    joueur.Pseudo = chaine[0];
+                    joueur.Score = int.Parse(chaine[1]);
             }
 
             fsr.Close();

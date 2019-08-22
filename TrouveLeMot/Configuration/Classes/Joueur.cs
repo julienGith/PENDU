@@ -13,7 +13,11 @@ namespace Configuration
     {
         private string _pseudo;
         private int _score;
+        public override string ToString()
+        {
 
+            return Pseudo + ";" + Score;
+        }
         public string Pseudo { get; set; }
         public int Score { get ; set; }
 

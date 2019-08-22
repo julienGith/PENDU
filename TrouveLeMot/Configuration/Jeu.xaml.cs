@@ -248,8 +248,9 @@ namespace Configuration
                         lblScorePartie.Content = joueur.Score;
                         joueur.SaveXML(@"Joueur.xml");
                         joueurs.Add(joueur);
-                //joueurs.SaveXML(@"ListeJoueurs.xml");
-                btnTry.IsEnabled = false;
+                        joueurs.SaveText("Liste_des_joueurs.txt");
+                        joueurs.SaveXML(@"ListeJoueurs.xml");
+                        btnTry.IsEnabled = false;
                         txtBlettres.Clear();
                         txtBlettres.Text = txtBjoueur.Text;
                     }
