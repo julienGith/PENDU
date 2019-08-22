@@ -9,7 +9,7 @@
     <Grid>
         <Button x:Name="btnOptions" Content="Configurer la partie" HorizontalAlignment="Left" Margin="70,324,0,0" VerticalAlignment="Top" Width="162" Height="61" Click="BtnOptions_Click"/>
         <Button x:Name="btnStart" Content="Lancer la partie" HorizontalAlignment="Left" Margin="303,324,0,0" VerticalAlignment="Top" Width="162" Height="61" Click="BtnStart_Click"/>
-        <Button x:Name="btnScores" Content="Scores" HorizontalAlignment="Left" Margin="536,324,0,0" VerticalAlignment="Top" Width="162" Height="61"/>
+        <Button x:Name="btnScores" Content="Scores" HorizontalAlignment="Left" Margin="536,324,0,0" VerticalAlignment="Top" Width="162" Height="61" Click="BtnScores_Click"/>
         <TextBox x:Name="txtBpseudo" HorizontalAlignment="Left" Height="62" Margin="218,188,0,0" TextWrapping="Wrap" Text="Entrez votre pseudo" VerticalAlignment="Top" Width="334" FontSize="36" TextChanged="TxtBpseudo_TextChanged"/>
 
     </Grid>
