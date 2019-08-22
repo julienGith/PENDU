@@ -278,10 +278,6 @@ namespace Configuration
 
                 }
 
-                private void TxtBjoueur_TextChanged(object sender, TextChangedEventArgs e)
-                {
-
-                }
 
                 private void TxtBjoueur_MouseEnter(object sender, MouseEventArgs e)
                 {
@@ -324,7 +320,13 @@ namespace Configuration
         private void TxtBjoueur_GotFocus(object sender, RoutedEventArgs e)
         {
             txtBjoueur.Clear();
+            if (txtBjoueur.Text==null)
+            {
+                btnTry.IsEnabled = false;
+            }
         }
+
+
     }
 
 
