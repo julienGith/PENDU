@@ -40,6 +40,13 @@ namespace Configuration
         /// Methodes
         /// </summary>
         #region
+            private void IsBtnTryEnable()
+        {
+            if (txtBjoueur.Text != null)
+            {
+                btnTry.IsEnabled = true;
+            }
+        }
                 private void RecupPseudo()
         {
 
