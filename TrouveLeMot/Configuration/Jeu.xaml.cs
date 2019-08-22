@@ -68,10 +68,7 @@ namespace Configuration
 
         private void nbLettres()
         {
-            //txtBmotCach.Text = atrouver.MotCach;
-            //atrouver.Remove(txtBmotCach.Text);
-            //atrouver.SaveXML(@"mots_choisis.xml");
-            lblnbLettres.Content = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
+
             for (int i = 1; i <= txtBmotCach.Text.Length; i++)
             {
                 string temp = txtBlettres.Text;
@@ -192,7 +189,7 @@ namespace Configuration
                 txtBmotCach.Text = atrouver.MotCach;
                 txtBmanche.Text = (++k).ToString();
             //}
-            lblnbLettres.Content = ("Le mot fait {0} lettres.", atrouver.MotCach.Length);
+
             txtBlettres.Clear();
             for (int i = 1; i <= txtBmotCach.Text.Length; i++)
             {
