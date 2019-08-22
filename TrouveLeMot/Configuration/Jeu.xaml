@@ -21,7 +21,7 @@
         <TextBox x:Name="txtBnbManches" HorizontalAlignment="Left" Height="23" Margin="691,51,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="19" TextChanged="TxtBnbManches_TextChanged"/>
         <TextBox x:Name="txtBnbEssais" HorizontalAlignment="Left" Height="23" Margin="691,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="25" TextChanged="TxtBnbEssais_TextChanged"/>
         <TextBox x:Name="txtBessai" HorizontalAlignment="Left" Height="23" Margin="657,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="24" TextChanged="TxtBessai_TextChanged"/>
-        <TextBox x:Name="txtBlettres" HorizontalAlignment="Left" Height="23" Margin="31,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" TextChanged="TxtBlettres_TextChanged" />
+        <TextBox x:Name="txtBlettres" HorizontalAlignment="Left" Height="41" Margin="31,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" TextChanged="TxtBlettres_TextChanged" FontSize="20" />
         <TextBox x:Name="txtBnote" HorizontalAlignment="Left" Height="76" Margin="31,117,0,0" TextWrapping="Wrap" Text="Aidez-vous en formant des mots avec les lettres trouvées. Les lettres trouvées peuvent être présentes plusieurs fois dans le mot caché. " VerticalAlignment="Top" Width="274" TextChanged="TxtBnote_TextChanged"/>
         <Label x:Name="lblWinOrLose" Content="" HorizontalAlignment="Left" Margin="145,40,0,0" VerticalAlignment="Top" Width="274"/>
         <!--<Button Content="Vérifier l'orthographe" HorizontalAlignment="Left" Margin="31,262,0,0" VerticalAlignment="Top" Width="151"/>-->

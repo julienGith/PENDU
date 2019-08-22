@@ -23,6 +23,7 @@ namespace Configuration
         DispatcherTimer chrono = new DispatcherTimer();
         int i = 0;
         int j = 0;
+        int k = 1;
 
 
         public Jeu()
@@ -31,13 +32,21 @@ namespace Configuration
             options.LoadXML(@"Options.xml");
             Chrono();
             nbLettres();
-            TxtBjoueur_TextChange();
+            IsNextEnable();
 
         }
         /// <summary>
         /// Methodes
         /// </summary>
         #region
+
+            private void IsNextEnable()
+        {
+            if (int.Parse(txtBmanche.Text) == int.Parse(txtBnbManches.Text))
+            {
+                btnNext.IsEnabled = false;
+            }
+        }
         private void Chrono()
         {
             chrono.Start();
@@ -59,9 +68,9 @@ namespace Configuration
 
         private void nbLettres()
         {
-            txtBmotCach.Text = atrouver.MotCach;
-            atrouver.Remove(txtBmotCach.Text);
-            atrouver.SaveXML(@"mots_choisis.xml");
+            //txtBmotCach.Text = atrouver.MotCach;
+            //atrouver.Remove(txtBmotCach.Text);
+            //atrouver.SaveXML(@"mots_choisis.xml");
             lblnbLettres.Content = "Le mot fait : " + txtBmotCach.Text.Length + " lettres.";
             for (int i = 1; i <= txtBmotCach.Text.Length; i++)
             {
@@ -110,7 +119,7 @@ namespace Configuration
         }
         private void TxtBmanche_TextChanged(object sender, TextChangedEventArgs e)
         {
-            txtBmanche.Text = i.ToString();
+            txtBmanche.Text = k.ToString();
         }
         private void TxtBnbEssais_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -161,23 +170,34 @@ namespace Configuration
 ;
             j = 0;
             chrono.Start();
-            i = 1;
+            i = 0;
             txtBessai.Text = i.ToString();
-
             btnTry.IsEnabled = true;
             lblWinOrLose.Content = "";
             txtBlettres.Text = "";
             txtBnote.Text = "Aidez-vous en formant des mots avec les lettres trouvées. Les lettres trouvées peuvent être présentes plusieurs fois dans le mot caché. ";
             txtBjoueur.Text = "Entrez un mot ou des lettres et tentez";
-            lblnbLettres.Content = ("Le mot fait :{0} lettres.", txtBmotCach.Text.Length);
-            if (i < int.Parse(txtBnbManches.Text))
+            if (int.Parse(txtBmanche.Text) == int.Parse(txtBnbManches.Text)-1)
             {
+                btnNext.IsEnabled = false;
+            }
+
+            //if (i < int.Parse(txtBnbManches.Text))
+            //{
                 if (atrouver.Count > 0)
                 {
                     atrouver.Remove(txtBmotCach.Text);
+                    atrouver.SaveXML(@"mots_choisis.xml");
                 }
                 txtBmotCach.Text = atrouver.MotCach;
-                txtBmanche.Text = (++i).ToString();
+                txtBmanche.Text = (++k).ToString();
+            //}
+            lblnbLettres.Content = ("Le mot fait {0} lettres.", atrouver.MotCach.Length);
+            txtBlettres.Clear();
+            for (int i = 1; i <= txtBmotCach.Text.Length; i++)
+            {
+                string temp = txtBlettres.Text;
+                txtBlettres.Text = temp + "-";
             }
 
         }
@@ -199,6 +219,8 @@ namespace Configuration
 
             //char[] caractMotCach = tabMotJoueur;
             //char[] caractMotPendu = tabMotPendu;
+
+
             for (int i = 0; i < tabMotCach.Length - 1; i++)
             {
                 if (lettreJoueur == tabMotCach[i])
@@ -246,7 +268,7 @@ namespace Configuration
 
         private void TxtBlettres_TextChanged(object sender, TextChangedEventArgs e)
         {
-            modifIndex();
+            //modifIndex();
         }
 
         private void modifIndex()
