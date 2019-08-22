@@ -225,67 +225,12 @@ namespace Configuration
 
             foreach (int item in stockPos)
             {
-<<<<<<< HEAD
-            txtBlettres.Text = temp + "-";
-                
-                if (motCach.Contains(lettreJoueur.ToString()))
-                {
-
-                    txtBlettres.Text = motCach[lettreJoueur].ToString();
-                    //string caract = lettreJoueur.ToString();
-                    //str.Replace("-", "motCach.Contains(lettreJoueur)");
-                    //txtBlettres.Text = caract;
-
-
-                    //Response.Write(lacase[position]);
-=======
                 StringBuilder str = new StringBuilder(temp);
                 str[item] = lettreJoueur;
                 temp = str.ToString();
                 txtBlettres.Text = temp;
             }
-<<<<<<< HEAD
          
-=======
-
-            //foreach (char caractMotCach in tabMotJoueur)
-            //{
-            //    if (tabMotCach.Contains(caractMotCach) & !txtBlettres.Text.Contains(caractMotCach.ToString()))
-            //    {
-
-            //        //string motJoueur = txtBjoueur.Text;
-            //        int indexCach = motCach.IndexOf(caractMotCach.ToString());
-            //        int indexPendu = indexCach;
-            //        //
-            //        lblTrouveLettres.Content += /*indexJoueur+*/ caractMotCach.ToString() + (indexCach + 1) + "," + indexPendu;
-            //        //if (MotJoueur.equals(MotCach))      
->>>>>>> ded6eb5dfba409f6bdd0980c9c15b5a279f3948e
-
-
-
-            //        //foreach (char caractMotJoueur in tabMotJoueur)
-            //        //{
-
-            //        //    if (motJoueur[indexJoueur].Equals(motCach[indexCach]))
-            //        //    {
-
-            //                txtBlettres.Text = txtBmotCach.Text + "tamere" + (indexCach) + indexJoueur + indexPendu;
-            //        //    }
-            //        //    //int indexCach = motCach.IndexOf(tabMotCach.ToString());
-
-            //        //    //if (indexCach!=0)/*motJoueur[indexJoueur] == motCach[indexCach]*/
-            //        //    //{
-            //        //    //    txtBlettres.Text = txtBmotCach.Text + "tamere"+indexCach;
-            //        //    //}
-            //        //}
-
-            //    }
-        //}
-
-
-
-
->>>>>>> 594a25452f14f2a12f2d84b4d26cf55d50955f53
             int penalty = int.Parse(txtBessai.Text);
 
             if (txtBjoueur.Text == txtBmotCach.Text)
