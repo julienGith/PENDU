@@ -159,31 +159,17 @@ namespace Configuration
         private void BtnNext_Click(object sender, RoutedEventArgs e)
         {
 ;
-            atrouver.SaveXML(@"mots_choisis.xml");
-            InitializeComponent();
-            
-            txtBmotCach.Text = atrouver.MotCach;
-            atrouver.Remove(txtBmotCach.Text);
-            //Chrono();
-            //chrono.Stop();
-            //chrono.Start();
+            j = 0;
+            chrono.Start();
+            i = 1;
+            txtBessai.Text = i.ToString();
 
+            btnTry.IsEnabled = true;
             lblWinOrLose.Content = "";
-            //txtBlettres.Text = "a";
-
-            txtBnote.Text = "Aidez-vous en formant des mots avec les lettres trouvées. Les lettres trouvées peuvent être présentes plusieurs fois dans le mot caché.";
-            lblnbLettres.Content = ("Le mot fait :{0} lettres.", txtBmotCach.Text.Length);
-
-            //for (int i = 0; i <= txtBmotCach.Text.Length+1; i++)
-            //{
-            //    txtBlettres.Text = "-";
-            //    string temp = txtBlettres.Text;
-            //    txtBlettres.Text = temp + "-";
-            //}
-
-
+            txtBlettres.Text = "";
+            txtBnote.Text = "Aidez-vous en formant des mots avec les lettres trouvées. Les lettres trouvées peuvent être présentes plusieurs fois dans le mot caché. ";
             txtBjoueur.Text = "Entrez un mot ou des lettres et tentez";
-
+            lblnbLettres.Content = ("Le mot fait :{0} lettres.", txtBmotCach.Text.Length);
             if (i < int.Parse(txtBnbManches.Text))
             {
                 if (atrouver.Count > 0)
@@ -192,7 +178,6 @@ namespace Configuration
                 }
                 txtBmotCach.Text = atrouver.MotCach;
                 txtBmanche.Text = (++i).ToString();
-
             }
 
         }
