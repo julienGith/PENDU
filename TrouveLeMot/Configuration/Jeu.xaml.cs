@@ -172,8 +172,7 @@ namespace Configuration
             btnTry.IsEnabled = true;
             lblWinOrLose.Content = "";
             txtBlettres.Text = "";
-            txtBnote.Text = "Aidez-vous en formant des mots avec les lettres trouvées. Les lettres trouvées peuvent être présentes plusieurs fois dans le mot caché. ";
-            txtBjoueur.Text = "Entrez un mot ou des lettres et tentez";
+            txtBjoueur.Text = "Mot caché trouvé ? tapez le ici et tentez";
             if (int.Parse(txtBmanche.Text) == int.Parse(txtBnbManches.Text)-1)
             {
                 btnNext.IsEnabled = false;
@@ -249,6 +248,8 @@ namespace Configuration
                 joueurs.Add(joueur);
                 joueurs.SaveXML(@"ListeJoueurs.xml");
                 btnTry.IsEnabled = false;
+                txtBlettres.Clear();
+                txtBlettres.Text = txtBjoueur.Text;
             }
             if (txtBessai.Text == (options.NbEssais - 1).ToString())
             {
@@ -271,11 +272,6 @@ namespace Configuration
         private void modifIndex()
         {
 
-
-        }
-
-        private void TxtBnote_TextChanged(object sender, TextChangedEventArgs e)
-        {
 
         }
 
