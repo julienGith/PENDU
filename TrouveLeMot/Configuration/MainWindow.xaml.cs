@@ -83,14 +83,6 @@ namespace Configuration
             btnSupr.IsEnabled = false;
         }
 
-
-
-
-
-
-
-
-
         private void ChargeLexique()
         {
             XmlDocument doc = new XmlDocument();

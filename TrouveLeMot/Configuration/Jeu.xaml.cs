@@ -214,6 +214,7 @@ namespace Configuration
 
         private void BtnTry_Click(object sender, RoutedEventArgs e)
         {
+            txtBpenalty.Text = ((int.Parse(txtBessai.Text)-1) * options.NbPoinPerdus).ToString();
             char[] tabMotCach = txtBmotCach.Text.ToCharArray();
             char[] tabMotJoueur = txtBjoueur.Text.ToCharArray();
             char[] tabMotPendu = txtBlettres.Text.ToCharArray();
@@ -225,13 +226,12 @@ namespace Configuration
             char lettreJoueur = txtBjoueur.Text[0];
             string temp = txtBlettres.Text;
 
-
+            
             for (int i = 0; i < tabMotCach.Length; i++)
             {
                 if (lettreJoueur == tabMotCach[i])
                 {
                     stockPos.Add(i);
-
                 }
             }
 
@@ -279,23 +279,6 @@ namespace Configuration
             //modifIndex();
         }
 
-        private void modifIndex()
-        {
-
-
-        }
-
-
-        private void TxtBjoueur_MouseEnter(object sender, MouseEventArgs e)
-        {
-            TxtBjoueur_TextChange2();
-        }
-
-        private void TxtBjoueur_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            TxtBjoueur_TextChange2();
-        }
-
         private void TxtBpenalty_TextChanged(object sender, TextChangedEventArgs e)
         {
             XmlDocument doc = new XmlDocument();
@@ -307,21 +290,6 @@ namespace Configuration
 
             }
             txtBpenalty.Text = ((int.Parse(txtBessai.Text) + 1) * options.NbPoinPerdus).ToString();
-        }
-
-        private void BtnB_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void TxtBjoueur_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            txtBjoueur.Clear();
         }
 
         private void TxtBjoueur_GotFocus(object sender, RoutedEventArgs e)
