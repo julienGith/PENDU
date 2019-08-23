@@ -25,14 +25,14 @@ namespace Configuration
         {
             InitializeComponent();
             AfficherSP();
+            AfficheJoueurs();
         }
-        ListJoueurs joueurs = new ListJoueurs();
-        Joueur joueur = new Joueur();
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
         /// <summary>
+        /// A faire liaison des données avec le databinding sur la listview du xalm.
         /// Reprise de la méthode readtext de la classe liste joueur.
         /// Permet la lecture du fichier texte contenant la liste des joueurs.
         /// Créé des chaines en découpant la ligne lu à chaque ";".
@@ -49,7 +49,6 @@ namespace Configuration
             StreamReader sr = new StreamReader(fsr);
             string enr = sr.ReadLine();
             string[] chaine = enr.Split(';');
-
             while (enr != null)
             {
                 Joueur joueur = new Joueur();
@@ -58,6 +57,7 @@ namespace Configuration
                 enr = sr.ReadLine();
                 ListPseudo.Items.Add(joueur.Pseudo.ToString());
                 ListPoints.Items.Add(joueur.Score.ToString());
+
                 if (enr != null)
                 {
                     chaine = enr.Split(';');
@@ -65,7 +65,15 @@ namespace Configuration
             }
             fsr.Close();
             sr.Close();
+        }
+        ////Alimenter la liste joueurs.
+        public void AfficheJoueurs()
+        {
+            ListJoueurs joueurs = new ListJoueurs();
+            joueurs.ReadTxt("Liste_des_joueurs.txt");
+            DataContext = this;
 
         }
+
     }
 }

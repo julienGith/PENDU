@@ -60,8 +60,6 @@ namespace Configuration
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-
             char[] tabMotCach = txtBmotCach.Text.ToCharArray();
             List<int> stockPos = new List<int>();
             string chaine = ((Button)sender).Content.ToString();

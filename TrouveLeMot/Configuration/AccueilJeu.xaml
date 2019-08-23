@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Configuration"
         mc:Ignorable="d"
-        Title="AccueilJeu" Height="450" Width="800" ResizeMode="NoResize">
+        Title="AccueilJeu" Height="450" Width="421.637" ResizeMode="NoResize">
     <Grid>
-        
-        <Button x:Name="btnOptions" Content="Configurer" HorizontalAlignment="Left" Margin="316,196,0,0" VerticalAlignment="Top" Width="162" Height="61" Click="BtnOptions_Click" FontSize="20"/>
-        <Button x:Name="btnStart" Content="Lancer la partie" HorizontalAlignment="Left" Margin="316,121,0,0" VerticalAlignment="Top" Height="61" Width="162" Click="BtnStart_Click" FontSize="20"/>
-        <Button x:Name="btnScores" Content="Scores" HorizontalAlignment="Left" Margin="316,271,0,0" VerticalAlignment="Top" Height="61" Width="162" Click="BtnScores_Click" FontSize="20"/>
-        <TextBox x:Name="txtBpseudo" Margin="230,45,230,314" TextWrapping="Wrap" Text="Entrez votre pseudo" FontSize="36" TextChanged="TxtBpseudo_TextChanged"/>
-        <Button x:Name="BtnQuit" Content="Quitter" HorizontalAlignment="Left" Margin="316,346,0,0" VerticalAlignment="Top" Width="162" Height="61" Click="BtnQuit_Click" FontSize="20"/>
+
+        <Button x:Name="btnOptions" Content="Configurer" HorizontalAlignment="Left" Margin="126,191,0,0" VerticalAlignment="Top" Width="162" Height="61" Click="BtnOptions_Click" FontSize="20"/>
+        <Button x:Name="btnStart" Content="Lancer la partie" HorizontalAlignment="Left" Margin="126,116,0,0" VerticalAlignment="Top" Height="61" Width="162" Click="BtnStart_Click" FontSize="20"/>
+        <Button x:Name="btnScores" Content="Scores" HorizontalAlignment="Left" Margin="126,266,0,0" VerticalAlignment="Top" Height="61" Width="162" Click="BtnScores_Click" FontSize="20"/>
+        <TextBox x:Name="txtBpseudo" Margin="23,28,24,331" TextWrapping="Wrap" Text="Entrez votre pseudo" FontSize="36" TextChanged="TxtBpseudo_TextChanged"/>
+        <Button x:Name="BtnQuit" Content="Quitter" HorizontalAlignment="Left" Margin="126,341,0,0" VerticalAlignment="Top" Width="162" Height="61" Click="BtnQuit_Click" FontSize="20"/>
 
     </Grid>
 </Window>
