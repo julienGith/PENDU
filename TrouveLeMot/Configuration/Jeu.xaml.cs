@@ -24,6 +24,8 @@ namespace Configuration
         int i = 0;
         int j = 0;
         int k = 1;
+        
+
 
 
         public Jeu()
@@ -321,9 +323,10 @@ namespace Configuration
                     txtBjoueur.Clear();
                 }
 
-
-            }
-
-
+                private void Button_Click_1(object sender, RoutedEventArgs e)
+                {
+                 Application.Current.Shutdown();
+                }
+    }
         } 
 

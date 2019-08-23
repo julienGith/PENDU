@@ -52,6 +52,9 @@ namespace Configuration
             scores.ShowDialog();
         }
 
-
+        private void BtnQuit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
