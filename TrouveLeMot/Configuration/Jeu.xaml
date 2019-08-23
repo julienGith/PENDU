@@ -88,7 +88,7 @@
         </Button>
         <Button x:Name="btnN" Content="N" HorizontalAlignment="Left" Margin="262,334,0,0" VerticalAlignment="Top" Width="32"/>
         <Button x:Name="btnG" Content="G" HorizontalAlignment="Left" Margin="262,308,0,0" VerticalAlignment="Top" Width="32" Height="21"/>
-        <Button x:Name="BtnQuitter" Content="Quitter le jeu" HorizontalAlignment="Left" Margin="526,367,0,0" VerticalAlignment="Top" Width="84" Click="Button_Click_1"/>
+        <Button x:Name="BtnQuitter" Content="Quitter le jeu" HorizontalAlignment="Left" Margin="526,367,0,0" VerticalAlignment="Top" Width="84" Click="BtnQuitter_Click" />
 
     </Grid>
 </Window>

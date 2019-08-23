@@ -291,6 +291,11 @@ namespace Configuration
             txtBjoueur.Clear();
 
         }
+
+        private void BtnQuitter_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
 
