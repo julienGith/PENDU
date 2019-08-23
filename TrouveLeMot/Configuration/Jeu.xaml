@@ -10,7 +10,7 @@
         <TextBox x:Name="txtBmotCach" HorizontalAlignment="Left" Height="29" Margin="145,37,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="274" TextChanged="TxtBmotCach_TextChanged" Visibility="Hidden" IsReadOnly="False" />
         <TextBox x:Name="txtBjoueur" HorizontalAlignment="Left" Height="23" Margin="31,222,0,0" TextWrapping="Wrap" Text="Mot caché trouvé ? tapez le ici et tentez" VerticalAlignment="Top" Width="274" SpellCheck.IsEnabled="True" IsReadOnly="False" GotFocus="TxtBjoueur_GotFocus"/>
         <Button x:Name="btnTry" Content="Tenter" HorizontalAlignment="Left" Margin="230,262,0,0" VerticalAlignment="Top" Width="75" Click="BtnTry_Click"/>
-        <Button x:Name="btnNext" Content="Mot/manche suivante" HorizontalAlignment="Left" Margin="620,367,0,0" VerticalAlignment="Top" Width="131" Click="BtnNext_Click"/>
+        <Button x:Name="btnNext" Content="Mot/manche suivante" HorizontalAlignment="Left" Margin="620,367,0,0" VerticalAlignment="Top" Width="131" Click="BtnNext_Click" />
         <GroupBox Header="MANCHE" HorizontalAlignment="Left" Height="59" Margin="646,23,0,0" VerticalAlignment="Top" Width="77"/>
         <Label Content="/" HorizontalAlignment="Left" Margin="676,48,0,0" VerticalAlignment="Top" Width="15"/>
         <GroupBox Header="ESSAIS" HorizontalAlignment="Left" Height="59" Margin="646,90,0,0" VerticalAlignment="Top" Width="77"/>

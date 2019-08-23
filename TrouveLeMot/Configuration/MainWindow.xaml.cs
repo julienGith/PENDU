@@ -412,9 +412,9 @@ namespace Configuration
 
         }
 
-        private void TxtBoxMot_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void TxtBoxMot_GotFocus(object sender, RoutedEventArgs e)
         {
-            txtBoxMot.Text = "";
+            txtBoxMot.Clear();
         }
     }
 }

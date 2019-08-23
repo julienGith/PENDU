@@ -42,9 +42,9 @@ namespace Configuration
         #region
             private void IsBtnTryEnable()
         {
-            if (txtBjoueur.Text != null)
+            if (!string.IsNullOrEmpty(txtBjoueur.Text))
             {
-                btnTry.IsEnabled = true;
+                //btnTry.IsEnabled = true;
             }
         }
         private void RecupPseudo()
@@ -223,61 +223,60 @@ namespace Configuration
             string motPendu = txtBlettres.Text;
             int indexJoueur = motJoueur.IndexOf(txtBjoueur.Text);
             List<int> stockPos = new List<int>();
-            char lettreJoueur = txtBjoueur.Text[0];
+            
             string temp = txtBlettres.Text;
 
-            
-            for (int i = 0; i < tabMotCach.Length; i++)
+            if (!string.IsNullOrEmpty(txtBjoueur.Text))
             {
-                if (lettreJoueur == tabMotCach[i])
+                char lettreJoueur = txtBjoueur.Text[0];
+                for (int i = 0; i < tabMotCach.Length; i++)
                 {
-                    stockPos.Add(i);
+                    if (lettreJoueur == tabMotCach[i])
+                    {
+                        stockPos.Add(i);
+                    }
+                }
+
+                foreach (int item in stockPos)
+                {
+                    StringBuilder str = new StringBuilder(temp);
+                    str[item] = lettreJoueur;
+                    temp = str.ToString();
+                    txtBlettres.Text = temp;
+                }
+
+                int penalty = int.Parse(txtBessai.Text);
+
+                if (txtBjoueur.Text == txtBmotCach.Text)
+                {
+                    lblWinOrLose.Content = "Bravo ! Vous avez trouvé le mot caché";
+                    chrono.Stop();
+                    int score = options.Temps - int.Parse(txtBcompteur.Text) - int.Parse(txtBpenalty.Text);
+                    lblScore.Content = score.ToString();
+                    joueur.Score += score;
+                    lblScorePartie.Content = joueur.Score;
+                    joueur.SaveXML(@"Joueur.xml");
+                    joueurs.Add(joueur);
+                    joueurs.SaveText("Liste_des_joueurs.txt");
+                    joueurs.SaveXML(@"ListeJoueurs.xml");
+                    btnTry.IsEnabled = false;
+                    txtBlettres.Clear();
+                    txtBlettres.Text = txtBjoueur.Text;
+                }
+                if (txtBessai.Text == (options.NbEssais - 1).ToString())
+                {
+                    lblWinOrLose.Content = "Perdu ! Il fallait trouver : " + txtBmotCach.Text;
+                }
+                if (i < int.Parse(txtBnbEssais.Text))
+                {
+                    txtBessai.Text = (++i).ToString();
                 }
             }
-
-            foreach (int item in stockPos)
-            {
-                StringBuilder str = new StringBuilder(temp);
-                str[item] = lettreJoueur;
-                temp = str.ToString();
-                txtBlettres.Text = temp;
-            }
-
-            int penalty = int.Parse(txtBessai.Text);
-
-            if (txtBjoueur.Text == txtBmotCach.Text)
-            {
-                lblWinOrLose.Content = "Bravo ! Vous avez trouvé le mot caché";
-                chrono.Stop();
-                int score = options.Temps - int.Parse(txtBcompteur.Text) - int.Parse(txtBpenalty.Text);
-                lblScore.Content = score.ToString();
-                joueur.Score += score;
-                lblScorePartie.Content = joueur.Score;
-                joueur.SaveXML(@"Joueur.xml");
-                joueurs.Add(joueur);
-                joueurs.SaveText("Liste_des_joueurs.txt");
-                joueurs.SaveXML(@"ListeJoueurs.xml");
-                btnTry.IsEnabled = false;
-                txtBlettres.Clear();
-                txtBlettres.Text = txtBjoueur.Text;
-            }
-            if (txtBessai.Text == (options.NbEssais - 1).ToString())
-            {
-                lblWinOrLose.Content = "Perdu ! Il fallait trouver : " + txtBmotCach.Text;
-            }
-            if (i < int.Parse(txtBnbEssais.Text))
-            {
-                txtBessai.Text = (++i).ToString();
-            }
+            
         }
 
 
         #endregion
-
-        private void TxtBlettres_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //modifIndex();
-        }
 
         private void TxtBpenalty_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -295,15 +294,8 @@ namespace Configuration
         private void TxtBjoueur_GotFocus(object sender, RoutedEventArgs e)
         {
             txtBjoueur.Clear();
-            if (txtBjoueur.Text==null)
-            {
-                btnTry.IsEnabled = false;
-            }
+
         }
-
-
     }
-
-
 }
 

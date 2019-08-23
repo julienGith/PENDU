@@ -18,7 +18,7 @@
         </Grid.ColumnDefinitions>
         <Button x:Name="btnAdd" Content="Ajouter au lexique" HorizontalAlignment="Left" Margin="7,174,0,0" VerticalAlignment="Top" Width="145" Click="BtnAdd_Click" Grid.Column="3" Height="22"/>
         <ListBox x:Name="listBoxLex" HorizontalAlignment="Left" Height="420" Margin="5,92,0,0" VerticalAlignment="Top" Width="268" Grid.Column="4"/>
-        <TextBox x:Name="txtBoxMot" HorizontalAlignment="Left" Height="23" Margin="7,105,0,0" TextWrapping="Wrap" Text="Tapez un mot" VerticalAlignment="Top" Width="145" SpellCheck.IsEnabled="True" Grid.Column="3" MouseDoubleClick="TxtBoxMot_MouseDoubleClick"/>
+        <TextBox x:Name="txtBoxMot" HorizontalAlignment="Left" Height="23" Margin="7,105,0,0" TextWrapping="Wrap" Text="Tapez un mot" VerticalAlignment="Top" Width="145" SpellCheck.IsEnabled="True" Grid.Column="3" GotFocus="TxtBoxMot_GotFocus" />
 
         <Button x:Name="btnOrthographe" Content="Vérifiez l'orthographe" HorizontalAlignment="Left" Margin="7,147,0,0" VerticalAlignment="Top" Width="145" Grid.Column="3" Height="22"/>
         <ListBox x:Name="listBoxCible" HorizontalAlignment="Left" Height="420" Margin="112,92,0,0" VerticalAlignment="Top" Width="268" Grid.Column="5" SelectionChanged="ListBoxCible_SelectionChanged"/>
