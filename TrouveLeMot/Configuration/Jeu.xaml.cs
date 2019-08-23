@@ -216,14 +216,7 @@ namespace Configuration
         {
             txtBpenalty.Text = ((int.Parse(txtBessai.Text)-1) * options.NbPoinPerdus).ToString();
             char[] tabMotCach = txtBmotCach.Text.ToCharArray();
-            char[] tabMotJoueur = txtBjoueur.Text.ToCharArray();
-            char[] tabMotPendu = txtBlettres.Text.ToCharArray();
-            string motJoueur = txtBjoueur.Text;
-            string motCach = txtBmotCach.Text;
-            string motPendu = txtBlettres.Text;
-            int indexJoueur = motJoueur.IndexOf(txtBjoueur.Text);
             List<int> stockPos = new List<int>();
-            
             string temp = txtBlettres.Text;
 
             if (!string.IsNullOrEmpty(txtBjoueur.Text))
