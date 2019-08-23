@@ -36,13 +36,55 @@ namespace Configuration
             nbLettres();
             IsNextEnable();
             RecupPseudo();
-
+            GenereClavier();
         }
+        
+
+        private void GenereClavier()
+        {
+
+
+
+            string alpha = "abcdefghijklmnopqrstuvwxyz";
+            int margeHaut = 10; int margeGauche = 10;
+            Thickness myThickness = new Thickness();
+            myThickness.Left = margeGauche;
+            myThickness.Top = margeHaut;
+            foreach (char item in alpha)
+            {
+
+                Grid g1 = new Grid();
+                g1.Margin.Left = margeGauche;
+                Button button = new Button();
+               
+           
+                button.Width =30;
+                button.Height = 30;
+                button.Click += Button_Click;
+                button.Content = item;
+                button.Margin = myThickness;
+
+               
+                if (i % 6 == 0)
+                {
+                    margeHaut += 5;
+                }
+                // gridClavier.Children.Add(button);
+                g1.Children.Add(button);
+                gridClavier.Children.Add(g1);
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ((Button)sender).IsEnabled = false;
+        }
+
         /// <summary>
         /// Methodes
         /// </summary>
         #region
-            private void IsBtnTryEnable()
+        private void IsBtnTryEnable()
         {
             if (!string.IsNullOrEmpty(txtBjoueur.Text))
             {

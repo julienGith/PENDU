@@ -49,24 +49,18 @@ namespace Configuration
             btnRemove.IsEnabled = false;
             btnOrthographe.IsEnabled = false;
         }
-
         private void EnableRadioNiveau()
         {
             rBtnFacile.IsEnabled = true;
             rBtnDifficile.IsEnabled = true;
             rBtnExpert.IsEnabled = true;
         }
-
         private void DisableRadioNiveau()
         {
             rBtnFacile.IsEnabled = false;
             rBtnDifficile.IsEnabled = false;
             rBtnExpert.IsEnabled = false;
         }
-
-
-
-
         private void EnableTransfert()
         {
             btnTransfert.IsEnabled = true;
@@ -74,7 +68,6 @@ namespace Configuration
             btnSupprTout.IsEnabled = true;
             btnSupr.IsEnabled = true;
         }
-
         private void DisableTransfert()
         {
             btnTransfert.IsEnabled = false;
@@ -82,7 +75,9 @@ namespace Configuration
             btnSupprTout.IsEnabled = false;
             btnSupr.IsEnabled = false;
         }
-
+        /// <summary>
+        /// Méthode permetant la lecture du fichier XML contenant les mots du lexique et l'ajout de son contenu dans la listBox lexique.
+        /// </summary>
         private void ChargeLexique()
         {
             XmlDocument doc = new XmlDocument();
@@ -94,6 +89,9 @@ namespace Configuration
                 lexique.Ajouter(xNode.InnerText);
             }
         }
+        /// <summary>
+        /// Méthode permetant la lecture du fichier XML contenant les mots choisis pour le jeu et l'ajout de son contenu dans la listBox mots à trouver.
+        /// </summary>
         private void ChargeMots()
         {
             XmlDocument doc = new XmlDocument();
@@ -105,6 +103,9 @@ namespace Configuration
                 atrouver.Ajouter(xNode.InnerText);
             }
         }
+        /// <summary>
+        /// Méthode vérifiant la validité de la saisie de l'utilisateur afin de renseigner le lexique avec des mots valides.
+        /// </summary>
         private bool isSaisieValid(string mot)
         {
             for (int i = 0; i < mot.Length; i++)
@@ -139,6 +140,9 @@ namespace Configuration
                 return true;
             }
         }
+        /// <summary>
+        /// Méthode permettant l'ajout du mot saisie par l'utilisateur dans la listBox lexique et dans le fichier du XML contenant le lexique.
+        /// </summary>
         private void AjoutMot(string mot)
         {
             listBoxLex.Items.Add(mot);
@@ -146,6 +150,9 @@ namespace Configuration
             lexique.SaveXML(@"test.xml");
             txtBoxMot.Clear();
         }
+        /// <summary>
+        /// Méthode permettant le retrait d'un mot de la listBox lexique et du fichier XML contenant le lexique.
+        /// </summary>
         private void RetireMot()
         {
             if (listBoxLex.SelectedItem != null)
@@ -156,6 +163,9 @@ namespace Configuration
                 listBoxLex.Items.Remove(listBoxLex.SelectedItem);
             }
         }
+        /// <summary>
+        /// Tri des mots du lexique en utilisant un lecteur de fichier XML qui lit le fichier XML contenant le lexique et retourne les mots de taille comprise entre 8 et 10 caractères.
+        /// </summary>
         private void NiveauDifficile()
         {
             niveau.Difficile = true;
@@ -173,6 +183,9 @@ namespace Configuration
                 }
             }
         }
+        /// <summary>
+        /// Tri des mots du lexique en utilisant un lecteur de fichier XML qui lit le fichier XML contenant le lexique et retourne les mots de taille supèrieur à 10 caractères.
+        /// </summary>
         private void NiveauExpert()
         {
             niveau.Expert = true;
@@ -196,6 +209,9 @@ namespace Configuration
             EnableBtn();
             ChargeLexique();
         }
+        /// <summary>
+        /// Tri des mots du lexique en utilisant un lecteur de fichier XML qui lit le fichier XML contenant le lexique et retourne les mots de taille comprise entre 5 et 8 caractères.
+        /// </summary>
         private void NiveauFacile()
         {
             niveau.Facile = true;
@@ -213,6 +229,10 @@ namespace Configuration
                 }
             }
         }
+        /// <summary>
+        /// Permet d'éviter une exeption si l'utilisateur tente de transfert un mot déjà présent dans la liste de mots à trouver et si il tente de transférer alors qu'il n'a pas sélectionné de mot dans la liste lexique.
+        /// La liste des mots à trouver est sauvergarder lors de l'ajout.
+        /// </summary>
         private void Transfert()
         {
 
@@ -225,6 +245,10 @@ namespace Configuration
             }
 
         }
+        /// <summary>
+        /// Permet de transférer un mot de la liste des mots à trouver vers la liste du lexique.
+        /// Permet d'éviter une exeption si l'utilisateur tente le transfer alors qu'il n'a pas fait de sélection.
+        /// </summary>
         private void Suppr()
         {
             if (listBoxCible.SelectedItem != null)
@@ -235,6 +259,9 @@ namespace Configuration
                 listBoxCible.Items.Remove(listBoxCible.SelectedItem);
             }
         }
+        /// <summary>
+        /// Permet d'éviter une exeption en cas de tentative de retrait si la liste est vide. Le bouton est alors désactivé.
+        /// </summary>
         private void SupprDisable()
         {
             if (listBoxCible.Items.Count < 1)
@@ -244,9 +271,12 @@ namespace Configuration
         }
         #endregion
         /// <summary>
-        /// Bouttons
+        /// Bouttons. Le bouton "Vérifier l'orthographe" n'est pas présent : il permet un changement de focus qui déclenche la vérification orthographique.
         /// </summary>
         #region
+        /// <summary>
+        /// Le bouton alimente le lexique en tenant compte de la validité de la saisie. Le e.Handled à true permet de bloquer l'ajout si elle n'est pas valide.
+        /// </summary>
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             string mot = txtBoxMot.Text;
@@ -256,25 +286,76 @@ namespace Configuration
             }
             e.Handled = true;
         }
+        /// <summary>
+        /// Ferme la fenêtre de configuration.
+        /// </summary>
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-            //XmlDocument doc = new XmlDocument();
-            //doc.Save(@"mots_choisis.xml");
             this.Close();
         }
+        /// <summary>
+        /// Transfert d'un mot du lexique vers la liste des mots à trouver.
+        /// </summary>
         private void BtnTransfert_Click(object sender, RoutedEventArgs e)
         {
             Transfert();
         }
+        /// <summary>
+        /// Retrait de tout les mots de la liste des mots à trouver. Les mots retournent dans la liste lexique. Ecrasement du fichier contenant la liste des mots à trouver.
+        /// </summary>
+        private void BtnSupprTout_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var itemListSuppr in listBoxCible.Items)
+            {
+                if (itemListSuppr != null && !listBoxLex.Items.Contains(itemListSuppr))
+                {
+                    listBoxLex.Items.Add(itemListSuppr);
+                    atrouver.Remove(itemListSuppr.ToString());
+                    atrouver.SaveXML(@"mots_choisis.xml");
+                }
+            }
+            foreach (var itemListSuppr2 in listBoxLex.Items)
+            {
+                listBoxCible.Items.Remove(itemListSuppr2);
+            }
+        }
+        /// <summary>
+        /// Ajout de tout les mots de la liste lexique dans la liste des mots à trouver. Sauvergarde la liste des mots à trouver.
+        /// </summary>
+        private void BtnAddTout_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var itemList in listBoxLex.Items)
+            {
+                if (itemList != null && !listBoxCible.Items.Contains(itemList))
+                {
+                    listBoxCible.Items.Add(itemList);
+                    atrouver.Ajouter(itemList.ToString());
+                    atrouver.SaveXML(@"mots_choisis.xml");
+                }
+            }
+            foreach (var itemList2 in listBoxCible.Items)
+            {
+                listBoxLex.Items.Remove(itemList2);
+            }
+        }
+        /// <summary>
+        /// Supprime un mot de la liste des mots à trouver et l'ajoute à la liste lexique.
+        /// </summary>
         private void BtnSupr_Click(object sender, RoutedEventArgs e)
         {
             Suppr();
         }
+        /// <summary>
+        /// Supprime un mot de liste lexique et enregistre le nouveau lexique.
+        /// </summary>
         private void BtnRemove_Click(object sender, RoutedEventArgs e)
         {
             RetireMot();
         }
-
+        /// <summary>
+        /// Radio bouttons permettant le tri des mots en fonction de leur taille.
+        /// </summary>
+        #region
         private void RBtnDifficile_Checked(object sender, RoutedEventArgs e)
         {
             NiveauDifficile();
@@ -293,6 +374,70 @@ namespace Configuration
         private void RBtnFacile_Checked(object sender, RoutedEventArgs e)
         {
             NiveauFacile();
+        }
+        private void RBtnLexic_Checked(object sender, RoutedEventArgs e)
+        {
+            EnableBtn();
+            DisableTransfert();
+            DisableRadioNiveau();
+            listBoxLex.Items.Clear();
+            ChargeLexique();
+        }
+
+        private void RBtnDifficult_Checked(object sender, RoutedEventArgs e)
+        {
+            EnableRadioNiveau();
+            EnableTransfert();
+            rBtnFacile.IsChecked = true;
+            DisableBtn();
+            NiveauFacile();
+        }
+        #endregion
+        /// <summary>
+        /// Boutons numériques up and down. Boutons en provenance du dépots de contrôle xceed wpf toolkit.
+        /// </summary>
+        #region
+        /// <summary>
+        /// numérique up and down déterminant le nombre de manches. valeur par défaut 1 et max 5 déterminé dans MainWindow.xalm.
+        /// </summary>   
+        private void NupManches_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            options.NombreManches = nupManches.Value.Value;
+            options.SaveXML(@"Options.xml");
+        }
+        /// <summary>
+        /// numérique up and down déterminant le nombre d'essais. valeur par défaut 7 et pas de valeur max déterminé dans MainWindow.xalm.
+        /// </summary> 
+        private void NupEssais_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            options.NbEssais = nupEssais.Value.Value;
+            options.SaveXML(@"Options.xml");
+        }
+        /// <summary>
+        /// numérique up and down déterminant la durée totale d'une manche. valeur par défaut 60, valeur max 600, incrément de 10 déterminé dans MainWindow.xalm.
+        /// </summary> 
+        private void NupDurée_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            options.Temps = nupDurée.Value.Value;
+            options.SaveXML(@"Options.xml");
+        }
+        /// <summary>
+        /// numérique up and down déterminant le nombre points perdus par essai. valeur par défaut 0 et max 3 déterminé dans MainWindow.xalm.
+        /// </summary> 
+        private void NupPtPerdu_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            options.NbPoinPerdus = nupPtPerdu.Value.Value;
+            options.SaveXML(@"Options.xml");
+        }
+        #endregion
+        /// <summary>
+        /// Bouton de tri alphabétique sur la liste lexique.
+        /// </summary>
+        private void BtnTri_Click(object sender, RoutedEventArgs e)
+        {
+            listBoxLex.Items.SortDescriptions.Add(
+            new System.ComponentModel.SortDescription("",
+            System.ComponentModel.ListSortDirection.Ascending));
         }
         // A implémenter afin de simplifier le code
         //private void RbNiveau()
@@ -317,104 +462,26 @@ namespace Configuration
         //            break;
         //    }
         //}
-        #endregion
 
-        private void NupManches_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            //int manches = nupManches.Value.Value;
-            options.NombreManches = nupManches.Value.Value;
-            options.SaveXML(@"Options.xml");
-        }
-        private void NupEssais_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            options.NbEssais = nupEssais.Value.Value;
-            options.SaveXML(@"Options.xml");
-        }
+        #endregion
+        /// <summary>
+        /// évènements
+        /// </summary>
+        #region
+        /// <summary>
+        /// Permet d'éviter une exception si l'utilisateur tente de supprimer un mot de la liste des mots à trouver alors que la liste est vide.Désactive le bouton quand la liste est vide.
+        /// </summary>
         private void ListBoxCible_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SupprDisable();
-            //options.LoadXML(@"mots_choisis.xml");
         }
-        private void NupDurée_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            options.Temps = nupDurée.Value.Value;
-            options.SaveXML(@"Options.xml");
-        }
-
-        private void BtnTri_Click(object sender, RoutedEventArgs e)
-        {
-            listBoxLex.Items.SortDescriptions.Add(
-            new System.ComponentModel.SortDescription("",
-            System.ComponentModel.ListSortDirection.Ascending));
-        }
-
-        private void NupPtPerdu_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
-        {
-            options.NbPoinPerdus = nupPtPerdu.Value.Value;
-            options.SaveXML(@"Options.xml");
-        }
-
-        private void RBtnLexic_Checked(object sender, RoutedEventArgs e)
-        {
-            EnableBtn();
-            DisableTransfert();
-            DisableRadioNiveau();
-            listBoxLex.Items.Clear();
-            ChargeLexique();
-        }
-
-        private void RBtnDifficult_Checked(object sender, RoutedEventArgs e)
-        {
-            EnableRadioNiveau();
-            EnableTransfert();
-            rBtnFacile.IsChecked = true;
-            DisableBtn();
-            NiveauFacile();
-        }
-
-        private void BtnSupprTout_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (var itemListSuppr in listBoxCible.Items)
-            {
-                if (itemListSuppr != null && !listBoxLex.Items.Contains(itemListSuppr))
-                {
-                    listBoxLex.Items.Add(itemListSuppr);
-                    atrouver.Remove(itemListSuppr.ToString());
-                    atrouver.SaveXML(@"mots_choisis.xml");
-                }
-            }
-            foreach (var itemListSuppr2 in listBoxLex.Items)
-            {
-                listBoxCible.Items.Remove(itemListSuppr2);
-            }
-
-        }
-
-        private void BtnAddTout_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (var itemList in listBoxLex.Items)
-            {
-                if (itemList != null && !listBoxCible.Items.Contains(itemList))
-                {
-                    listBoxCible.Items.Add(itemList);
-                    atrouver.Ajouter(itemList.ToString());
-                    atrouver.SaveXML(@"mots_choisis.xml");
-                }
-            }
-            foreach (var itemList2 in listBoxCible.Items)
-            {
-                listBoxLex.Items.Remove(itemList2);
-            }
-        }
-
-        private void GroupBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
+        /// <summary>
+        /// Permet la suppression du texte de la textBox joueur quand la textbox à le focus.
+        /// </summary>
         private void TxtBoxMot_GotFocus(object sender, RoutedEventArgs e)
         {
             txtBoxMot.Clear();
         }
+        #endregion
     }
 }
