@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrouveLeMot;
-
+/// <summary>
+/// classe inutilisée dans cette version.
+/// </summary>
 namespace TrouveLeMot
 {
     public class Niveau

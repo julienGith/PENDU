@@ -20,6 +20,7 @@ namespace Configuration
 {
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
+    /// A faire mettre à jour le code de lecture des fichiers de sauvegarde de toutes les classes.
     /// </summary>
     public partial class MainWindow : Window
     {

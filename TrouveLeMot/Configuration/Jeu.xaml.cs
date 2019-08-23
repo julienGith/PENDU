@@ -13,6 +13,7 @@ namespace Configuration
 {
     /// <summary>
     /// Logique d'interaction pour Jeu.xaml
+    /// A faire mettre à jour le code de lecture des fichiers de sauvegarde de toutes les classes.
     /// </summary>
     public partial class Jeu : Window
     {
@@ -24,10 +25,6 @@ namespace Configuration
         int i = 0;
         int j = 0;
         int k = 1;
-        
-
-
-
         public Jeu()
         {
             InitializeComponent();
@@ -42,53 +39,81 @@ namespace Configuration
 
         private void GenereClavier()
         {
-
             string alpha = "abcdefghijklmnopqrstuvwxyz";
-            int margeHaut = 10; int margeGauche = 10;
+            int margeHaut = 15; int margeGauche = 15;
             Thickness myThickness = new Thickness();
             myThickness.Left = margeGauche;
             myThickness.Top = margeHaut;
             foreach (char item in alpha)
             {
-
-                Grid g1 = new Grid();
-                //g1.ColumnDefinitions = margeGauche;
                 Button button = new Button();
-               
-           
-                button.Width =30;
-                button.Height = 30;
+                button.Width =25;
+                button.Height = 25;
                 button.Click += Button_Click;
                 button.Content = item;
+                
+                button.Tag = item;
                 button.Margin = myThickness;
-
-               
-                if (i % 6 == 0)
-                {
-                    margeHaut += 5;
-                }
-                // gridClavier.Children.Add(button);
-                g1.Children.Add(button);
-                gridClavier.Children.Add(g1);
+                wPclavier.Children.Add(button);
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
+
+            char[] tabMotCach = txtBmotCach.Text.ToCharArray();
+            List<int> stockPos = new List<int>();
+            string chaine = ((Button)sender).Content.ToString();
+            char lettre = chaine[0];
+            string temp = txtBlettres.Text;
+                for (int i = 0; i < tabMotCach.Length; i++)
+                {
+                    if (lettre == tabMotCach[i])
+                    {
+                        stockPos.Add(i);
+                    }
+                }
+                foreach (int item in stockPos)
+                {
+                    StringBuilder str = new StringBuilder(temp);
+                    str[item] = lettre;
+                    temp = str.ToString();
+                    txtBlettres.Text = temp;
+                }
+                            ///
             ((Button)sender).IsEnabled = false;
+            txtBpenalty.Text = ((int.Parse(txtBessai.Text) - 1) * options.NbPoinPerdus).ToString();
+            if (txtBessai.Text == (options.NbEssais - 1).ToString())
+            {
+                lblWinOrLose.Content = "Perdu ! Il fallait trouver : " + txtBmotCach.Text;
+            }
+            if (i < int.Parse(txtBnbEssais.Text))
+            {
+                txtBessai.Text = (++i).ToString();
+            }
+            if (txtBmotCach.Text == txtBlettres.Text)
+            {
+                lblWinOrLose.Content = "Bravo ! Vous avez trouvé le mot caché";
+                chrono.Stop();
+                int score = options.Temps - int.Parse(txtBcompteur.Text) - int.Parse(txtBpenalty.Text);
+                lblScore.Content = score.ToString();
+                joueur.Score += score;
+                lblScorePartie.Content = joueur.Score;
+                joueur.SaveXML(@"Joueur.xml");
+                joueurs.Add(joueur);
+                joueurs.SaveText("Liste_des_joueurs.txt");
+                joueurs.SaveXML(@"ListeJoueurs.xml");
+                btnTry.IsEnabled = false;
+                txtBlettres.Clear();
+            }
+
         }
 
         /// <summary>
         /// Methodes
         /// </summary>
         #region
-        private void IsBtnTryEnable()
-        {
-            if (!string.IsNullOrEmpty(txtBjoueur.Text))
-            {
-                //btnTry.IsEnabled = true;
-            }
-        }
         private void RecupPseudo()
         {
 
@@ -100,6 +125,9 @@ namespace Configuration
                 joueur.Pseudo = xnode.InnerText.ToString();
             }
         }
+        /// <summary>
+        /// Désactive le bouton manche suivante quand la dernière manche est atteinte.
+        /// </summary>
         private void IsNextEnable()
         {
             if (int.Parse(txtBmanche.Text) == int.Parse(txtBnbManches.Text))
@@ -125,7 +153,6 @@ namespace Configuration
             {
                 atrouver.Ajouter(xNode.InnerText);
             }
-
         }
         /// <summary>
         /// Remplie la texteBox lettres avec autant de tirets que de lettres dans le mot caché.

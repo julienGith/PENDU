@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace Configuration
-{
+{/// <summary>
+/// Liste des mots à trouver "Mots" qui dérive de List.
+/// </summary>
     [Serializable()]
     public class Mots : List<string>
     {
@@ -15,6 +17,9 @@ namespace Configuration
         private string _motCach;
         public int NombreMots
         { get; set; }
+        /// <summary>
+        /// Choisi un mot aléatoirement dans la liste des mots à trouver.
+        /// </summary>
         public string MotCach
         { get {
                 Random rand = new Random();
@@ -27,6 +32,10 @@ namespace Configuration
                 return this[aléatoire];
             } }
         public Mots() { }
+        /// <summary>
+        /// Methode pour ajouter un mot à la liste des mots à trouver si il n'est pas déjà présent.
+        /// </summary>
+        /// <param name="mot"></param>
         public void Ajouter(string mot)
         {
             bool trouve = false;
@@ -43,29 +52,23 @@ namespace Configuration
                 base.Add(mot);
             }
         }
+        /// <summary>
+        /// Permet de retirer un mot de la liste des mot a trouver.
+        /// Evite une exception en laissant un mot dans la liste.
+        /// </summary>
+        /// <param name="mot"></param>
         public new void Remove(string mot)
         {
             if (this.Count>1)
             {
                 base.Remove(mot);
             }
-            
         }
-
-        public new void Remove2(string mot)
-        {
-             base.Remove(mot); 
-        }
-
-        //public void Pioche()
-        //{
-        //    Random rand = new Random();
-        //    int aléatoire = 0;
-        //    aléatoire = rand.Next(0, this.Count - 1);
-        //    base.Add(this [aléatoire]);
-        //    base.RemoveAt(aléatoire);
-        //}
-
+        /// <summary>
+        /// Methodes de sauvegarde/chargement du Lexique.
+        /// </summary>
+        /// <param name="path"></param>
+        #region
         public void SaveXML(string path)
         {
             XmlSerializer writer = new XmlSerializer(typeof(Mots));
@@ -73,6 +76,9 @@ namespace Configuration
             writer.Serialize(file, this);
             file.Close();
         }
+        /// <summary>
+        /// A faire intégrer à la méthodes le remplissage de la liste lexique. La méthode lit mais n'enregistre rien dans la liste.
+        /// </summary>
         public void LoadXML(string path)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Mots));
@@ -80,5 +86,6 @@ namespace Configuration
             serializer.Deserialize(file);
             file.Close();
         }
+        #endregion
     }
 }

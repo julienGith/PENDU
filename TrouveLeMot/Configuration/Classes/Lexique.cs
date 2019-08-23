@@ -7,11 +7,20 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace TrouveLeMot
-{
+{/// <summary>
+/// Lexique "Lexique" qui dérive de List.
+/// </summary>
     [Serializable()]
    public class Lexique : List<string>
     {
+        /// <summary>
+        /// Constructeur par défaut.
+        /// </summary>
         public Lexique(){ }
+        /// <summary>
+        /// Methode pour ajouter un mot au Lexique si il n'est pas déjà présent.
+        /// </summary>
+        /// <param name="mot"></param>
         public void Ajouter(string mot)
         {
             bool trouve = false;
@@ -44,6 +53,10 @@ namespace TrouveLeMot
             writer.Serialize(file, this);
             file.Close();
         }
+        /// <summary>
+        /// A faire intégrer à la méthodes le remplissage de la liste lexique. La méthode lit mais n'enregistre rien dans la liste.
+        /// </summary>
+        /// <param name="path"></param>
         public void LoadXML(string path)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Lexique));

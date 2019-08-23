@@ -23,9 +23,14 @@ namespace Configuration
             }
             sw.Close();
             fs.Close();
-
-
         }
+        /// <summary>
+        /// Permet la lecture du fichier texte contenant la liste des joueurs.
+        /// Créé des chaines en découpant la ligne lu à chaque ";".
+        /// Récupère les pseudo et les scores dans un tableau de chaine.
+        /// Affecte des valeurs au champs de la classe joueur.
+        /// </summary>
+        /// <param name="path"></param>
         public void ReadTxt(string path)
         {
             FileStream fsr = new FileStream(path, FileMode.Open, FileAccess.Read);

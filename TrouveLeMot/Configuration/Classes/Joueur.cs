@@ -11,11 +11,11 @@ namespace Configuration
     [Serializable()]
     public class Joueur
     {
-        //private string _pseudo;
-        //private int _score;
+        /// <summary>
+        /// Permet l'ajout du séparateur ";" lors de la création du fichier texte de la liste des joueurs.
+        /// </summary>
         public override string ToString()
         {
-
             return Pseudo + ";" + Score;
         }
         public string Pseudo { get; set; }
