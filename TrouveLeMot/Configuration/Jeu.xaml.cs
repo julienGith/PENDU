@@ -43,8 +43,6 @@ namespace Configuration
         private void GenereClavier()
         {
 
-
-
             string alpha = "abcdefghijklmnopqrstuvwxyz";
             int margeHaut = 10; int margeGauche = 10;
             Thickness myThickness = new Thickness();
@@ -54,7 +52,7 @@ namespace Configuration
             {
 
                 Grid g1 = new Grid();
-                g1.Margin.Left = margeGauche;
+                //g1.ColumnDefinitions = margeGauche;
                 Button button = new Button();
                
            
@@ -109,6 +107,9 @@ namespace Configuration
                 btnNext.IsEnabled = false;
             }
         }
+        /// <summary>
+        /// Déclenche le chrono. Lie la propriété tick du chrono à l'évènement délégué chrono_tick. Détermine le temps entre 2 ticks.
+        /// </summary>
         private void Chrono()
         {
             chrono.Start();
@@ -126,95 +127,110 @@ namespace Configuration
             }
 
         }
+        /// <summary>
+        /// Remplie la texteBox lettres avec autant de tirets que de lettres dans le mot caché.
+        /// </summary>
         private void nbLettres()
         {
-
             for (int i = 1; i <= txtBmotCach.Text.Length; i++)
             {
                 string temp = txtBlettres.Text;
                 txtBlettres.Text = temp + "-";
             }
         }
-        private void TxtBjoueur_TextChange()
-        { txtBjoueur.Text = "Entrez un mot ou des lettres et tentez"; }
-        private void TxtBjoueur_TextChange2()
-        { txtBjoueur.Text = ""; }
-
         #endregion
         /// <summary>
         /// Evènements
         /// </summary>
         #region
+        /// <summary>
+        /// Permet l'incrémentation de j à chaque tick du chrono. Affiche le chrono (i) dans la texteBox compteur.
+        /// </summary>
         private void chrono_Tick(object sender, EventArgs e)
-                {
-                    j++;
-                    txtBcompteur.Text = j.ToString();
-                }
-                private void TxtBmotCach_TextChanged(object sender, TextChangedEventArgs e)
-                {
+        {
+            j++;
+            txtBcompteur.Text = j.ToString();
+        }
+        /// <summary>
+        /// Remplie la texteBox motcach avec un mot pris au hazard dans la liste des mots à trouver.
+        /// Le mot est supprimé afin de ne pas être réutilisé.
+        /// La liste des mots à trouver est sauvegardée.
+        /// </summary>
+        private void TxtBmotCach_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
-                    ChargeMots();
-                    txtBmotCach.Text = atrouver.MotCach;
-                    atrouver.Remove(txtBmotCach.Text);
-                    atrouver.SaveXML(@"mots_choisis.xml");
-                }
+            ChargeMots();
+            txtBmotCach.Text = atrouver.MotCach;
+            atrouver.Remove(txtBmotCach.Text);
+            atrouver.SaveXML(@"mots_choisis.xml");
+        }
 
-                private void TxtBnbManches_TextChanged(object sender, TextChangedEventArgs e)
-                {
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(@"Options.xml");
-                    XmlNodeList Xn = doc.SelectNodes("//NombreManches");
-                    foreach (XmlNode xNode in Xn)
-                    {
-                        options.NombreManches = int.Parse(xNode.InnerText);
+        private void TxtBnbManches_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"Options.xml");
+            XmlNodeList Xn = doc.SelectNodes("//NombreManches");
+            foreach (XmlNode xNode in Xn)
+            {
+                options.NombreManches = int.Parse(xNode.InnerText);
 
-                    }
-                    txtBnbManches.Text = options.NombreManches.ToString();
+            }
+            txtBnbManches.Text = options.NombreManches.ToString();
 
-                }
-                private void TxtBmanche_TextChanged(object sender, TextChangedEventArgs e)
-                {
-                    txtBmanche.Text = k.ToString();
-                }
-                private void TxtBnbEssais_TextChanged(object sender, TextChangedEventArgs e)
-                {
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(@"Options.xml");
-                    XmlNodeList Xn = doc.SelectNodes("//NbEssais");
-                    foreach (XmlNode xNode in Xn)
-                    {
-                        options.NbEssais = int.Parse(xNode.InnerText);
+        }
+        /// <summary>
+        /// Affiche l'int k dans la texteBox manche.
+        /// </summary>
+        private void TxtBmanche_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtBmanche.Text = k.ToString();
+        }
+        private void TxtBnbEssais_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"Options.xml");
+            XmlNodeList Xn = doc.SelectNodes("//NbEssais");
+            foreach (XmlNode xNode in Xn)
+            {
+                options.NbEssais = int.Parse(xNode.InnerText);
 
-                    }
-                    txtBnbEssais.Text = options.NbEssais.ToString();
+            }
+            txtBnbEssais.Text = options.NbEssais.ToString();
 
-                }
-                private void TxtBessai_TextChanged(object sender, TextChangedEventArgs e)
-                {
-                    txtBessai.Text = i.ToString();
-                }
-                private void TxtBtemps_TextChanged(object sender, TextChangedEventArgs e)
-                {
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(@"Options.xml");
-                    XmlNodeList Xn = doc.SelectNodes("//Temps");
-                    foreach (XmlNode xNode in Xn)
-                    {
-                        options.Temps = int.Parse(xNode.InnerText);
+        }
+        /// <summary>
+        /// Affiche l'int i dans la texteBox essai.
+        /// </summary>
+        private void TxtBessai_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            txtBessai.Text = i.ToString();
+        }
+        private void TxtBtemps_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"Options.xml");
+            XmlNodeList Xn = doc.SelectNodes("//Temps");
+            foreach (XmlNode xNode in Xn)
+            {
+                options.Temps = int.Parse(xNode.InnerText);
 
-                    }
-                    txtBtemps.Text = options.Temps.ToString();
-                }
-                private void TxtBcompteur_TextChanged(object sender, TextChangedEventArgs e)
-                {
-                    if (txtBcompteur.Text == options.Temps.ToString())
-                    {
-                        chrono.Stop();
-                        lblWinOrLose.Content = "Perdu ! temps écoulé. Il fallait trouver : " + txtBmotCach.Text;
-
-
-                    }
-                }
+            }
+            txtBtemps.Text = options.Temps.ToString();
+        }
+        /// <summary>
+        /// Permet l'affichage d'un message indique que la manche est perdue car le temps imparti est écoulé.
+        /// Désactive le bouton tenter afin que le joueur ne puisse pas poursuivre.
+        /// A faire supprimer la concaténation de la variable txtBmotCach.Text.
+        /// </summary>
+        private void TxtBcompteur_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtBcompteur.Text == options.Temps.ToString())
+            {
+                chrono.Stop();
+                lblWinOrLose.Content = "Perdu ! temps écoulé. Il fallait trouver :" + txtBmotCach.Text;
+                btnTry.IsEnabled = false;
+            }
+        }
         #endregion
         /// <summary>
         /// Evènement bouttons
@@ -222,7 +238,6 @@ namespace Configuration
         #region
         private void BtnNext_Click(object sender, RoutedEventArgs e)
         {
-            ;
             j = 0;
             chrono.Start();
             i = 0;
@@ -235,9 +250,6 @@ namespace Configuration
             {
                 btnNext.IsEnabled = false;
             }
-
-            //if (i < int.Parse(txtBnbManches.Text))
-            //{
             if (atrouver.Count > 0)
             {
                 atrouver.Remove(txtBmotCach.Text);
@@ -245,15 +257,12 @@ namespace Configuration
             }
             txtBmotCach.Text = atrouver.MotCach;
             txtBmanche.Text = (++k).ToString();
-            //}
-
             txtBlettres.Clear();
             for (int i = 1; i <= txtBmotCach.Text.Length; i++)
             {
                 string temp = txtBlettres.Text;
                 txtBlettres.Text = temp + "-";
             }
-
         }
 
         private void BtnTry_Click(object sender, RoutedEventArgs e)
@@ -273,7 +282,6 @@ namespace Configuration
                         stockPos.Add(i);
                     }
                 }
-
                 foreach (int item in stockPos)
                 {
                     StringBuilder str = new StringBuilder(temp);
@@ -281,9 +289,7 @@ namespace Configuration
                     temp = str.ToString();
                     txtBlettres.Text = temp;
                 }
-
                 int penalty = int.Parse(txtBessai.Text);
-
                 if (txtBjoueur.Text == txtBmotCach.Text)
                 {
                     lblWinOrLose.Content = "Bravo ! Vous avez trouvé le mot caché";
@@ -311,8 +317,10 @@ namespace Configuration
             }
             
         }
-
-
+        private void BtnQuitter_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
         #endregion
 
         private void TxtBpenalty_TextChanged(object sender, TextChangedEventArgs e)
@@ -327,16 +335,12 @@ namespace Configuration
             }
             txtBpenalty.Text = ((int.Parse(txtBessai.Text) + 1) * options.NbPoinPerdus).ToString();
         }
-
+        /// <summary>
+        /// Supprime le texte de la texteBox joueur lorsqu'elle est sélectionnée.
+        /// </summary>
         private void TxtBjoueur_GotFocus(object sender, RoutedEventArgs e)
         {
             txtBjoueur.Clear();
-
-        }
-
-        private void BtnQuitter_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
         }
     }
 }
