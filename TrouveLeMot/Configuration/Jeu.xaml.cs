@@ -42,7 +42,7 @@ namespace Configuration
 
         private void GenereClavier()
         {
-            string alpha = /*"abcdefghijklmnopqrstuvwxyz"*/ "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string alpha = /*"abcdefghijklmnopqrstuvwxyz"*/ "ABCDEFGHIJKLMNOPQRSTUVWXYZÆŒ";
             int margeHaut = 15; int margeGauche = 15;
             Thickness myThickness = new Thickness();
             myThickness.Left = margeGauche;
