@@ -99,6 +99,7 @@ namespace Configuration
             txtBpenalty.Text = ((int.Parse(txtBessai.Text) - 1) * options.NbPoinPerdus).ToString();
             if (txtBessai.Text == (options.NbEssais - 1).ToString())
             {
+                chrono.Stop();
                 lblWinOrLose.Content = "Perdu ! Il fallait trouver : " + txtBmotCach.Text;
                 wPclavier.IsEnabled = false;
                 btnTry.IsEnabled = false;
@@ -372,6 +373,7 @@ namespace Configuration
                 }
                 if (txtBessai.Text == (options.NbEssais).ToString())
                 {
+                    chrono.Stop();
                     lblWinOrLose.Content = "Perdu ! Il fallait trouver : " + txtBmotCach.Text;
                 }
                 if (i < int.Parse(txtBnbEssais.Text))

@@ -25,7 +25,7 @@ namespace Configuration
         {
             InitializeComponent();
             AfficherSP();
-            AfficheJoueurs();
+            //AfficheJoueurs();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -48,11 +48,14 @@ namespace Configuration
             StreamReader sr = new StreamReader(fsr);
             string enr = sr.ReadLine();
             string[] chaine = enr.Split(';');
+            ListJoueurs joueurs = new ListJoueurs();
             while (enr != null)
             {
                 Joueur joueur = new Joueur();
                 joueur.Pseudo = chaine[0];
                 joueur.Score = int.Parse(chaine[1]);
+                joueurs.Add(joueur);
+                DataContext = this;
                 enr = sr.ReadLine();
                 ListPseudo.Items.Add(joueur.Pseudo.ToString());
                 ListPoints.Items.Add(joueur.Score.ToString());
@@ -66,13 +69,13 @@ namespace Configuration
             sr.Close();
         }
         ////Alimenter la liste joueurs.
-        public void AfficheJoueurs()
-        {
-            ListJoueurs joueurs = new ListJoueurs();
-            joueurs.ReadTxt("Liste_des_joueurs.txt");
-            DataContext = this;
+        //public void AfficheJoueurs()
+        //{
+        //    ListJoueurs joueurs = new ListJoueurs();
+        //    joueurs.ReadTxt("Liste_des_joueurs.txt");
+        //    DataContext = this;
 
-        }
+        //}
 
     }
 }

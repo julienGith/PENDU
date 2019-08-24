@@ -30,7 +30,7 @@
         <Label Content="Scores" Grid.Column="3" Margin="355,18,644,0" VerticalAlignment="Top" Height="59" FontSize="40" RenderTransformOrigin="0.826,0.538" Grid.RowSpan="4"/>
         <ListBox x:Name="ListPseudo" Grid.Column="3" HorizontalAlignment="Left" Height="150" Margin="212,19,0,0" Grid.Row="5" VerticalAlignment="Top" Width="170"/>
         <ListBox x:Name="ListPoints" Grid.Column="3" Height="150" Margin="461,19,502,0" Grid.Row="5" VerticalAlignment="Top"/>
-        <ListView ItemsSource ="{Binding Joueurs}" Grid.Column="3" Margin="212,62,0,14" Grid.Row="3" HorizontalAlignment="Left" Width="410">
+        <ListView ItemsSource ="{Binding Joueurs}" Grid.Column="3" Margin="212,62,0,24" Grid.Row="3" HorizontalAlignment="Left" Width="410">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Pseudo}" Header="Pseudos" Width="200"></GridViewColumn>
