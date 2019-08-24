@@ -283,7 +283,6 @@ namespace Configuration
         /// Passe à la manche suivante.
         /// Réinitialise le Chrono.
         /// Réactive le bouton tenter.
-        /// Réintialise les textBox. J'aurais pu metre des clear.
         /// Supprime toutes les touches du clavier.
         /// Regénère le clavier. Cette méthode permet de contourner le problème lier à la réactivation des bouttons désactivés.
         /// Supprime le mot caché de la manche précédente.
@@ -351,9 +350,6 @@ namespace Configuration
                     temp = str.ToString();
                     txtBlettres.Text = temp;
                 }
-
-
-                int penalty = int.Parse(txtBessai.Text);
                 if (txtBjoueur.Text == txtBmotCach.Text)
                 {
                     lblWinOrLose.Content = "Bravo ! Vous avez trouvé le mot caché";
@@ -369,7 +365,6 @@ namespace Configuration
                     btnTry.IsEnabled = false;
                     txtBlettres.Clear();
                     txtBlettres.Text = txtBjoueur.Text;
-                    
                 }
                 if (txtBessai.Text == (options.NbEssais).ToString())
                 {
