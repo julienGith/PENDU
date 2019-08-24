@@ -38,8 +38,15 @@ namespace Configuration
             RecupPseudo();
             GenereClavier();
         }
-        
-
+        /// <summary>
+        /// Code lié au clavier.
+        /// </summary>
+        #region
+        /// <summary>
+        /// Génération du clavier dans un wrapPanel qui permet le retour automatique à la ligne des boutons.
+        /// Instanciation de l'objet Thickness pour définir les marges extérieures des boutons.
+        /// Création de l'évènement délégué Button_click.
+        /// </summary>
         private void GenereClavier()
         {
             string alpha = /*"abcdefghijklmnopqrstuvwxyz"*/ "ABCDEFGHIJKLMNOPQRSTUVWXYZÆŒ";
@@ -60,7 +67,12 @@ namespace Configuration
                 wPclavier.Children.Add(button);
             }
         }
-
+        /// <summary>
+        /// Evènement délégué Click.
+        /// Intègre le processus de découverte du mot.
+        /// Intègre le processus de calcul du score.
+        /// Intègre les processus de désactivation des bouttons de jeu afin de pas pouvoir continuer à jouer ou générer d'exceptions.
+        /// </summary>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             char[] tabMotCach = txtBmotCach.Text.ToCharArray();
@@ -112,7 +124,7 @@ namespace Configuration
             }
 
         }
-
+        #endregion
         /// <summary>
         /// Methodes
         /// </summary>
