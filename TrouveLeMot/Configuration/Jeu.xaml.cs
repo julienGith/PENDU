@@ -25,6 +25,9 @@ namespace Configuration
         int i = 0;
         int j = 0;
         int k = 1;
+        /// <summary>
+        /// Regroupe  les methodes exécutées à l'ouverture de la fenêtre jeu.
+        /// </summary>
         public Jeu()
         {
             InitializeComponent();
@@ -79,12 +82,14 @@ namespace Configuration
                     temp = str.ToString();
                     txtBlettres.Text = temp;
                 }
-                            ///
+                           
             ((Button)sender).IsEnabled = false;
             txtBpenalty.Text = ((int.Parse(txtBessai.Text) - 1) * options.NbPoinPerdus).ToString();
             if (txtBessai.Text == (options.NbEssais - 1).ToString())
             {
                 lblWinOrLose.Content = "Perdu ! Il fallait trouver : " + txtBmotCach.Text;
+                wPclavier.IsEnabled = false;
+                btnTry.IsEnabled = false;
             }
             if (i < int.Parse(txtBnbEssais.Text))
             {
@@ -270,7 +275,8 @@ namespace Configuration
             btnTry.IsEnabled = true;
             lblWinOrLose.Content = "";
             txtBlettres.Text = "";
-            txtBjoueur.Text = "Mot caché trouvé ? tapez le ici et tentez";
+            txtBjoueur.Text = "Mot caché trouvé ? Tapez le ici et tentez";
+            wPclavier.IsEnabled = true;
             if (int.Parse(txtBmanche.Text) == int.Parse(txtBnbManches.Text) - 1)
             {
                 btnNext.IsEnabled = false;
@@ -331,7 +337,7 @@ namespace Configuration
                     txtBlettres.Clear();
                     txtBlettres.Text = txtBjoueur.Text;
                 }
-                if (txtBessai.Text == (options.NbEssais - 1).ToString())
+                if (txtBessai.Text == (options.NbEssais).ToString())
                 {
                     lblWinOrLose.Content = "Perdu ! Il fallait trouver : " + txtBmotCach.Text;
                 }

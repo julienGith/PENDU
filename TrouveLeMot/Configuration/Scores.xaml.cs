@@ -42,7 +42,6 @@ namespace Configuration
         /// Affiche les donnée dans des listesBox.
         /// </summary>
         /// <param name="path"></param>
-        /// </summary>
         private void AfficherSP()
         {
             FileStream fsr = new FileStream("Liste_des_joueurs.txt", FileMode.Open, FileAccess.Read, FileShare.Read);
