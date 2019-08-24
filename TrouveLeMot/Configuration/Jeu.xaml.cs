@@ -61,7 +61,7 @@ namespace Configuration
                 button.Height = 25;
                 button.Click += Button_Click;
                 button.Content = item;
-                
+                                
                 button.Tag = item;
                 button.Margin = myThickness;
                 wPclavier.Children.Add(button);
@@ -69,9 +69,9 @@ namespace Configuration
         }
         /// <summary>
         /// Evènement délégué Click.
-        /// Intègre le processus de découverte du mot.
-        /// Intègre le processus de calcul du score.
-        /// Intègre les processus de désactivation des bouttons de jeu afin de pas pouvoir continuer à jouer ou générer d'exceptions.
+        /// Applique le processus de découverte du mot.
+        /// Applique le processus de calcul du score.
+        /// Applique les processus de désactivation des bouttons de jeu afin de pas pouvoir continuer à jouer ou générer d'exceptions.
         /// </summary>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -120,7 +120,7 @@ namespace Configuration
                 joueurs.SaveText("Liste_des_joueurs.txt");
                 joueurs.SaveXML(@"ListeJoueurs.xml");
                 btnTry.IsEnabled = false;
-                txtBlettres.Clear();
+                txtBlettres.Text= txtBmotCach.Text;
             }
 
         }
@@ -278,6 +278,17 @@ namespace Configuration
         /// Evènement bouttons
         /// </summary>
         #region
+        /// <summary>
+        /// Passe à la manche suivante.
+        /// Réinitialise le Chrono.
+        /// Réactive le bouton tenter.
+        /// Réintialise les textBox. J'aurais pu metre des clear.
+        /// Supprime toutes les touches du clavier.
+        /// Regénère le clavier. Cette méthode permet de contourner le problème lier à la réactivation des bouttons désactivés.
+        /// Supprime le mot caché de la manche précédente.
+        /// Pioche un nouveau mot caché.
+        /// Remplie la texteBox lettre avec des tirets en fonction du nombre de lettres du mot caché.
+        /// </summary>
         private void BtnNext_Click(object sender, RoutedEventArgs e)
         {
             j = 0;
@@ -288,7 +299,8 @@ namespace Configuration
             lblWinOrLose.Content = "";
             txtBlettres.Text = "";
             txtBjoueur.Text = "Mot caché trouvé ? Tapez le ici et tentez";
-            wPclavier.IsEnabled = true;
+            wPclavier.Children.Clear();
+            GenereClavier();
             if (int.Parse(txtBmanche.Text) == int.Parse(txtBnbManches.Text) - 1)
             {
                 btnNext.IsEnabled = false;
@@ -307,7 +319,13 @@ namespace Configuration
                 txtBlettres.Text = temp + "-";
             }
         }
-
+        /// <summary>
+        /// Boutton Tenter.
+        /// Applique le processus de découverte du mot.
+        /// Pour une lettre proposé la position de ce caractère dans le mot caché est stocké dans la list stockpos.
+        /// Un stringbuilder écrit le caractère à la position donné ce qui supprime le tiret à cette position dans la texteBox lettres.
+        /// Applique le processus de calcul du score.
+        /// </summary>
         private void BtnTry_Click(object sender, RoutedEventArgs e)
         {
             txtBpenalty.Text = ((int.Parse(txtBessai.Text)-1) * options.NbPoinPerdus).ToString();
@@ -332,6 +350,8 @@ namespace Configuration
                     temp = str.ToString();
                     txtBlettres.Text = temp;
                 }
+
+
                 int penalty = int.Parse(txtBessai.Text);
                 if (txtBjoueur.Text == txtBmotCach.Text)
                 {
@@ -348,6 +368,7 @@ namespace Configuration
                     btnTry.IsEnabled = false;
                     txtBlettres.Clear();
                     txtBlettres.Text = txtBjoueur.Text;
+                    
                 }
                 if (txtBessai.Text == (options.NbEssais).ToString())
                 {
