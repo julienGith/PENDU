@@ -276,7 +276,7 @@ namespace Configuration
         /// </summary>
         private void Suppr()
         {
-            if (!listBoxCible.Items.Contains(listBoxLex.SelectedItem) && listBoxCible.SelectedItem != null)
+            if (!listBoxLex.Items.Contains(listBoxCible.SelectedItem) && listBoxCible.SelectedItem != null)
             {
                 lexique.Ajouter(listBoxCible.SelectedItem.ToString());
                 lexique.SaveXML(@"test.xml");
@@ -337,18 +337,20 @@ namespace Configuration
         /// </summary>
         private void BtnSupprTout_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var itemListSuppr in listBoxCible.Items)
+            foreach (var item in listBoxCible.Items)
             {
-                if (itemListSuppr != null && !listBoxLex.Items.Contains(itemListSuppr))
+                if (item != null && !listBoxLex.Items.Contains(item))
                 {
-                    listBoxLex.Items.Add(itemListSuppr);
-                    atrouver.Remove(itemListSuppr.ToString());
-                    atrouver.SaveXML(@"mots_choisis.xml");
+                    listBoxLex.Items.Add(item);
+                    lexique.Ajouter(item.ToString());
+                    lexique.SaveXML(@"test.xml");
                 }
             }
-            foreach (var itemListSuppr2 in listBoxLex.Items)
+            foreach (var item in listBoxLex.Items)
             {
-                listBoxCible.Items.Remove(itemListSuppr2);
+                listBoxCible.Items.Remove(item);
+                atrouver.Remove(item.ToString());
+                atrouver.SaveXML(@"mots_choisis.xml");
             }
         }
         /// <summary>
@@ -357,18 +359,22 @@ namespace Configuration
         /// </summary>
         private void BtnAddTout_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var itemList in listBoxLex.Items)
+
+            foreach (var item in listBoxLex.Items)
             {
-                if (itemList != null && !listBoxCible.Items.Contains(itemList))
+                if (item != null && !listBoxCible.Items.Contains(item))
                 {
-                    listBoxCible.Items.Add(itemList);
-                    atrouver.Ajouter(itemList.ToString());
+                    listBoxCible.Items.Add(item);
+                    atrouver.Ajouter(item.ToString());
                     atrouver.SaveXML(@"mots_choisis.xml");
+
                 }
             }
-            foreach (var itemList2 in listBoxCible.Items)
+            foreach (var item in listBoxCible.Items)
             {
-                listBoxLex.Items.Remove(itemList2);
+                listBoxLex.Items.Remove(item);
+                lexique.Remove(item.ToString());
+                lexique.SaveXML(@"test.xml");
             }
         }
         /// <summary>
