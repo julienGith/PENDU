@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Configuration"
         mc:Ignorable="d"
-        Title="Jeu" Height="450" Width="800" ResizeMode="NoResize">
+        Title="Jeu" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBox x:Name="txtBmotCach" HorizontalAlignment="Left" Height="29" Margin="145,37,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="274" TextChanged="TxtBmotCach_TextChanged" Visibility="Hidden" IsReadOnly="False" />
         <TextBox x:Name="txtBjoueur" HorizontalAlignment="Left" Height="23" Margin="31,333,0,0" TextWrapping="Wrap" Text="Mot caché trouvé ? Tapez le ici et tentez" VerticalAlignment="Top" Width="274" SpellCheck.IsEnabled="True" IsReadOnly="False" GotFocus="TxtBjoueur_GotFocus"/>

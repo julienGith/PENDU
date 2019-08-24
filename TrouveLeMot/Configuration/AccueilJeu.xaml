@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Configuration"
         mc:Ignorable="d"
-        Title="AccueilJeu" Height="450" Width="421.637" ResizeMode="NoResize">
+        Title="AccueilJeu" Height="450" Width="421.637" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
 
         <Button x:Name="btnOptions" Content="Configurer" HorizontalAlignment="Left" Margin="126,191,0,0" VerticalAlignment="Top" Width="162" Height="61" Click="BtnOptions_Click" FontSize="20"/>

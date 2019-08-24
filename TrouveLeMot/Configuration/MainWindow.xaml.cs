@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,26 @@ namespace Configuration
         /// Méthodes
         /// </summary>
         #region
+        /// <summary>
+        /// Retraite le mot saisie.
+        /// Applique la méthode ajoutMot au mot retraité.
+        /// </summary>
+        public string RetraiterMot(string mot)
+        {
+            mot = mot.Normalize(NormalizationForm.FormD);
+            StringBuilder motCanonique = new StringBuilder();
+            foreach (char caractere in mot)
+            {
+                UnicodeCategory uc = CharUnicodeInfo.GetUnicodeCategory(caractere);
+                if (uc != UnicodeCategory.NonSpacingMark && char.IsLetter(caractere))
+                {
+                    motCanonique.Append(caractere);
+                }
+            }
+            AjoutMot(motCanonique.ToString().ToUpper());
+            return (motCanonique.ToString().ToUpper());
+
+        }
         private void EnableBtn()
         {
             btnAdd.IsEnabled = true;
@@ -281,9 +302,10 @@ namespace Configuration
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             string mot = txtBoxMot.Text;
-            if (isSaisieValid(mot))
+            
+            if (isSaisieValid(txtBoxMot.Text))
             {
-                AjoutMot(mot);
+                RetraiterMot(mot);
             }
             e.Handled = true;
         }
