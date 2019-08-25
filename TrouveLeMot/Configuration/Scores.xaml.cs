@@ -47,10 +47,11 @@ namespace Configuration
             FileStream fsr = new FileStream("Liste_des_joueurs.txt", FileMode.Open, FileAccess.Read, FileShare.Read);
             StreamReader sr = new StreamReader(fsr);
             string enr = sr.ReadLine();
-            string[] chaine = enr.Split(';');
+           
             ListJoueurs joueurs = new ListJoueurs();
             while (enr != null)
             {
+                string[] chaine = enr.Split(';');
                 Joueur joueur = new Joueur();
                 joueur.Pseudo = chaine[0];
                 joueur.Score = int.Parse(chaine[1]);
