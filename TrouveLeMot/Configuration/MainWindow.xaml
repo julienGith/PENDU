@@ -48,7 +48,7 @@
         <Button x:Name="btnTri" Content="Ordre alaphabétique" Grid.Column="4" HorizontalAlignment="Left" Margin="76,467,0,0" VerticalAlignment="Top" Width="120" Click="BtnTri_Click"/>
         <GroupBox x:Name="gpBoptions" Header="Options" HorizontalAlignment="Left" Height="136" Margin="5,328,0,0" VerticalAlignment="Top" Width="242" Grid.ColumnSpan="3" Grid.Column="1"/>
         <GroupBox Grid.Column="1" Header="" HorizontalAlignment="Left" Height="149" Margin="22,45,0,0" VerticalAlignment="Top" Width="184" Grid.ColumnSpan="3"/>
-        <RadioButton x:Name="rBtnLexic" Content="Gestion du lexique" Margin="5,27,140,0" VerticalAlignment="Top" Grid.Column="1" Checked="RBtnLexic_Checked" IsChecked="True" Grid.ColumnSpan="3"/>
+        <RadioButton x:Name="rBtnLexic" Content="Gestion du lexique" Margin="5,27,119,0" VerticalAlignment="Top" Grid.Column="1" Checked="RBtnLexic_Checked" IsChecked="True" Grid.ColumnSpan="3"/>
         <RadioButton x:Name="rBtnDifficult" Content="Niveau de difficulté" HorizontalAlignment="Left" Margin="0,197,0,0" VerticalAlignment="Top" Grid.Column="1" Checked="RBtnDifficult_Checked" Grid.ColumnSpan="3" Width="126"/>
 
 

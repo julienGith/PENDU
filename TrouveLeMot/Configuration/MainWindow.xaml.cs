@@ -60,7 +60,7 @@ namespace Configuration
 
         }
         /// <summary>
-        /// Méthode enable/disable des différents boutons.
+        /// METHODES enable/disable des différents boutons.
         /// </summary>
         #region
         private void EnableBtn()
@@ -265,7 +265,6 @@ namespace Configuration
                 lexique.SaveXML(@"test.xml");
                 atrouver.Ajouter(listBoxLex.SelectedItem.ToString());
                 atrouver.SaveXML(@"mots_choisis.xml");
-
                 listBoxLex.Items.Remove(listBoxLex.SelectedItem);
             }
 
@@ -392,7 +391,7 @@ namespace Configuration
             RetireMot();
         }
         /// <summary>
-        /// Radio bouttons permettant de passer de l'étape "lexique" à l'étape "Difficulté".
+        /// RADIO BOUTTONS permettant de passer de l'étape "lexique" à l'étape "Difficulté".
         /// Désactive/Active les bouttons concernés.
         /// </summary>
         #region
@@ -415,7 +414,7 @@ namespace Configuration
         }
         #endregion
         /// <summary>
-        /// Boutons numériques up and down. Boutons en provenance du dépots de contrôle xceed wpf toolkit.
+        /// BOUTTONS NUMERIQUES up and down. Boutons en provenance du dépots de contrôle xceed wpf toolkit.
         /// </summary>
         #region
         /// <summary>
@@ -486,7 +485,7 @@ namespace Configuration
 
         #endregion
         /// <summary>
-        /// EVENEMENT
+        /// EVENEMENTS
         /// </summary>
         #region
         /// <summary>

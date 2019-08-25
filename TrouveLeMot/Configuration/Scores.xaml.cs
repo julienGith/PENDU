@@ -25,7 +25,6 @@ namespace Configuration
         {
             InitializeComponent();
             AfficherSP();
-            //AfficheJoueurs();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -41,7 +40,6 @@ namespace Configuration
         /// Tant que le reader trouve du texte le processus continue.
         /// Affiche les donnée dans des listesBox.
         /// </summary>
-        /// <param name="path"></param>
         private void AfficherSP()
         {
             FileStream fsr = new FileStream("Liste_des_joueurs.txt", FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -70,13 +68,5 @@ namespace Configuration
             sr.Close();
         }
         ////Alimenter la liste joueurs.
-        //public void AfficheJoueurs()
-        //{
-        //    ListJoueurs joueurs = new ListJoueurs();
-        //    joueurs.ReadTxt("Liste_des_joueurs.txt");
-        //    DataContext = this;
-
-        //}
-
     }
 }

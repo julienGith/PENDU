@@ -33,7 +33,6 @@ namespace Configuration
         {
             InitializeComponent();
            
-            //options.LoadXML(@"Options.xml");
             Chrono();
             nbLettres();
             IsNextEnable();
@@ -42,7 +41,7 @@ namespace Configuration
             
         }
         /// <summary>
-        /// Code lié au clavier.
+        /// CLAVIER
         /// </summary>
         #region
         /// <summary>
@@ -203,9 +202,31 @@ namespace Configuration
         }
         #endregion
         /// <summary>
-        /// Evènements
+        /// EVENEMENTS
         /// </summary>
         #region
+        /// <summary>
+        /// Remplie la texteBox penalty avec les options choisies par le joueur.
+        /// </summary>
+        private void TxtBpenalty_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"Options.xml");
+            XmlNodeList Xn = doc.SelectNodes("//NbPoinPerdus");
+            foreach (XmlNode xNode in Xn)
+            {
+                options.NbPoinPerdus = int.Parse(xNode.InnerText);
+
+            }
+            txtBpenalty.Text = ((int.Parse(txtBessai.Text) + 1) * options.NbPoinPerdus).ToString();
+        }
+        /// <summary>
+        /// Supprime le texte de la texteBox joueur lorsqu'elle est sélectionnée.
+        /// </summary>
+        private void TxtBjoueur_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtBjoueur.Clear();
+        }
         /// <summary>
         /// Permet l'incrémentation de j à chaque tick du chrono. Affiche le chrono (i) dans la texteBox compteur.
         /// </summary>
@@ -221,13 +242,14 @@ namespace Configuration
         /// </summary>
         private void TxtBmotCach_TextChanged(object sender, TextChangedEventArgs e)
         {
-
             ChargeMots();
             txtBmotCach.Text = atrouver.MotCach;
             atrouver.Remove(txtBmotCach.Text);
             atrouver.SaveXML(@"mots_choisis.xml");
         }
-
+        /// <summary>
+        /// Remplie la texteBox NbManches avec les options choisies par le joueur.
+        /// </summary>
         private void TxtBnbManches_TextChanged(object sender, TextChangedEventArgs e)
         {
             XmlDocument doc = new XmlDocument();
@@ -236,10 +258,8 @@ namespace Configuration
             foreach (XmlNode xNode in Xn)
             {
                 options.NombreManches = int.Parse(xNode.InnerText);
-
             }
             txtBnbManches.Text = options.NombreManches.ToString();
-
         }
         /// <summary>
         /// Affiche l'int k dans la texteBox manche.
@@ -268,6 +288,9 @@ namespace Configuration
         {
             txtBessai.Text = i.ToString();
         }
+        /// <summary>
+        /// Remplie la texteBox temps avec les options choisies par le joueur.
+        /// </summary>
         private void TxtBtemps_TextChanged(object sender, TextChangedEventArgs e)
         {
             XmlDocument doc = new XmlDocument();
@@ -296,7 +319,7 @@ namespace Configuration
         }
         #endregion
         /// <summary>
-        /// Evènement bouttons
+        /// EVENEMENTS BOUTTONS
         /// </summary>
         #region
         /// <summary>
@@ -405,25 +428,7 @@ namespace Configuration
         }
         #endregion
 
-        private void TxtBpenalty_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(@"Options.xml");
-            XmlNodeList Xn = doc.SelectNodes("//NbPoinPerdus");
-            foreach (XmlNode xNode in Xn)
-            {
-                options.NbPoinPerdus = int.Parse(xNode.InnerText);
 
-            }
-            txtBpenalty.Text = ((int.Parse(txtBessai.Text) + 1) * options.NbPoinPerdus).ToString();
-        }
-        /// <summary>
-        /// Supprime le texte de la texteBox joueur lorsqu'elle est sélectionnée.
-        /// </summary>
-        private void TxtBjoueur_GotFocus(object sender, RoutedEventArgs e)
-        {
-            txtBjoueur.Clear();
-        }
     }
 }
 
