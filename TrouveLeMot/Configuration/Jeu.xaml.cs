@@ -19,6 +19,7 @@ namespace Configuration
     public partial class Jeu : Window
     {
         Mots atrouver = new Mots();
+        Lexique lexique = new Lexique();
         Options options = new Options();
         Joueur joueur = new Joueur();
         ListJoueurs joueurs = new ListJoueurs();
@@ -38,7 +39,7 @@ namespace Configuration
             IsNextEnable();
             RecupPseudo();
             GenereClavier();
-            
+            ChargeLexique();
         }
         /// <summary>
         /// CLAVIER
@@ -132,7 +133,21 @@ namespace Configuration
         /// Methodes
         /// </summary>
         #region
-
+        private void ChargeLexique()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"test.xml");
+            XmlNodeList Xn = doc.SelectNodes("//string");
+            foreach (XmlNode xNode in Xn)
+            {
+                lexique.Ajouter(xNode.InnerText);
+            }
+        }
+        /// <summary>
+        /// Reformate le mot taper par le joueur.
+        /// </summary>
+        /// <param name="mot"></param>
+        /// <returns></returns>
         public string RetraiterMot(string mot)
         {
             mot = mot.Normalize(NormalizationForm.FormD);
@@ -351,7 +366,8 @@ namespace Configuration
             if (atrouver.Count > 0)
             {
                 atrouver.Remove(txtBmotCach.Text);
-                atrouver.SaveXML(@"mots_choisis.xml");
+                lexique.Ajouter(txtBmotCach.Text);
+                lexique.SaveXML(@"test.xml");
             }
             txtBmotCach.Text = atrouver.MotCach;
             txtBmanche.Text = (++k).ToString();
@@ -404,7 +420,7 @@ namespace Configuration
                     lblScorePartie.Content = joueur.Score;
                     joueur.SaveXML(@"Joueur.xml");
                     joueurs.Add(joueur);
-                    joueurs.SaveText("Liste_des_joueurs.txt");
+                    joueurs.SaveText(@"Liste_des_joueurs.txt");
                     joueurs.SaveXML(@"ListeJoueurs.xml");
                     btnTry.IsEnabled = false;
                     txtBlettres.Clear();
