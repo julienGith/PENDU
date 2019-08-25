@@ -11,7 +11,7 @@
         <Button x:Name="btnOptions" Content="Configurer" HorizontalAlignment="Left" Margin="126,191,0,0" VerticalAlignment="Top" Width="162" Height="61" Click="BtnOptions_Click" FontSize="20"/>
         <Button x:Name="btnStart" Content="Lancer la partie" HorizontalAlignment="Left" Margin="126,116,0,0" VerticalAlignment="Top" Height="61" Width="162" Click="BtnStart_Click" FontSize="20"/>
         <Button x:Name="btnScores" Content="Scores" HorizontalAlignment="Left" Margin="126,266,0,0" VerticalAlignment="Top" Height="61" Width="162" Click="BtnScores_Click" FontSize="20"/>
-        <TextBox x:Name="txtBpseudo" Margin="23,28,24,331" TextWrapping="Wrap" Text="Entrez votre pseudo" FontSize="36" TextChanged="TxtBpseudo_TextChanged"/>
+        <TextBox x:Name="txtBpseudo" Margin="23,28,24,331" TextWrapping="Wrap" Text="Entrez votre pseudo" FontSize="36" TextChanged="TxtBpseudo_TextChanged" GotFocus="TxtBpseudo_GotFocus"/>
         <Button x:Name="BtnQuit" Content="Quitter" HorizontalAlignment="Left" Margin="126,341,0,0" VerticalAlignment="Top" Width="162" Height="61" Click="BtnQuit_Click" FontSize="20"/>
 
     </Grid>

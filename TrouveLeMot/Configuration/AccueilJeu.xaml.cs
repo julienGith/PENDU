@@ -23,10 +23,9 @@ namespace Configuration
         public AccueilJeu()
         {
             InitializeComponent();
-            
+
         }
         Joueur joueur = new Joueur();
-        
 
         private void BtnOptions_Click(object sender, RoutedEventArgs e)
         {
@@ -56,5 +55,11 @@ namespace Configuration
         {
             this.Close();
         }
+
+        private void TxtBpseudo_GotFocus(object sender, RoutedEventArgs e)
+        {
+            txtBpseudo.Clear();
+        }
+
     }
 }

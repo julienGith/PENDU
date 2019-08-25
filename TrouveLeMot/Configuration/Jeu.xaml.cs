@@ -8,6 +8,7 @@ using TrouveLeMot;
 using System.Windows.Threading;
 using System.Collections.Generic;
 using System.Text;
+using System.Globalization;
 
 namespace Configuration
 {
@@ -31,12 +32,14 @@ namespace Configuration
         public Jeu()
         {
             InitializeComponent();
-            options.LoadXML(@"Options.xml");
+           
+            //options.LoadXML(@"Options.xml");
             Chrono();
             nbLettres();
             IsNextEnable();
             RecupPseudo();
             GenereClavier();
+            
         }
         /// <summary>
         /// Code lié au clavier.
@@ -130,6 +133,23 @@ namespace Configuration
         /// Methodes
         /// </summary>
         #region
+
+        public string RetraiterMot(string mot)
+        {
+            mot = mot.Normalize(NormalizationForm.FormD);
+            StringBuilder motCanonique = new StringBuilder();
+            foreach (char caractere in mot)
+            {
+                UnicodeCategory uc = CharUnicodeInfo.GetUnicodeCategory(caractere);
+                if (uc != UnicodeCategory.NonSpacingMark && char.IsLetter(caractere))
+                {
+                    motCanonique.Append(caractere);
+                }
+            }
+            txtBjoueur.Text=(motCanonique.ToString().ToUpper());
+            return (motCanonique.ToString().ToUpper());
+
+        }
         private void RecupPseudo()
         {
 
@@ -328,6 +348,7 @@ namespace Configuration
         /// </summary>
         private void BtnTry_Click(object sender, RoutedEventArgs e)
         {
+            RetraiterMot(txtBjoueur.Text);
             txtBpenalty.Text = ((int.Parse(txtBessai.Text)-1) * options.NbPoinPerdus).ToString();
             char[] tabMotCach = txtBmotCach.Text.ToCharArray();
             List<int> stockPos = new List<int>();
