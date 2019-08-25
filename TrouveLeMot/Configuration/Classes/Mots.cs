@@ -25,10 +25,6 @@ namespace Configuration
                 Random rand = new Random();
                 int aléatoire = 0;
                 aléatoire = rand.Next(0, this.Count);
-                if (this.Count>1)
-                {
-
-                }
                 return this[aléatoire];
             } }
         public Mots() { }
@@ -59,11 +55,7 @@ namespace Configuration
         /// <param name="mot"></param>
         public new void Remove(string mot)
         {
-
-            if (this.Count > 1)
-            {
-                base.Remove(mot);
-            }
+            base.Remove(mot);
         }
         /// <summary>
         /// Methodes de sauvegarde/chargement du Lexique.
