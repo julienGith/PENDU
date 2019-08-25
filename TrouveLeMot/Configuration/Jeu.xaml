@@ -21,7 +21,7 @@
         <TextBox x:Name="txtBnbManches" HorizontalAlignment="Left" Height="23" Margin="691,51,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="19" TextChanged="TxtBnbManches_TextChanged"/>
         <TextBox x:Name="txtBnbEssais" HorizontalAlignment="Left" Height="23" Margin="691,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="25" TextChanged="TxtBnbEssais_TextChanged"/>
         <TextBox x:Name="txtBessai" HorizontalAlignment="Left" Height="23" Margin="657,115,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="24" TextChanged="TxtBessai_TextChanged"/>
-        <TextBox x:Name="txtBlettres" HorizontalAlignment="Left" Height="41" Margin="31,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="274" FontSize="20" />
+        <TextBox x:Name="txtBlettres" HorizontalAlignment="Left" Height="41" Margin="31,66,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="308" FontSize="20" />
         <Label x:Name="lblWinOrLose" Content="" HorizontalAlignment="Left" Margin="31,23,0,0" VerticalAlignment="Top" Width="274"/>
         <Button Content="Vérifier l'orthographe" HorizontalAlignment="Left" Margin="31,367,0,0" VerticalAlignment="Top" Width="151"/>
         <TextBox x:Name="txtBcompteur" HorizontalAlignment="Left" Height="23" Margin="639,198,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="29" TextChanged="TxtBcompteur_TextChanged"/>
