@@ -47,25 +47,29 @@ namespace Configuration
             string enr = sr.ReadLine();
            
             ListJoueurs joueurs = new ListJoueurs();
-            while (enr != null)
+            if (enr != null)
             {
-                string[] chaine = enr.Split(';');
-                Joueur joueur = new Joueur();
-                joueur.Pseudo = chaine[0];
-                joueur.Score = int.Parse(chaine[1]);
-                joueurs.Add(joueur);
-                DataContext = this;
-                enr = sr.ReadLine();
-                ListPseudo.Items.Add(joueur.Pseudo.ToString());
-                ListPoints.Items.Add(joueur.Score.ToString());
-
-                if (enr != null)
+                while (enr != null)
                 {
-                    chaine = enr.Split(';');
+                    string[] chaine = enr.Split(';');
+                    Joueur joueur = new Joueur();
+                    joueur.Pseudo = chaine[0];
+                    joueur.Score = int.Parse(chaine[1]);
+                    joueurs.Add(joueur);
+                    DataContext = this;
+                    enr = sr.ReadLine();
+                    ListPseudo.Items.Add(joueur.Pseudo.ToString());
+                    ListPoints.Items.Add(joueur.Score.ToString());
+
+                    if (enr != null)
+                    {
+                        chaine = enr.Split(';');
+                    }
                 }
+                fsr.Close();
+                sr.Close();
             }
-            fsr.Close();
-            sr.Close();
+           
         }
         ////Alimenter la liste joueurs.
     }

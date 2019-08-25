@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Configuration"
         mc:Ignorable="d"
-        Title="AccueilJeu" Height="450" Width="421.637" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="AccueilJeu" Height="495" Width="421.637" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid>
 
-        <Button x:Name="btnOptions" Content="Configurer" HorizontalAlignment="Left" Margin="126,191,0,0" VerticalAlignment="Top" Width="162" Height="61" Click="BtnOptions_Click" FontSize="20"/>
-        <Button x:Name="btnStart" Content="Lancer la partie" HorizontalAlignment="Left" Margin="126,116,0,0" VerticalAlignment="Top" Height="61" Width="162" Click="BtnStart_Click" FontSize="20"/>
-        <Button x:Name="btnScores" Content="Scores" HorizontalAlignment="Left" Margin="126,266,0,0" VerticalAlignment="Top" Height="61" Width="162" Click="BtnScores_Click" FontSize="20"/>
-        <TextBox x:Name="txtBpseudo" Margin="23,28,24,331" TextWrapping="Wrap" Text="Entrez votre pseudo" FontSize="36" TextChanged="TxtBpseudo_TextChanged" GotFocus="TxtBpseudo_GotFocus"/>
-        <Button x:Name="BtnQuit" Content="Quitter" HorizontalAlignment="Left" Margin="126,341,0,0" VerticalAlignment="Top" Width="162" Height="61" Click="BtnQuit_Click" FontSize="20"/>
+        <Button x:Name="btnOptions" Content="Configurer" HorizontalAlignment="Left" Margin="123,234,0,0" VerticalAlignment="Top" Width="162" Height="61" Click="BtnOptions_Click" FontSize="20"/>
+        <Button x:Name="btnStart" Content="Lancer la partie" HorizontalAlignment="Left" Margin="123,159,0,0" VerticalAlignment="Top" Height="61" Width="162" Click="BtnStart_Click" FontSize="20"/>
+        <Button x:Name="btnScores" Content="Scores" HorizontalAlignment="Left" Margin="123,309,0,0" VerticalAlignment="Top" Height="61" Width="162" Click="BtnScores_Click" FontSize="20"/>
+        <TextBox x:Name="txtBpseudo" Margin="23,28,24,380" TextWrapping="Wrap" Text="Entrez votre pseudo" FontSize="36" TextChanged="TxtBpseudo_TextChanged" GotFocus="TxtBpseudo_GotFocus"/>
+        <Button x:Name="BtnQuit" Content="Quitter" HorizontalAlignment="Left" Margin="123,384,0,0" VerticalAlignment="Top" Width="162" Height="61" Click="BtnQuit_Click" FontSize="20"/>
+        <TextBlock x:Name="txtBlkAccueil" HorizontalAlignment="Left" Margin="23,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="369" FontSize="16"/>
 
     </Grid>
 </Window>

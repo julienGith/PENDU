@@ -130,7 +130,7 @@ namespace Configuration
         }
         #endregion
         /// <summary>
-        /// Methodes
+        /// METHODES
         /// </summary>
         #region
         private void ChargeLexique()
@@ -258,12 +258,20 @@ namespace Configuration
         private void TxtBmotCach_TextChanged(object sender, TextChangedEventArgs e)
         {
             ChargeMots();
-            txtBmotCach.Text = atrouver.MotCach;
-            atrouver.Remove(txtBmotCach.Text);
-            atrouver.SaveXML(@"mots_choisis.xml");
-            ChargeLexique();
-            lexique.Ajouter(txtBmotCach.Text);
-            lexique.SaveXML(@"test.xml");
+            if (atrouver.Count==0)
+            {
+                MessageBoxResult message = MessageBox.Show( "Pas de mot à trouver \n Configurez la partie", "Configuration manquante", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            if (atrouver.Count != 0)
+            {
+                txtBmotCach.Text = atrouver.MotCach;
+                atrouver.Remove(txtBmotCach.Text);
+                atrouver.SaveXML(@"mots_choisis.xml");
+                ChargeLexique();
+                lexique.Ajouter(txtBmotCach.Text);
+                lexique.SaveXML(@"test.xml");
+            }
+
         }
         /// <summary>
         /// Remplie la texteBox NbManches avec les options choisies par le joueur.
@@ -366,15 +374,15 @@ namespace Configuration
             {
                 btnNext.IsEnabled = false;
             }
-            //if (atrouver.Count > 0)
-            //{
-                
-            //    atrouver.Remove(txtBmotCach.Text);
-            //    atrouver.SaveXML(@"mots_choisis.xml");
-            //    //ChargeLexique();
-            //    //lexique.Ajouter(txtBmotCach.Text);
-            //    //lexique.SaveXML(@"test.xml");
-            //}
+            if (atrouver.Count == 1)
+            {
+
+                atrouver.Remove(txtBmotCach.Text);
+                atrouver.SaveXML(@"mots_choisis.xml");
+                ChargeLexique();
+                lexique.Ajouter(txtBmotCach.Text);
+                lexique.SaveXML(@"test.xml");
+            }
             txtBmotCach.Text = atrouver.MotCach;
             txtBmanche.Text = (++k).ToString();
             txtBlettres.Clear();

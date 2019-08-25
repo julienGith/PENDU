@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml;
 using TrouveLeMot;
 
 namespace Configuration
@@ -20,23 +21,61 @@ namespace Configuration
     /// </summary>
     public partial class AccueilJeu : Window
     {
+        Mots atrouver = new Mots();
+        
+        Joueur joueur = new Joueur();
+        
         public AccueilJeu()
         {
             InitializeComponent();
-
+            ChargeMots();
         }
-        Joueur joueur = new Joueur();
+
+
+        private void ChargeMots()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"mots_choisis.xml");
+            XmlNodeList Xn = doc.SelectNodes("//string");
+            foreach (XmlNode xNode in Xn)
+            {
+                atrouver.Ajouter(xNode.InnerText);
+            }
+            if (atrouver.Count == 0)
+            {
+                btnStart.IsEnabled = false;
+            }
+            if (atrouver.Count != 0)
+            {
+                btnStart.IsEnabled = true;
+            }
+        }
 
         private void BtnOptions_Click(object sender, RoutedEventArgs e)
         {
             MainWindow option = new MainWindow();
+            btnStart.IsEnabled = true;
             option.ShowDialog();
         }
 
         private void BtnStart_Click(object sender, RoutedEventArgs e)
         {
-            Jeu jeu = new Jeu();
-            jeu.ShowDialog();
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"mots_choisis.xml");
+            XmlNodeList Xn = doc.SelectNodes("//string");
+            foreach (XmlNode xNode in Xn)
+            {
+                atrouver.Ajouter(xNode.InnerText);
+            }
+            if (atrouver.Count == 0)
+            {
+                txtBlkAccueil.Text = "Aucun mot à trouver choisi. Configurer la partie.";
+            }
+            if (atrouver.Count != 0)
+            {
+                Jeu jeu = new Jeu();
+                jeu.ShowDialog();
+            }
         }
 
         private void TxtBpseudo_TextChanged(object sender, TextChangedEventArgs e)
