@@ -42,7 +42,7 @@
         <xctk:IntegerUpDown x:Name="nupPtPerdu" HorizontalAlignment="Left" Margin="82,433,0,0" VerticalAlignment="Top" Grid.Column="3" Height="20" Width="41" Maximum="3" Minimum="0" Value="0" ValueChanged="NupPtPerdu_ValueChanged"/>
         <Button x:Name="btnClose" Content="Fermer" Grid.Column="5" HorizontalAlignment="Left" Margin="153,467,0,0" VerticalAlignment="Top" Width="75" Height="22" Click="BtnClose_Click"/>
         <Label Content="Nombre de manches" HorizontalAlignment="Left" Margin="5,355,0,0" VerticalAlignment="Top" Grid.ColumnSpan="3" Height="26" Width="121" Grid.Column="1"/>
-        <xctk:IntegerUpDown x:Name="nupManches" FormatString="N0" Grid.Column="3" HorizontalAlignment="Left" Margin="82,355,0,0" VerticalAlignment="Top" Height="20" Width="41" Maximum="5" Minimum="1" Value="1" ValueChanged="NupManches_ValueChanged"/>
+        <xctk:IntegerUpDown x:Name="nupManches" FormatString="N0" Grid.Column="3" HorizontalAlignment="Left" Margin="82,355,0,0" VerticalAlignment="Top" Height="20" Width="41" Maximum="{Binding Items.Count, ElementName=listBoxCible, Mode=OneWay}" Minimum="1" Value="1" ValueChanged="NupManches_ValueChanged"/>
         <Label Content="Nombre d'essai" HorizontalAlignment="Left" Margin="5,407,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.737,-0.154" Grid.ColumnSpan="3" Width="119" Grid.Column="1"/>
         <xctk:IntegerUpDown x:Name="nupEssais" Grid.Column="3" HorizontalAlignment="Left" Margin="82,410,0,0" VerticalAlignment="Top" Minimum="7" Value="7" ValueChanged="NupEssais_ValueChanged"/>
         <Button x:Name="btnTri" Content="Ordre alaphabétique" Grid.Column="4" HorizontalAlignment="Left" Margin="76,467,0,0" VerticalAlignment="Top" Width="120" Click="BtnTri_Click"/>

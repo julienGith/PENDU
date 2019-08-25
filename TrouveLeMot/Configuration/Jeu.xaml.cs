@@ -261,6 +261,9 @@ namespace Configuration
             txtBmotCach.Text = atrouver.MotCach;
             atrouver.Remove(txtBmotCach.Text);
             atrouver.SaveXML(@"mots_choisis.xml");
+            ChargeLexique();
+            lexique.Ajouter(txtBmotCach.Text);
+            lexique.SaveXML(@"test.xml");
         }
         /// <summary>
         /// Remplie la texteBox NbManches avec les options choisies par le joueur.
@@ -363,12 +366,15 @@ namespace Configuration
             {
                 btnNext.IsEnabled = false;
             }
-            if (atrouver.Count > 0)
-            {
-                atrouver.Remove(txtBmotCach.Text);
-                lexique.Ajouter(txtBmotCach.Text);
-                lexique.SaveXML(@"test.xml");
-            }
+            //if (atrouver.Count > 0)
+            //{
+                
+            //    atrouver.Remove(txtBmotCach.Text);
+            //    atrouver.SaveXML(@"mots_choisis.xml");
+            //    //ChargeLexique();
+            //    //lexique.Ajouter(txtBmotCach.Text);
+            //    //lexique.SaveXML(@"test.xml");
+            //}
             txtBmotCach.Text = atrouver.MotCach;
             txtBmanche.Text = (++k).ToString();
             txtBlettres.Clear();
@@ -443,8 +449,6 @@ namespace Configuration
             Close();
         }
         #endregion
-
-
     }
 }
 

@@ -25,7 +25,7 @@ namespace Configuration
                 Random rand = new Random();
                 int aléatoire = 0;
                 aléatoire = rand.Next(0, this.Count);
-                if (this.Count<1)
+                if (this.Count>1)
                 {
 
                 }
@@ -59,7 +59,8 @@ namespace Configuration
         /// <param name="mot"></param>
         public new void Remove(string mot)
         {
-            if (this.Count>1)
+
+            if (this.Count > 1)
             {
                 base.Remove(mot);
             }
