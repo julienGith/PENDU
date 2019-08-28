@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace TrouveLeMot
@@ -59,10 +60,20 @@ namespace TrouveLeMot
         /// <param name="path"></param>
         public void LoadXML(string path)
         {
-            XmlSerializer serializer = new XmlSerializer(typeof(Lexique));
-            FileStream file = new FileStream(path, FileMode.Open);
-            serializer.Deserialize(file);
-            file.Close();
+            //XmlSerializer serializer = new XmlSerializer(typeof(Lexique));
+            //FileStream file = new FileStream(path, FileMode.Open);
+            //serializer.Deserialize(file);
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load(@"test.xml");
+
+            XmlNodeList Xn = doc.SelectNodes("//string");
+            foreach (XmlNode xNode in Xn)
+            {
+                base.Add(xNode.InnerText.ToString());
+            }
+            
+            //file.Close();
         }
         #endregion
     }

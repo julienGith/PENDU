@@ -432,6 +432,7 @@ namespace Configuration
         {
             options.NbEssais = nupEssais.Value.Value;
             options.SaveXML(@"Options.xml");
+            
         }
         /// <summary>
         /// numérique up and down déterminant la durée totale d'une manche. valeur par défaut 60, valeur max 600, incrément de 10 déterminé dans MainWindow.xalm.
